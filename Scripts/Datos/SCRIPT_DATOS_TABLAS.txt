@@ -1,0 +1,331 @@
+use sistemas2_web;
+
+TRUNCATE TABLE Categorias;
+TRUNCATE TABLE Tipos_Ofertas;
+TRUNCATE TABLE Tipos_Entidades;
+TRUNCATE TABLE Tipos_Documentos;
+TRUNCATE TABLE Roles;
+TRUNCATE TABLE Tipos_Domicilios;
+TRUNCATE TABLE Barrios;
+TRUNCATE TABLE Localidades;
+TRUNCATE TABLE Provincias;
+TRUNCATE TABLE Paises;
+
+-- ######################## INSERTS ########################
+
+INSERT INTO Paises (Nombre, ISO3, Bandera) VALUES ('Argentina', 'ARG', '');
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Buenos Aires', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Catamarca', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Chaco', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Chubut', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Ciudad Autónoma de Buenos Aires', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Córdoba', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Corrientes', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Entre Ríos', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Formosa', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Jujuy', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('La Pampa', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('La Rioja', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Mendoza', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Misiones', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Neuquén', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Río Negro', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Salta', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('San Juan', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('San Luis', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Santa Cruz', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Santa Fe', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Santiago del Estero', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Tierra del Fuego', 1);
+INSERT INTO Provincias (Nombre, Pais) VALUES ('Tucumán', 1);
+
+-- Buenos Aires (ID: 1)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('La Plata', 1);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Mar del Plata', 1);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Bahía Blanca', 1);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Lomas de Zamora', 1);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Quilmes', 1);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Pilar', 1);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Merlo', 1);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Moreno', 1);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Avellaneda', 1);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Nicolás de los Arroyos', 1);
+-- Catamarca (ID: 2)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Fernando del Valle de Catamarca', 2);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Santa María', 2);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Andalgalá', 2);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Fiambalá', 2);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Tinogasta', 2);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Belén', 2);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Recreo', 2);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San José', 2);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('La Puerta', 2);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('El Rodeo', 2);
+-- Chaco (ID: 3)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Resistencia', 3);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Barranqueras', 3);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Fontana', 3);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Presidencia Roque Sáenz Peña', 3);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('General José de San Martín', 3);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Ángela', 3);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Tres Isletas', 3);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Machagai', 3);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Quitilipi', 3);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Berthet', 3);
+-- Chubut (ID: 4)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Rawson', 4);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Comodoro Rivadavia', 4);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Puerto Madryn', 4);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Trelew', 4);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Esquel', 4);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Gaiman', 4);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Rada Tilly', 4);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Rawson', 4);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Dolavon', 4);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Lago Puelo', 4);
+-- Córdoba (ID: 6)
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('Córdoba', 6);
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa María', 6);
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('Río Cuarto', 6);
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('San Francisco', 6);
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('Alta Gracia', 6);
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Carlos Paz', 6);
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('Jesús María', 6);
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('Bell Ville', 6);
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('Río Tercero', 6);
+INSERT INTO Localidades (Nombre, Provincia) VALUES ('Cosquín', 6);
+-- Corrientes (ID: 7)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Corrientes', 7);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Goya', 7);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Mercedes', 7);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Curuzú Cuatiá', 7);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Ituzaingó', 7);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Esquina', 7);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Bella Vista', 7);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Monte Caseros', 7);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Paso de los Libres', 7);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Santo Tomé', 7);
+-- Entre Ríos (ID: 8)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Paraná', 8);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Concordia', 8);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Gualeguaychú', 8);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Gualeguay', 8);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Victoria', 8);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Diamante', 8);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Chajarí', 8);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villaguay', 8);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('La Paz', 8);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Colón', 8);
+-- Formosa (ID: 9)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Formosa', 9);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Clorinda', 9);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Pirané', 9);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Las Lomitas', 9);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Ingeniero Juárez', 9);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('El Colorado', 9);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('La Primavera', 9);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Escolar', 9);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Martín 2°', 9);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('General Mansilla', 9);
+-- Jujuy (ID: 10)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Salvador de Jujuy', 10);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Pedro de Jujuy', 10);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Palpalá', 10);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Libertador General San Martín', 10);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Humahuaca', 10);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('La Quiaca', 10);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('El Carmen', 10);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Perico', 10);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Tilcara', 10);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Abra Pampa', 10);
+-- La Pampa (ID: 11)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Santa Rosa', 11);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('General Pico', 11);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Toay', 11);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Eduardo Castex', 11);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('General Acha', 11);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Realicó', 11);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Victorica', 11);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Miguel Riglos', 11);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Winifreda', 11);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Trenel', 11);
+-- La Rioja (ID: 12)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('La Rioja', 12);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Chilecito', 12);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Chamical', 12);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Unión', 12);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Aimogasta', 12);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Chepes', 12);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Anillaco', 12);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Olta', 12);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Vinchina', 12);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Famatina', 12);
+-- Mendoza (ID: 13)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Mendoza', 13);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Rafael', 13);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Godoy Cruz', 13);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Luján de Cuyo', 13);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Las Heras', 13);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Maipú', 13);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Guaymallén', 13);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Malargüe', 13);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Martín', 13);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Tunuyán', 13);
+-- Misiones (ID: 14)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Posadas', 14);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Eldorado', 14);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Puerto Iguazú', 14);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Oberá', 14);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Aristóbulo del Valle', 14);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Montecarlo', 14);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Vicente', 14);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Apóstoles', 14);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Wanda', 14);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Puerto Rico', 14);
+-- Neuquén (ID: 15)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Neuquén', 15);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Cutral Có', 15);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Plottier', 15);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Zapala', 15);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Martín de los Andes', 15);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Rincón de los Sauces', 15);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Centenario', 15);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa La Angostura', 15);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Junín de los Andes', 15);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Chos Malal', 15);
+-- Río Negro (ID: 16)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Viedma', 16);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Carlos de Bariloche', 16);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('General Roca', 16);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Cipolletti', 16);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Allen', 16);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Regina', 16);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Cinco Saltos', 16);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Choele Choel', 16);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('General Conesa', 16);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Los Menucos', 16);
+-- Salta (ID: 17)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Salta', 17);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Ramón de la Nueva Orán', 17);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Tartagal', 17);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Salvador de Jujuy', 17);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Cafayate', 17);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Metán', 17);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('General Güemes', 17);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Rosario de la Frontera', 17);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San José de Metán', 17);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Embarcación', 17);
+-- San Juan (ID: 18)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Juan', 18);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Rawson', 18);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Pocito', 18);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Rivadavia', 18);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Chimbas', 18);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Santa Lucía', 18);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Caucete', 18);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Albardón', 18);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Krause', 18);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Aberastain', 18);
+-- San Luis (ID: 19)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Luis', 19);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Mercedes', 19);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Merlo', 19);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('La Punta', 19);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Santa Rosa de Conlara', 19);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Justo Daract', 19);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Juana Koslay', 19);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('La Toma', 19);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa de la Quebrada', 19);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Quines', 19);
+-- Santa Cruz (ID: 20)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Río Gallegos', 20);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Caleta Olivia', 20);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Puerto Deseado', 20);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Pico Truncado', 20);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('El Calafate', 20);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Las Heras', 20);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Río Turbio', 20);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('28 de Noviembre', 20);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Puerto San Julián', 20);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Perito Moreno', 20);
+-- Santa Fe (ID: 21)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Rosario', 21);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Santa Fe', 21);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Rafaela', 21);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Venado Tuerto', 21);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Lorenzo', 21);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Reconquista', 21);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Granadero Baigorria', 21);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Funes', 21);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Villa Gobernador Gálvez', 21);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Capitán Bermúdez', 21);
+-- Santiago del Estero (ID: 22)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Santiago del Estero', 22);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('La Banda', 22);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Termas de Río Hondo', 22);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Fernández', 22);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Añatuya', 22);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Frías', 22);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Suncho Corral', 22);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Clodomira', 22);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Forres', 22);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Pinto', 22);
+-- Tierra del Fuego (ID: 23)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Ushuaia', 23);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Río Grande', 23);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Tolhuin', 23);
+-- Tucumán (ID: 24)
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('San Miguel de Tucumán', 24);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Tafí Viejo', 24);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Yerba Buena', 24);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Concepción', 24);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Banda del Río Salí', 24);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Alderetes', 24);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Río Seco', 24);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Famaillá', 24);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Tafí del Valle', 24);
+--comINSERT INTO Localidades (Nombre, Provincia) VALUES ('Lules', 24);
+
+-- Insertar datos en la tabla de barrios para las localidades de Córdoba
+INSERT INTO Barrios (Nombre, Localidad)
+VALUES ('Nueva Córdoba', 41), -- Barrio Nueva Córdoba en Córdoba
+       ('Alberdi', 41), -- Barrio Alberdi en Córdoba
+       ('General Paz', 41), -- Barrio General Paz en Córdoba
+       ('Güemes', 41), -- Barrio Güemes en Córdoba
+       ('Centro', 41), -- Barrio Centro en Córdoba
+       ('Centro', 42), -- Barrio Centro en Villa María
+       ('General Paz', 42), -- Barrio General Paz en Villa María
+       ('Centro', 43), -- Barrio Centro en Río Cuarto
+       ('Alberdi', 43), -- Barrio Alberdi en Río Cuarto
+       ('Centro', 44), -- Barrio Centro en San Francisco
+       ('Centro', 45), -- Barrio Centro en Alta Gracia
+       ('Centro', 46), -- Barrio Centro en Villa Carlos Paz
+       ('Centro', 47), -- Barrio Centro en Jesús María
+       ('Centro', 48), -- Barrio Centro en Bell Ville
+       ('Centro', 49), -- Barrio Centro en Río Tercero
+       ('Centro', 50); -- Barrio Centro en Cosquín
+
+INSERT INTO Tipos_Domicilios (Nombre) VALUES ('Casa'), ('Departamento'), ('Empresa');
+INSERT INTO Roles (Nombre) VALUES ('usuario'), ('cliente');
+INSERT INTO Tipos_Documentos (Nombre, Descripcion)
+VALUES
+('D.N.I.', 'Documento Nacional de Identidad'),
+('C.U.I.T', 'Clave única de Identificación Tributaria'),
+('C.U.I.L', 'Código Único de Identificación Laboral');
+INSERT INTO Tipos_Entidades (Nombre) VALUES ('Fines de Lucro'), ('Sin Fines de Lucro');
+INSERT INTO Tipos_Ofertas (Nombre) VALUES ('Producto'), ('Servicio');
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Electrodomésticos', 1);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Electrónica', 1);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Ropa', 1);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Muebles', 1);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Herramientas', 1);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Juguetes', 1);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Comida', 1);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Plomería', 2);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Limpieza', 2);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Técnico', 2);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Diseño', 2);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Limpieza', 2);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Entrenamiento', 2);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Asesoría legal', 2);
+INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Rotisería', 2);

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d3ba0e2c6d.js" crossorigin="anonymous"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body class="bg-gray-100 flex">
+    <!-- Menú lateral -->
+    <aside class="w-64 bg-white fixed shadow-md h-screen z-10 h-full">
+        <div class="p-4 font-bold text-xl text-center bg-gray-900 text-white">NombreProyecto</div>
+        <nav class="bg-gray-800 text-white h-full">
+            <ul>
+                <li class="menu-item p-3"><a href="./perfil.html" class="cursor-pointer"><i class="fa-solid fa-address-card mr-2"></i> Perfil</a></li>
+                <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-envelope mr-2"></i> Mensajes</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
+                <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-brands fa-rocketchat mr-2"></i> Chat</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
+                <div class="bg-gray-700 w-full h-1"></div>
+                <li class="menu-item p-3"><a href="./ofertas.html" class="cursor-pointer"><i class="fa-solid fa-comments-dollar text-blue-300 mr-2"></i> Ofertas</a></li>
+                <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-star text-yellow-500 mr-2"></i> Puntajes</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
+                <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-chart-simple mr-2"></i> Estadísticas</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
+                <div class="bg-gray-700 w-full h-1"></div>
+                <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-clock mr-2"></i> Historial</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
+                <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-lock mr-2"></i> Seguridad</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div id="unauthorized" class="w-full ml-64 p-2 mx-auto text-center">
+        <h1 class="text-5xl">Ha ocurrido un error.</h1>
+        <small class="text-red-500">Unauthorized</small>
+    </div>
+
+    <div class="mx-auto w-full ml-64 p-2" id="main-content">
+        <div class="h-8 mb-4 mt-2 rounded text-right mr-24">
+            <button id="boton-editar" onclick="quitarDisabled()" class="bg-yellow-700 h-full hover:bg-yellow-800 px-3 text-white font-bold rounded">Editar</button>
+        </div>
+        <!-- Formulario Inicial -->
+        <div class="container mx-auto max-w-4xl" id="div-inicio">
+            <form id="form-inicio" class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <div class="mb-8">
+                    <p class="text-xl font-bold mb-4 bg-gray-800 text-white p-1">Información Básica</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="pais">
+                                País
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="pais-perfil">
+                                    <option id="opcion-pais-perfil" value=""></option>
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-globe"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="tdoc">
+                                Tipo de Documento
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tdoc-perfil">
+                                    <option id="opcion-tdoc-perfil" value=""></option>
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-id-card"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="ndoc">
+                                Número de Documento
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="ndoc-perfil" type="text" placeholder="Número de Documento">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-address-card"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="tipo">
+                                Tipo de Persona
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipo">
+                                    <option id="opcion-tipo" value=""></option>
+                                    <!--<option value="F">Física</option>-->
+                                    <!--<option value="J">Jurídica</option>-->
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
+                                Nombre
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="input-nombre" type="text" placeholder="Nombre">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="rol">
+                                Rol
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="select-rol">
+                                    <option id="opcion-rol" value=""></option>
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-user-tag"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <p class="text-xl font-bold mb-4 bg-gray-800 text-white p-1">Ubicación</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="provincia">
+                                Provincia
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="provincia">
+                                    <option id="opcion-provincia" value=""></option>
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="localidad">
+                                Localidad
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="localidad">
+                                    <option id="opcion-localidad" value=""></option>
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="barrio">
+                                Barrio
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="barrio">
+                                    <option id="opcion-barrio" value=""></option>
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="tipo_domicilio">
+                                Tipo de Domicilio
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tipo_domicilio">
+                                    <option id="opcion-tipodom" value=""></option>
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-home"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="domicilio">
+                                Domicilio
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="domicilio-input" type="text" placeholder="Domicilio">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-home"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <p class="text-xl font-bold mb-4 bg-gray-800 text-white p-1">Información de Contacto</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="telefono">
+                                Teléfono
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="telefono-input" type="text" placeholder="Teléfono">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-phone"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="telefono_aux">
+                                Teléfono Auxiliar
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="telefono_aux-input" type="text" placeholder="Teléfono Auxiliar">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-phone-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                                Correo Electrónico
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email-input" type="email" placeholder="Correo Electrónico">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Formulario personas físicas -->
+        <div class="container mx-auto max-w-4xl" id="div-personas-fisicas">
+            <form class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" id="form-pf">
+                <div class="mb-8">
+                    <p class="text-xl font-bold mb-4 bg-gray-800 text-white p-1">Persona Física</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Primer Nombre -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="nom1">
+                                Primer Nombre
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nom1-input" type="text" maxlength="30" placeholder="Primer Nombre">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Segundo Nombre -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="nom2">
+                                Segundo Nombre
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nom2-input" type="text" maxlength="30" placeholder="Segundo Nombre">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- Primer Apellido -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="ape1">
+                                Primer Apellido
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="ape1-input" type="text" maxlength="30" placeholder="Primer Apellido">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Segundo Apellido -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="ape2">
+                                Segundo Apellido
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="ape2-input" type="text" maxlength="30" placeholder="Segundo Apellido">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- Fecha de Nacimiento -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="fecNac">
+                                Fecha de Nacimiento
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fecNac-input" type="date" placeholder="Fecha de Nacimiento">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Sexo -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="sexo">
+                                Sexo
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="sexo">
+                                    <option id="opcion-sexo" value=""></option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                    <option value="X">No Binario</option>
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Formulario personas jurídicas -->
+        <div class="container mx-auto max-w-4xl" id="div-personas-juridicas">
+            <form class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" id="form-pj">
+                <div class="mb-8">
+                    <p class="text-xl font-bold mb-4 bg-gray-800 text-white p-1">Persona Jurídica</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Razón Social -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="razsoc">
+                                Razón Social
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="razsoc-input" type="text" maxlength="75" placeholder="Razón Social">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-building"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Tipo de Entidad -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="tent">
+                                Tipo de Entidad
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <select disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tent">
+                                    <option id="tipoent-option" value=""></option>
+                                </select>
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-building"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Pag Web -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="pagWeb">
+                                Página Web
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="pagWeb-input" type="url" maxlength="100" placeholder="https://www.mi-pagina.com">
+                                <span class="absolute right-3 top-2 transition duration-300">
+                                    <i class="fas fa-building"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Formulario cliente/usuario -->
+        <div class="container mx-auto max-w-4xl" id="div-cliente-usuario">
+            <form class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" id="form-clus">
+                <div class="mb-8">
+                    <p class="text-xl font-bold mb-4 bg-gray-800 text-white p-1">Información adicional</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="foto">
+                                Fotografía del Cliente <small>(opcional)</small>
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <input disabled type="file" class="hidden" id="foto-input" accept="image/*">
+                                <label for="foto" class="cursor-pointer bg-white border border-gray-400 rounded-md px-3 py-2 block w-full text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    Subir Fotografía
+                                    <span class="absolute right-3 top-2 transition duration-300">
+                                        <i class="fas fa-camera"></i>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="mb-4 col-span-2">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="presentacion">
+                                Descripción del Cliente <small>(opcional)</small>
+                            </label>
+                            <div class="text-gray-400 focus-within:text-gray-600 relative">
+                                <textarea disabled class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="presentacion-textarea" placeholder="Descripción del Cliente"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <button onclick="guardarInfo()" disabled id="btn-guardar-perfil" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="button">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script src="../../js/general.js"></script>
+<script src="./../../js/app/API/cliente/perfil.js"></script>
+<script src="../../js/app/index.js"></script>
+</body>
+</html>

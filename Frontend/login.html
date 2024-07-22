@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-gray-900 mb-8 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-xl font-bold">NombreProyecto</a>
+        </div>
+    </header>
+
+    <!-- Login -->
+    <div class="container mx-auto max-w-4xl" id="div-login">
+        <form class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST">
+            <div class="mb-8">
+                <p class="text-xl font-bold mb-4 bg-gray-800 text-white p-1">Iniciar Sesión</p>
+                <div>
+                    <div class="mb-4 text-center">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="usuario">
+                            Usuario:
+                        </label>
+                        <input required type="text" id="usuario_login" name="usuario" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Usuario">
+                    </div>
+                    <div class="mb-4 text-center">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="contraseña">
+                            Contraseña:
+                        </label>
+                        <input required type="password" id="contrasenia_login" name="contraseña" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Contraseña">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center justify-center">
+                <button id="btn-iniciar-sesion" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Confirmar
+                </button>
+            </div>
+        <small>¿No tienes una cuenta? <a href="./alta-persona.html" class="text-blue-500">Registrate aquí</a></small>
+        <small class="text-red-500 float-right" id="err-login">Usuario o contraseña incorrecta.</small>
+        </form>
+    </div>
+
+<script src="./js/API/login.js"></script>
+<script src="./js/general.js"></script>
+</body>
+</html>

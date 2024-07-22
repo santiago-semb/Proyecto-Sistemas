@@ -1,0 +1,240 @@
+use sistemas2_web;
+
+-- ################################## TABLAS ###########################################
+
+DROP TABLE IF EXISTS Credenciales;
+DROP TABLE IF EXISTS Ofertas;
+DROP TABLE IF EXISTS Ofertas_Clientes;
+DROP TABLE IF EXISTS Guardar_Ofertas;
+DROP TABLE IF EXISTS Tipos_Ofertas;
+DROP TABLE IF EXISTS Categorias;
+DROP TABLE IF EXISTS Puntajes;
+DROP TABLE IF EXISTS DUS01;
+DROP TABLE IF EXISTS DCL01;
+DROP TABLE IF EXISTS DPJ01;
+DROP TABLE IF EXISTS DPF01;
+DROP TABLE IF EXISTS Personas;
+DROP TABLE IF EXISTS Tipos_Entidades;
+DROP TABLE IF EXISTS Tipos_Domicilios;
+DROP TABLE IF EXISTS Barrios;
+DROP TABLE IF EXISTS Localidades;
+DROP TABLE IF EXISTS Provincias;
+DROP TABLE IF EXISTS Roles;
+DROP TABLE IF EXISTS Tipos_Documentos;
+DROP TABLE IF EXISTS Paises;
+
+-- Datos
+
+CREATE TABLE Paises (
+	Codigo INT IDENTITY(1,1) NOT NULL, -- Código
+	Nombre NCHAR(70) UNIQUE, -- Nombre
+	ISO3 NCHAR(3) UNIQUE, -- Abreviatura ISO
+	Bandera NTEXT, -- Imagen bandera
+
+	PRIMARY KEY(Codigo)
+)
+CREATE TABLE Tipos_Documentos(
+	Id INT IDENTITY(1,1) NOT NULL, -- Id
+	Nombre NCHAR(25) UNIQUE, -- Nombre
+	Descripcion NCHAR(100), -- Descripción
+
+	PRIMARY KEY(Id)
+)
+CREATE TABLE Roles (
+	Id INT IDENTITY(1,1) NOT NULL, -- Id
+	Nombre NCHAR(15) UNIQUE, -- Nombre
+
+	PRIMARY KEY(Id)
+)
+CREATE TABLE Provincias (
+	Codigo INT IDENTITY(1,1) NOT NULL, -- Código
+	Nombre NCHAR(50), -- Nombre
+	Pais INT NOT NULL, -- Código País
+
+	PRIMARY KEY(Codigo),
+	--FOREIGN KEY (Pais) REFERENCES Paises(Codigo)
+)
+CREATE TABLE Localidades (
+	Codigo INT IDENTITY(1,1) NOT NULL, -- Código
+	Nombre NCHAR(50), -- Nombre
+	Provincia INT NOT NULL, -- Código Provincia
+
+	PRIMARY KEY(Codigo),
+	--FOREIGN KEY (Provincia) REFERENCES Provincias(Codigo)
+)
+CREATE TABLE Barrios (
+	Codigo INT IDENTITY(1,1) NOT NULL, -- Código
+	Nombre NCHAR(50), -- Nombre
+	Localidad INT NOT NULL, -- Código Localidad
+
+	PRIMARY KEY(Codigo),
+	--FOREIGN KEY (Localidad) REFERENCES Localidades(Codigo)
+)
+CREATE TABLE Tipos_Domicilios (
+	Id INT IDENTITY(1,1), -- Id
+	Nombre NCHAR(30) UNIQUE, -- Nombre
+
+	PRIMARY KEY(Id)
+)
+CREATE TABLE Tipos_Entidades(
+	Id INT IDENTITY(1,1), -- Id
+	Nombre NCHAR(50) UNIQUE, -- Nombre
+
+	PRIMARY KEY(Id)
+)
+CREATE TABLE Personas (
+	Pais INT NOT NULL, -- Código País
+	Tdoc INT NOT NULL, -- Código Tipo Documento
+	Ndoc NCHAR(25) NOT NULL, -- Número de Documento
+	Tipo CHAR(1), -- Tipo de Persona ('F' o 'J') F = Física, J = Jurídica
+	Nombre NCHAR(50), -- Nombre
+	Provincia INT, -- Código Provincia
+	Localidad INT, -- Código Localidad
+	Barrio INT, -- Código Barrio
+	Rol INT, -- Rol
+	Tipo_Domicilio INT, -- Tipo de Domicilio
+	Domicilio NCHAR(100), -- Domicilio (calle y número)
+	Telefono NCHAR(30), -- Teléfono
+	Telefono_aux NCHAR(30), -- Teléfono auxiliar
+	Email NCHAR(100) UNIQUE, -- Correo Electrónico
+
+	PRIMARY KEY(Pais, Tdoc, Ndoc),
+	--FOREIGN KEY (Pais) REFERENCES Paises(Codigo),
+	--FOREIGN KEY (Tdoc) REFERENCES Tipos_Documentos(Id),
+	--FOREIGN KEY (Rol) REFERENCES Roles(Id),
+	--FOREIGN KEY (Provincia) REFERENCES Provincias(Codigo),
+	--FOREIGN KEY (Localidad) REFERENCES Localidades(Codigo),
+	--FOREIGN KEY (Barrio) REFERENCES Barrios(Codigo),
+	--FOREIGN KEY (Tipo_Domicilio) REFERENCES Tipos_Domicilios(Id)
+)
+CREATE TABLE DPF01 ( -- Personas Físicas
+	Pais INT NOT NULL, -- Código País
+	Tdoc INT NOT NULL, -- Código Tipo Documento
+	Ndoc NCHAR(25) NOT NULL, -- Número de Documento
+	Nom1 NCHAR(30), -- Primer Nombre
+	Nom2 NCHAR(30), -- Segundo Nombre
+	Ape1 NCHAR(30), -- Primer Apellido
+	Ape2 NCHAR(30), -- Segundo Apellido
+	FecNac DATE, -- Fecha de Nacimiento
+	Sexo Char(1), -- Sexo ('F'/'M'/'X')
+
+	PRIMARY KEY(Pais, Tdoc, Ndoc),
+	--FOREIGN KEY (Pais) REFERENCES Paises(Codigo),
+	--FOREIGN KEY (Tdoc) REFERENCES Tipos_Documentos(Id),
+)
+CREATE TABLE DPJ01 ( -- Personas Jurídicas
+	Pais INT NOT NULL, -- Código País
+	Tdoc INT NOT NULL, -- Tipo de Documento
+	Ndoc NCHAR(25) NOT NULL, -- Número de Documento
+	RazSoc NCHAR(75), -- Razón Social
+	TipoEnt INT, -- Tipo de Entidad (Con/Sin Fines de Lucro)
+	PagWeb NCHAR(100) UNIQUE, -- Página Web de la Empresa
+
+	PRIMARY KEY(Pais, Tdoc, Ndoc),
+	--FOREIGN KEY (Pais) REFERENCES Paises(Codigo),
+	--FOREIGN KEY (Tdoc) REFERENCES Tipos_Documentos(Id),
+	--FOREIGN KEY (TEnt) REFERENCES Tipos_Entidades(Id)
+)
+CREATE TABLE DCL01 ( -- Clientes
+	--Codigo INT IDENTITY(1,1) NOT NULL, -- Código Cliente
+	Pais INT NOT NULL, -- Código País
+	Tdoc INT NOT NULL, -- Tipo de Documento
+	Ndoc NCHAR(25) NOT NULL, -- Número de Documento
+	--FecAlt SMALLDATETIME, -- Fecha de Alta del Cliente
+	--FecUltAcc SMALLDATETIME, -- Fecha de último acceso del Cliente
+	Foto NTEXT, -- Fotografía del Cliente
+	Presentacion NTEXT, -- Carta de Presentación del Cliente
+	CantCon INT, -- Cantidad de Servicios o Productos concretados
+	Score INT, -- Porcentaje de aceptación
+
+	PRIMARY KEY(Pais, Tdoc, Ndoc),
+	--FOREIGN KEY (Pais) REFERENCES Paises(Codigo),
+	--FOREIGN KEY (Tdoc) REFERENCES Tipos_Documentos(Id),
+)
+CREATE TABLE DUS01 ( -- Usuarios
+	--Codigo INT IDENTITY(1,1) NOT NULL, -- Código Usuario
+	Pais INT NOT NULL, -- Código País
+	Tdoc INT NOT NULL, -- Tipo de Documento
+	Ndoc NCHAR(25) NOT NULL, -- Número de Documento
+	--FecAlt SMALLDATETIME, -- Fecha de Alta del Usuario
+	--FecUltAcc SMALLDATETIME, -- Fecha de último acceso del Usuario
+	Foto NTEXT, -- Fotografía del Usuario
+	Presentacion NTEXT, -- Carta de Presentación del Usuario
+
+	PRIMARY KEY(Pais, Tdoc, Ndoc),
+	--FOREIGN KEY (Pais) REFERENCES Paises(Codigo),
+	--FOREIGN KEY (Tdoc) REFERENCES Tipos_Documentos(Id),
+)
+CREATE TABLE Puntajes (
+	Id INT IDENTITY(1,1) NOT NULL, -- Id
+	Puntaje NUMERIC(1) NOT NULL, -- Puntaje numérico. Hasta 5 Puntos.
+	Descripcion NCHAR(25), -- Descripción de la unidad de medida de puntos que se utilize. Ej: Estrellas, Puntos, etc.
+	CodUsu INT, -- Usuario Emisor del Puntaje
+	CodCli INT, -- Cliente Receptor del Puntaje
+
+	PRIMARY KEY(Id),
+	--FOREIGN KEY (CodUsu) REFERENCES DUS01(Codigo),
+	--FOREIGN KEY (CodCli) REFERENCES DCL01(Codigo),
+)
+CREATE TABLE Categorias (
+	Id INT IDENTITY(1,1), -- Id
+	Nombre NCHAR(30), -- Nombre de la categoría
+	Tipo_Oferta CHAR(1), -- Tipo de oferta de la categoría ('P' => Producto / 'S' => Servicio)
+
+	PRIMARY KEY(Id)
+)
+CREATE TABLE Tipos_Ofertas(
+	Id INT IDENTITY(1,1) NOT NULL, -- Id
+	Nombre NCHAR(30), -- Nombre
+
+	PRIMARY KEY(Id)
+)
+CREATE TABLE Guardar_Ofertas(
+	Codigo_Usu NCHAR(30) NOT NULL,
+	Id_Oferta INT NOT NULL,
+	Fecha_Guardado DATE,
+
+	PRIMARY KEY(Codigo_Usu, Id_Oferta)
+)
+CREATE TABLE Ofertas_Clientes(
+	Codigo_Cli INT NOT NULL,
+	Id_Oferta INT NOT NULL,
+
+	PRIMARY KEY(Codigo_Cli, Id_Oferta)
+)
+CREATE TABLE Ofertas (
+    Id INT IDENTITY(1,1) NOT NULL, -- Id
+    Tipo_Oferta INT NOT NULL, -- Tipo de Oferta (Servicio o Producto)
+    Pais INT,
+	Tdoc INT,
+	Ndoc NCHAR(25),
+	Nombre NCHAR(50), -- Título de la Oferta
+	Descripcion NCHAR(200), -- Descripción de la Oferta
+	Categoria INT, -- Categoría de la Oferta
+	Foto NCHAR(100), -- Fotografía
+	Precio DECIMAL(18, 2), -- Precio
+	Estado INT, -- Estado de la Oferta (1 = Online - 2 = Offline)
+	FechaPubl SMALLDATETIME, -- Fecha de publicación
+
+    PRIMARY KEY(Id),
+    --FOREIGN KEY (Tipo_Oferta) REFERENCES Tipos_Ofertas(Id)
+);
+
+-- Login
+CREATE TABLE Credenciales (
+	Pais INT NOT NULL, -- País
+	Tdoc INT NOT NULL, -- Tipo Documento
+	Ndoc NCHAR(25) NOT NULL, -- Número Documento
+	Usuario NCHAR(25) UNIQUE NOT NULL, -- Usuario
+	Contra NCHAR(50) NOT NULL, -- Password
+	Rol INT NOT NULL, -- Rol (1: Usuario, 2: Cliente)
+	Email NCHar(100) NOT NULL, -- Correo Electrónico
+	FecAlt SMALLDATETIME NOT NULL, -- Fecha de Alta
+	FecUltAcc SMALLDATETIME, -- Fecha de último acceso
+	FecUltMod SMALLDATETIME, -- Fecha de última modificación
+
+	PRIMARY KEY (Pais, Tdoc, Ndoc)
+);
+
+
+-- ################################## PROCEDIMIENTOS ###########################################
