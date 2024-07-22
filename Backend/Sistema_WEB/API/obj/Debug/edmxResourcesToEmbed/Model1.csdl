@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sistemas2_webModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Barrios">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Localidad" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categorias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Tipo_Oferta" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Categorias_Productos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Categorias_Servicios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DCR01">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DPF01">
+    <Key>
+      <PropertyRef Name="Pais" />
+      <PropertyRef Name="Tdoc" />
+      <PropertyRef Name="Ndoc" />
+    </Key>
+    <Property Name="Pais" Type="Int32" Nullable="false" />
+    <Property Name="Tdoc" Type="Int32" Nullable="false" />
+    <Property Name="Ndoc" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Nom1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Nom2" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Ape1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Ape2" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="FecNac" Type="DateTime" Precision="0" />
+    <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DPJ01">
+    <Key>
+      <PropertyRef Name="Pais" />
+      <PropertyRef Name="Tdoc" />
+      <PropertyRef Name="Ndoc" />
+    </Key>
+    <Property Name="Pais" Type="Int32" Nullable="false" />
+    <Property Name="Tdoc" Type="Int32" Nullable="false" />
+    <Property Name="Ndoc" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="RazSoc" Type="String" MaxLength="75" FixedLength="true" Unicode="true" />
+    <Property Name="TipoEnt" Type="Int32" />
+    <Property Name="PagWeb" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DPR01">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Pais" Nullable="false" Type="Int32" />
+    <Property Name="Tdoc" Nullable="false" Type="Int32" />
+    <Property Name="Ndoc" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="Nombre" MaxLength="30" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="Descripcion" MaxLength="200" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="Foto" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="Categoria" Type="Int32" />
+    <Property Name="Precio" Precision="18" Scale="2" Type="Decimal" />
+  </EntityType>
+  <EntityType Name="DSE01">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+    <Property Name="Pais" Nullable="false" Type="Int32" />
+    <Property Name="Tdoc" Nullable="false" Type="Int32" />
+    <Property Name="Ndoc" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="Nombre" MaxLength="30" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="Descripcion" MaxLength="200" FixedLength="true" Unicode="true" Type="String" />
+    <Property Name="Foto" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+    <Property Name="Categoria" Type="Int32" />
+    <Property Name="Precio" Precision="18" Scale="2" Type="Decimal" />
+  </EntityType>
+  <EntityType Name="Localidades">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Provincia" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ofertas_Clientes">
+    <Key>
+      <PropertyRef Name="Codigo_Cli" />
+      <PropertyRef Name="Id_Oferta" />
+    </Key>
+    <Property Name="Codigo_Cli" Type="Int32" Nullable="false" />
+    <Property Name="Id_Oferta" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Paises">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="true" Unicode="true" />
+    <Property Name="ISO3" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="Bandera" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Provincias">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Pais" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Puntajes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Puntaje" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="CodUsu" Type="Int32" />
+    <Property Name="CodCli" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tipos_Documentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tipos_Domicilios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tipos_Entidades">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tipos_Ofertas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="sistemas2_webEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Barrios" EntityType="Self.Barrios" />
+    <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+    <EntitySet Name="Categorias_Productos" EntityType="Self.Categorias_Productos" />
+    <EntitySet Name="Categorias_Servicios" EntityType="Self.Categorias_Servicios" />
+    <EntitySet Name="DCR01" EntityType="Self.DCR01" />
+    <EntitySet Name="DPF01" EntityType="Self.DPF01" />
+    <EntitySet Name="DPJ01" EntityType="Self.DPJ01" />
+    <EntitySet Name="DPR01" EntityType="Self.DPR01" />
+    <EntitySet Name="DSE01" EntityType="Self.DSE01" />
+    <EntitySet Name="Localidades" EntityType="Self.Localidades" />
+    <EntitySet Name="Ofertas_Clientes" EntityType="Self.Ofertas_Clientes" />
+    <EntitySet Name="Paises" EntityType="Self.Paises" />
+    <EntitySet Name="Provincias" EntityType="Self.Provincias" />
+    <EntitySet Name="Puntajes" EntityType="Self.Puntajes" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Tipos_Documentos" EntityType="Self.Tipos_Documentos" />
+    <EntitySet Name="Tipos_Domicilios" EntityType="Self.Tipos_Domicilios" />
+    <EntitySet Name="Tipos_Entidades" EntityType="Self.Tipos_Entidades" />
+    <EntitySet Name="Tipos_Ofertas" EntityType="Self.Tipos_Ofertas" />
+    <EntitySet Name="Credenciales" EntityType="sistemas2_webModel.Credenciales" />
+    <EntitySet Name="DCL01" EntityType="sistemas2_webModel.DCL01" />
+    <EntitySet Name="DUS01" EntityType="sistemas2_webModel.DUS01" />
+    <EntitySet Name="Ofertas" EntityType="sistemas2_webModel.Ofertas" />
+    <EntitySet Name="Personas" EntityType="sistemas2_webModel.Personas" />
+    <EntitySet Name="Guardar_Ofertas" EntityType="sistemas2_webModel.Guardar_Ofertas" />
+  </EntityContainer>
+  <EntityType Name="Credenciales">
+    <Key>
+      <PropertyRef Name="Pais" />
+      <PropertyRef Name="Tdoc" />
+      <PropertyRef Name="Ndoc" />
+    </Key>
+    <Property Name="Pais" Type="Int32" Nullable="false" />
+    <Property Name="Tdoc" Type="Int32" Nullable="false" />
+    <Property Name="Ndoc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="Usuario" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="Contra" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Rol" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="FecAlt" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FecUltAcc" Type="DateTime" Precision="0" />
+    <Property Name="FecUltMod" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="DCL01">
+    <Key>
+      <PropertyRef Name="Pais" />
+      <PropertyRef Name="Tdoc" />
+      <PropertyRef Name="Ndoc" />
+    </Key>
+    <Property Name="Pais" Type="Int32" Nullable="false" />
+    <Property Name="Tdoc" Type="Int32" Nullable="false" />
+    <Property Name="Ndoc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Presentacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CantCon" Type="Int32" />
+    <Property Name="Score" Type="Int32" />
+  </EntityType>
+  <EntityType Name="DUS01">
+    <Key>
+      <PropertyRef Name="Pais" />
+      <PropertyRef Name="Tdoc" />
+      <PropertyRef Name="Ndoc" />
+    </Key>
+    <Property Name="Pais" Type="Int32" Nullable="false" />
+    <Property Name="Tdoc" Type="Int32" Nullable="false" />
+    <Property Name="Ndoc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Presentacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Ofertas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo_Oferta" Type="Int32" Nullable="false" />
+    <Property Name="Pais" Type="Int32" />
+    <Property Name="Tdoc" Type="Int32" />
+    <Property Name="Ndoc" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="Categoria" Type="Int32" />
+    <Property Name="Foto" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Estado" Type="Int32" />
+    <Property Name="FechaPubl" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Personas">
+    <Key>
+      <PropertyRef Name="Pais" />
+      <PropertyRef Name="Tdoc" />
+      <PropertyRef Name="Ndoc" />
+    </Key>
+    <Property Name="Pais" Type="Int32" Nullable="false" />
+    <Property Name="Tdoc" Type="Int32" Nullable="false" />
+    <Property Name="Ndoc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+    <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Provincia" Type="Int32" />
+    <Property Name="Localidad" Type="Int32" />
+    <Property Name="Barrio" Type="Int32" />
+    <Property Name="Rol" Type="Int32" />
+    <Property Name="Tipo_Domicilio" Type="Int32" />
+    <Property Name="Domicilio" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Telefono_aux" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Guardar_Ofertas">
+    <Key>
+      <PropertyRef Name="Codigo_Usu" />
+      <PropertyRef Name="Id_Oferta" />
+    </Key>
+    <Property Name="Codigo_Usu" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="Id_Oferta" Type="Int32" Nullable="false" />
+    <Property Name="Fecha_Guardado" Type="DateTime" Precision="0" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,892 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="sistemas2_webModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Barrios">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Localidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="30" />
+          <Property Name="Tipo_Oferta" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Categorias_Productos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Categorias_Servicios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Credenciales">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="int" Nullable="false" />
+          <Property Name="Tdoc" Type="int" Nullable="false" />
+          <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Usuario" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Contra" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rol" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="FecAlt" Type="smalldatetime" Nullable="false" />
+          <Property Name="FecUltAcc" Type="smalldatetime" />
+          <Property Name="FecUltMod" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="DCL01">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="int" Nullable="false" />
+          <Property Name="Tdoc" Type="int" Nullable="false" />
+          <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Foto" Type="ntext" />
+          <Property Name="Presentacion" Type="ntext" />
+          <Property Name="CantCon" Type="int" />
+          <Property Name="Score" Type="int" />
+        </EntityType>
+        <EntityType Name="DCR01">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DPF01">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="int" Nullable="false" />
+          <Property Name="Tdoc" Type="int" Nullable="false" />
+          <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Nom1" Type="nchar" MaxLength="30" />
+          <Property Name="Nom2" Type="nchar" MaxLength="30" />
+          <Property Name="Ape1" Type="nchar" MaxLength="30" />
+          <Property Name="Ape2" Type="nchar" MaxLength="30" />
+          <Property Name="FecNac" Type="date" />
+          <Property Name="Sexo" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="DPJ01">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="int" Nullable="false" />
+          <Property Name="Tdoc" Type="int" Nullable="false" />
+          <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="RazSoc" Type="nchar" MaxLength="75" />
+          <Property Name="TipoEnt" Type="int" />
+          <Property Name="PagWeb" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DPR01">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pais" Type="int" Nullable="false" />
+          <Property Name="Tdoc" Type="int" Nullable="false" />
+          <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="30" />
+          <Property Name="Descripcion" Type="nchar" MaxLength="200" />
+          <Property Name="Foto" Type="ntext" />
+          <Property Name="Categoria" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="DSE01">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pais" Type="int" Nullable="false" />
+          <Property Name="Tdoc" Type="int" Nullable="false" />
+          <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="30" />
+          <Property Name="Descripcion" Type="nchar" MaxLength="200" />
+          <Property Name="Foto" Type="ntext" />
+          <Property Name="Categoria" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="DUS01">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="int" Nullable="false" />
+          <Property Name="Tdoc" Type="int" Nullable="false" />
+          <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Foto" Type="ntext" />
+          <Property Name="Presentacion" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Guardar_Ofertas">
+          <Key>
+            <PropertyRef Name="Codigo_Usu" />
+            <PropertyRef Name="Id_Oferta" />
+          </Key>
+          <Property Name="Codigo_Usu" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Id_Oferta" Type="int" Nullable="false" />
+          <Property Name="Fecha_Guardado" Type="date" />
+        </EntityType>
+        <EntityType Name="Localidades">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Provincia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ofertas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo_Oferta" Type="int" Nullable="false" />
+          <Property Name="Pais" Type="int" />
+          <Property Name="Tdoc" Type="int" />
+          <Property Name="Ndoc" Type="nchar" MaxLength="25" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="nchar" MaxLength="200" />
+          <Property Name="Categoria" Type="int" />
+          <Property Name="Foto" Type="nchar" MaxLength="100" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Estado" Type="int" />
+          <Property Name="FechaPubl" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Ofertas_Clientes">
+          <Key>
+            <PropertyRef Name="Codigo_Cli" />
+            <PropertyRef Name="Id_Oferta" />
+          </Key>
+          <Property Name="Codigo_Cli" Type="int" Nullable="false" />
+          <Property Name="Id_Oferta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="70" />
+          <Property Name="ISO3" Type="nchar" MaxLength="3" />
+          <Property Name="Bandera" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="int" Nullable="false" />
+          <Property Name="Tdoc" Type="int" Nullable="false" />
+          <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="1" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Provincia" Type="int" />
+          <Property Name="Localidad" Type="int" />
+          <Property Name="Barrio" Type="int" />
+          <Property Name="Rol" Type="int" />
+          <Property Name="Tipo_Domicilio" Type="int" />
+          <Property Name="Domicilio" Type="nchar" MaxLength="100" />
+          <Property Name="Telefono" Type="nchar" MaxLength="30" />
+          <Property Name="Telefono_aux" Type="nchar" MaxLength="30" />
+          <Property Name="Email" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Pais" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Puntajes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Puntaje" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="Descripcion" Type="nchar" MaxLength="25" />
+          <Property Name="CodUsu" Type="int" />
+          <Property Name="CodCli" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Tipos_Documentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="25" />
+          <Property Name="Descripcion" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Tipos_Domicilios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Tipos_Entidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tipos_Ofertas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityContainer Name="sistemas2_webModelStoreContainer">
+          <EntitySet Name="Barrios" EntityType="Self.Barrios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorias_Productos" EntityType="Self.Categorias_Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorias_Servicios" EntityType="Self.Categorias_Servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Credenciales" EntityType="Self.Credenciales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DCL01" EntityType="Self.DCL01" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DCR01" EntityType="Self.DCR01" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DPF01" EntityType="Self.DPF01" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DPJ01" EntityType="Self.DPJ01" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DPR01" EntityType="Self.DPR01" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DSE01" EntityType="Self.DSE01" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DUS01" EntityType="Self.DUS01" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guardar_Ofertas" EntityType="Self.Guardar_Ofertas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Localidades" EntityType="Self.Localidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ofertas" EntityType="Self.Ofertas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ofertas_Clientes" EntityType="Self.Ofertas_Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Puntajes" EntityType="Self.Puntajes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipos_Documentos" EntityType="Self.Tipos_Documentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipos_Domicilios" EntityType="Self.Tipos_Domicilios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipos_Entidades" EntityType="Self.Tipos_Entidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipos_Ofertas" EntityType="Self.Tipos_Ofertas" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sistemas2_webModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Barrios">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Localidad" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categorias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Tipo_Oferta" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Categorias_Productos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Categorias_Servicios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DCR01">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DPF01">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="Int32" Nullable="false" />
+          <Property Name="Tdoc" Type="Int32" Nullable="false" />
+          <Property Name="Ndoc" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Nom1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Nom2" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Ape1" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Ape2" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="FecNac" Type="DateTime" Precision="0" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DPJ01">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="Int32" Nullable="false" />
+          <Property Name="Tdoc" Type="Int32" Nullable="false" />
+          <Property Name="Ndoc" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="RazSoc" Type="String" MaxLength="75" FixedLength="true" Unicode="true" />
+          <Property Name="TipoEnt" Type="Int32" />
+          <Property Name="PagWeb" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DPR01">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Pais" Nullable="false" Type="Int32" />
+          <Property Name="Tdoc" Nullable="false" Type="Int32" />
+          <Property Name="Ndoc" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="Nombre" MaxLength="30" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="Descripcion" MaxLength="200" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="Foto" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Categoria" Type="Int32" />
+          <Property Name="Precio" Precision="18" Scale="2" Type="Decimal" />
+        </EntityType>
+        <EntityType Name="DSE01">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Pais" Nullable="false" Type="Int32" />
+          <Property Name="Tdoc" Nullable="false" Type="Int32" />
+          <Property Name="Ndoc" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="Nombre" MaxLength="30" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="Descripcion" MaxLength="200" FixedLength="true" Unicode="true" Type="String" />
+          <Property Name="Foto" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Categoria" Type="Int32" />
+          <Property Name="Precio" Precision="18" Scale="2" Type="Decimal" />
+        </EntityType>
+        <EntityType Name="Localidades">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Provincia" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ofertas_Clientes">
+          <Key>
+            <PropertyRef Name="Codigo_Cli" />
+            <PropertyRef Name="Id_Oferta" />
+          </Key>
+          <Property Name="Codigo_Cli" Type="Int32" Nullable="false" />
+          <Property Name="Id_Oferta" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="70" FixedLength="true" Unicode="true" />
+          <Property Name="ISO3" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="Bandera" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Pais" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Puntajes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Puntaje" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="CodUsu" Type="Int32" />
+          <Property Name="CodCli" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tipos_Documentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tipos_Domicilios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tipos_Entidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tipos_Ofertas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="sistemas2_webEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Barrios" EntityType="Self.Barrios" />
+          <EntitySet Name="Categorias" EntityType="Self.Categorias" />
+          <EntitySet Name="Categorias_Productos" EntityType="Self.Categorias_Productos" />
+          <EntitySet Name="Categorias_Servicios" EntityType="Self.Categorias_Servicios" />
+          <EntitySet Name="DCR01" EntityType="Self.DCR01" />
+          <EntitySet Name="DPF01" EntityType="Self.DPF01" />
+          <EntitySet Name="DPJ01" EntityType="Self.DPJ01" />
+          <EntitySet Name="DPR01" EntityType="Self.DPR01" />
+          <EntitySet Name="DSE01" EntityType="Self.DSE01" />
+          <EntitySet Name="Localidades" EntityType="Self.Localidades" />
+          <EntitySet Name="Ofertas_Clientes" EntityType="Self.Ofertas_Clientes" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" />
+          <EntitySet Name="Puntajes" EntityType="Self.Puntajes" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Tipos_Documentos" EntityType="Self.Tipos_Documentos" />
+          <EntitySet Name="Tipos_Domicilios" EntityType="Self.Tipos_Domicilios" />
+          <EntitySet Name="Tipos_Entidades" EntityType="Self.Tipos_Entidades" />
+          <EntitySet Name="Tipos_Ofertas" EntityType="Self.Tipos_Ofertas" />
+          <EntitySet Name="Credenciales" EntityType="sistemas2_webModel.Credenciales" />
+          <EntitySet Name="DCL01" EntityType="sistemas2_webModel.DCL01" />
+          <EntitySet Name="DUS01" EntityType="sistemas2_webModel.DUS01" />
+          <EntitySet Name="Ofertas" EntityType="sistemas2_webModel.Ofertas" />
+          <EntitySet Name="Personas" EntityType="sistemas2_webModel.Personas" />
+          <EntitySet Name="Guardar_Ofertas" EntityType="sistemas2_webModel.Guardar_Ofertas" />
+          </EntityContainer>
+        <EntityType Name="Credenciales">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="Int32" Nullable="false" />
+          <Property Name="Tdoc" Type="Int32" Nullable="false" />
+          <Property Name="Ndoc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Contra" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Rol" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="FecAlt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FecUltAcc" Type="DateTime" Precision="0" />
+          <Property Name="FecUltMod" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="DCL01">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="Int32" Nullable="false" />
+          <Property Name="Tdoc" Type="Int32" Nullable="false" />
+          <Property Name="Ndoc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Presentacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CantCon" Type="Int32" />
+          <Property Name="Score" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DUS01">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="Int32" Nullable="false" />
+          <Property Name="Tdoc" Type="Int32" Nullable="false" />
+          <Property Name="Ndoc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Presentacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Ofertas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo_Oferta" Type="Int32" Nullable="false" />
+          <Property Name="Pais" Type="Int32" />
+          <Property Name="Tdoc" Type="Int32" />
+          <Property Name="Ndoc" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Categoria" Type="Int32" />
+          <Property Name="Foto" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Estado" Type="Int32" />
+          <Property Name="FechaPubl" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="Pais" />
+            <PropertyRef Name="Tdoc" />
+            <PropertyRef Name="Ndoc" />
+          </Key>
+          <Property Name="Pais" Type="Int32" Nullable="false" />
+          <Property Name="Tdoc" Type="Int32" Nullable="false" />
+          <Property Name="Ndoc" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Provincia" Type="Int32" />
+          <Property Name="Localidad" Type="Int32" />
+          <Property Name="Barrio" Type="Int32" />
+          <Property Name="Rol" Type="Int32" />
+          <Property Name="Tipo_Domicilio" Type="Int32" />
+          <Property Name="Domicilio" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Telefono_aux" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Guardar_Ofertas">
+          <Key>
+            <PropertyRef Name="Codigo_Usu" />
+            <PropertyRef Name="Id_Oferta" />
+          </Key>
+          <Property Name="Codigo_Usu" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Id_Oferta" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Guardado" Type="DateTime" Precision="0" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sistemas2_webModelStoreContainer" CdmEntityContainer="sistemas2_webEntities">
+          <EntitySetMapping Name="Barrios">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Barrios">
+              <MappingFragment StoreEntitySet="Barrios">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Categorias">
+              <MappingFragment StoreEntitySet="Categorias">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo_Oferta" ColumnName="Tipo_Oferta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias_Productos">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Categorias_Productos">
+              <MappingFragment StoreEntitySet="Categorias_Productos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias_Servicios">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Categorias_Servicios">
+              <MappingFragment StoreEntitySet="Categorias_Servicios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DCR01">
+            <EntityTypeMapping TypeName="sistemas2_webModel.DCR01">
+              <MappingFragment StoreEntitySet="DCR01">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DPF01">
+            <EntityTypeMapping TypeName="sistemas2_webModel.DPF01">
+              <MappingFragment StoreEntitySet="DPF01">
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+                <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+                <ScalarProperty Name="Nom1" ColumnName="Nom1" />
+                <ScalarProperty Name="Nom2" ColumnName="Nom2" />
+                <ScalarProperty Name="Ape1" ColumnName="Ape1" />
+                <ScalarProperty Name="Ape2" ColumnName="Ape2" />
+                <ScalarProperty Name="FecNac" ColumnName="FecNac" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DPJ01">
+            <EntityTypeMapping TypeName="sistemas2_webModel.DPJ01">
+              <MappingFragment StoreEntitySet="DPJ01">
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+                <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+                <ScalarProperty Name="RazSoc" ColumnName="RazSoc" />
+                <ScalarProperty Name="TipoEnt" ColumnName="TipoEnt" />
+                <ScalarProperty Name="PagWeb" ColumnName="PagWeb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DPR01">
+            <EntityTypeMapping TypeName="sistemas2_webModel.DPR01">
+              <MappingFragment StoreEntitySet="DPR01">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+                <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DSE01">
+            <EntityTypeMapping TypeName="sistemas2_webModel.DSE01">
+              <MappingFragment StoreEntitySet="DSE01">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+                <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Localidades">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Localidades">
+              <MappingFragment StoreEntitySet="Localidades">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ofertas_Clientes">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Ofertas_Clientes">
+              <MappingFragment StoreEntitySet="Ofertas_Clientes">
+                <ScalarProperty Name="Codigo_Cli" ColumnName="Codigo_Cli" />
+                <ScalarProperty Name="Id_Oferta" ColumnName="Id_Oferta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Paises">
+              <MappingFragment StoreEntitySet="Paises">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ISO3" ColumnName="ISO3" />
+                <ScalarProperty Name="Bandera" ColumnName="Bandera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincias">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Provincias">
+              <MappingFragment StoreEntitySet="Provincias">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puntajes">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Puntajes">
+              <MappingFragment StoreEntitySet="Puntajes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Puntaje" ColumnName="Puntaje" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="CodUsu" ColumnName="CodUsu" />
+                <ScalarProperty Name="CodCli" ColumnName="CodCli" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipos_Documentos">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Tipos_Documentos">
+              <MappingFragment StoreEntitySet="Tipos_Documentos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipos_Domicilios">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Tipos_Domicilios">
+              <MappingFragment StoreEntitySet="Tipos_Domicilios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipos_Entidades">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Tipos_Entidades">
+              <MappingFragment StoreEntitySet="Tipos_Entidades">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipos_Ofertas">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Tipos_Ofertas">
+              <MappingFragment StoreEntitySet="Tipos_Ofertas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Credenciales">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Credenciales">
+              <MappingFragment StoreEntitySet="Credenciales">
+                <ScalarProperty Name="FecUltMod" ColumnName="FecUltMod" />
+                <ScalarProperty Name="FecUltAcc" ColumnName="FecUltAcc" />
+                <ScalarProperty Name="FecAlt" ColumnName="FecAlt" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Contra" ColumnName="Contra" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+                <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DCL01">
+            <EntityTypeMapping TypeName="sistemas2_webModel.DCL01">
+              <MappingFragment StoreEntitySet="DCL01">
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="CantCon" ColumnName="CantCon" />
+                <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+                <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DUS01">
+            <EntityTypeMapping TypeName="sistemas2_webModel.DUS01">
+              <MappingFragment StoreEntitySet="DUS01">
+                <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+                <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ofertas">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Ofertas">
+              <MappingFragment StoreEntitySet="Ofertas">
+                <ScalarProperty Name="FechaPubl" ColumnName="FechaPubl" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+                <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Tipo_Oferta" ColumnName="Tipo_Oferta" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Personas">
+              <MappingFragment StoreEntitySet="Personas">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono_aux" ColumnName="Telefono_aux" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
+                <ScalarProperty Name="Tipo_Domicilio" ColumnName="Tipo_Domicilio" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+                <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guardar_Ofertas">
+            <EntityTypeMapping TypeName="sistemas2_webModel.Guardar_Ofertas">
+              <MappingFragment StoreEntitySet="Guardar_Ofertas">
+                <ScalarProperty Name="Fecha_Guardado" ColumnName="Fecha_Guardado" />
+                <ScalarProperty Name="Id_Oferta" ColumnName="Id_Oferta" />
+                <ScalarProperty Name="Codigo_Usu" ColumnName="Codigo_Usu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

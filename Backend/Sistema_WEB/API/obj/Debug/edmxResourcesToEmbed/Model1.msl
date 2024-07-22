@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sistemas2_webModelStoreContainer" CdmEntityContainer="sistemas2_webEntities">
+    <EntitySetMapping Name="Barrios">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Barrios">
+        <MappingFragment StoreEntitySet="Barrios">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Categorias">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Tipo_Oferta" ColumnName="Tipo_Oferta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias_Productos">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Categorias_Productos">
+        <MappingFragment StoreEntitySet="Categorias_Productos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categorias_Servicios">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Categorias_Servicios">
+        <MappingFragment StoreEntitySet="Categorias_Servicios">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DCR01">
+      <EntityTypeMapping TypeName="sistemas2_webModel.DCR01">
+        <MappingFragment StoreEntitySet="DCR01">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DPF01">
+      <EntityTypeMapping TypeName="sistemas2_webModel.DPF01">
+        <MappingFragment StoreEntitySet="DPF01">
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Nom1" ColumnName="Nom1" />
+          <ScalarProperty Name="Nom2" ColumnName="Nom2" />
+          <ScalarProperty Name="Ape1" ColumnName="Ape1" />
+          <ScalarProperty Name="Ape2" ColumnName="Ape2" />
+          <ScalarProperty Name="FecNac" ColumnName="FecNac" />
+          <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DPJ01">
+      <EntityTypeMapping TypeName="sistemas2_webModel.DPJ01">
+        <MappingFragment StoreEntitySet="DPJ01">
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="RazSoc" ColumnName="RazSoc" />
+          <ScalarProperty Name="TipoEnt" ColumnName="TipoEnt" />
+          <ScalarProperty Name="PagWeb" ColumnName="PagWeb" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DPR01">
+      <EntityTypeMapping TypeName="sistemas2_webModel.DPR01">
+        <MappingFragment StoreEntitySet="DPR01">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DSE01">
+      <EntityTypeMapping TypeName="sistemas2_webModel.DSE01">
+        <MappingFragment StoreEntitySet="DSE01">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Localidades">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Localidades">
+        <MappingFragment StoreEntitySet="Localidades">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ofertas_Clientes">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Ofertas_Clientes">
+        <MappingFragment StoreEntitySet="Ofertas_Clientes">
+          <ScalarProperty Name="Codigo_Cli" ColumnName="Codigo_Cli" />
+          <ScalarProperty Name="Id_Oferta" ColumnName="Id_Oferta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paises">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Paises">
+        <MappingFragment StoreEntitySet="Paises">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ISO3" ColumnName="ISO3" />
+          <ScalarProperty Name="Bandera" ColumnName="Bandera" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Provincias">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Provincias">
+        <MappingFragment StoreEntitySet="Provincias">
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Puntajes">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Puntajes">
+        <MappingFragment StoreEntitySet="Puntajes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Puntaje" ColumnName="Puntaje" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="CodUsu" ColumnName="CodUsu" />
+          <ScalarProperty Name="CodCli" ColumnName="CodCli" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipos_Documentos">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Tipos_Documentos">
+        <MappingFragment StoreEntitySet="Tipos_Documentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipos_Domicilios">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Tipos_Domicilios">
+        <MappingFragment StoreEntitySet="Tipos_Domicilios">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipos_Entidades">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Tipos_Entidades">
+        <MappingFragment StoreEntitySet="Tipos_Entidades">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipos_Ofertas">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Tipos_Ofertas">
+        <MappingFragment StoreEntitySet="Tipos_Ofertas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Credenciales">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Credenciales">
+        <MappingFragment StoreEntitySet="Credenciales">
+          <ScalarProperty Name="FecUltMod" ColumnName="FecUltMod" />
+          <ScalarProperty Name="FecUltAcc" ColumnName="FecUltAcc" />
+          <ScalarProperty Name="FecAlt" ColumnName="FecAlt" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="Contra" ColumnName="Contra" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DCL01">
+      <EntityTypeMapping TypeName="sistemas2_webModel.DCL01">
+        <MappingFragment StoreEntitySet="DCL01">
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="CantCon" ColumnName="CantCon" />
+          <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DUS01">
+      <EntityTypeMapping TypeName="sistemas2_webModel.DUS01">
+        <MappingFragment StoreEntitySet="DUS01">
+          <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ofertas">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Ofertas">
+        <MappingFragment StoreEntitySet="Ofertas">
+          <ScalarProperty Name="FechaPubl" ColumnName="FechaPubl" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Tipo_Oferta" ColumnName="Tipo_Oferta" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personas">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Personas">
+        <MappingFragment StoreEntitySet="Personas">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono_aux" ColumnName="Telefono_aux" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
+          <ScalarProperty Name="Tipo_Domicilio" ColumnName="Tipo_Domicilio" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+          <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Guardar_Ofertas">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Guardar_Ofertas">
+        <MappingFragment StoreEntitySet="Guardar_Ofertas">
+          <ScalarProperty Name="Fecha_Guardado" ColumnName="Fecha_Guardado" />
+          <ScalarProperty Name="Id_Oferta" ColumnName="Id_Oferta" />
+          <ScalarProperty Name="Codigo_Usu" ColumnName="Codigo_Usu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

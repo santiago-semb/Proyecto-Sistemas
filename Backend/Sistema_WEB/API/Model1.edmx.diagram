@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2cd6a2189ed64bfb85d100fe4eb28488" Name="Diagram1">
+        <EntityTypeShape EntityType="sistemas2_webModel.Barrios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Categorias" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Categorias_Productos" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Categorias_Servicios" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.DCR01" PointX="13.375" PointY="6.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.DPF01" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.DPJ01" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.DPR01" PointX="5.375" PointY="4.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.DSE01" PointX="11.375" PointY="12.75" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Localidades" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Ofertas_Clientes" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Paises" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Provincias" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Puntajes" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Roles" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Tipos_Documentos" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Tipos_Domicilios" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Tipos_Entidades" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Tipos_Ofertas" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Credenciales" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.DCL01" Width="1.5" PointX="7.375" PointY="13.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.DUS01" Width="1.5" PointX="13.375" PointY="8.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Ofertas" Width="1.5" PointX="13.375" PointY="11.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Personas" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Guardar_Ofertas" Width="1.5" PointX="7.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
