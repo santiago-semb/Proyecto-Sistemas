@@ -24,7 +24,7 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
         document.getElementById("email-cl").innerHTML = data.Email
         document.getElementById("domicilio-cl").innerHTML = data.Domicilio
         document.getElementById("tdomicilio-cl").innerHTML = data.Tipo_Domicilio
-        const API_URL_CL = `http://localhost:${port}/api/Cliente?Pais=${pais}&Tdoc=${tdoc}&Ndoc=${ndoc}`;
+        const API_URL_CL = `http://localhost:${port}/api/Cliente/${pais}/${tdoc}/${ndoc}`;
         try {
             let dataCl = await fetchApi2(API_URL_CL, "GET");
             document.getElementById("presentacion-cl").innerHTML = dataCl.Presentacion
