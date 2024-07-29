@@ -15,7 +15,10 @@ namespace API.Controllers
             List<Ofertas> ofertas = new List<Ofertas>();
             using (sistemas2_webEntities db = new sistemas2_webEntities())
             {
-                ofertas = db.Ofertas.ToList();
+                ofertas = db.Ofertas
+                    .OrderByDescending(oferta => oferta.FechaPubl)
+                    .ThenBy(oferta => oferta.Id)
+                    .ToList();
             }
             return ofertas;
         }

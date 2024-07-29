@@ -22,6 +22,23 @@ namespace API.Controllers
             return lista;
         }
 
+        public List<Guardar_Ofertas> GetByDoc(string Codigo_Usu)
+        {
+            List<Guardar_Ofertas> lista = new List<Guardar_Ofertas>();
+
+            using (sistemas2_webEntities db = new sistemas2_webEntities())
+            {
+                lista = db.Guardar_Ofertas
+                    .Where(oferta => oferta.Codigo_Usu == Codigo_Usu)
+                    .OrderByDescending(oferta => oferta.Fecha_Guardado)
+                    .ThenBy(oferta => oferta.Id_Oferta)
+                    .ToList();
+
+            }
+
+            return lista;
+        }
+
         // GET: api/GuardarOferta/5
         public Guardar_Ofertas Get(string Codigo_Usu, int Id_Oferta)
         {
