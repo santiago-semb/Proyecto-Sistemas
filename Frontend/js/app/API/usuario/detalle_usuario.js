@@ -19,6 +19,7 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
         document.getElementById("pais-cl").innerHTML = data.Pais
         document.getElementById("provincia-cl").innerHTML = data.Provincia
         document.getElementById("localidad-cl").innerHTML = data.Localidad
+        document.getElementById("barrio-cl").innerHTML = data.Barrio
         document.getElementById("telefono-cl").innerHTML = data.Telefono
         document.getElementById("telefono-aux-cl").innerHTML = data.Telefono_aux
         document.getElementById("email-cl").innerHTML = data.Email
@@ -30,8 +31,26 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
             document.getElementById("presentacion-cl").innerHTML = dataCl.Presentacion
             let fechaAlt = obtenerFecha(paisParam, tdocParam, ndocParam);
             fechaAlt.then((fecha) => {
-                document.getElementById("fecha-desde-cl").innerHTML = fecha
+                document.getElementById("fecha-desde-cl").innerHTML = fecha;
             })
+            ObtenerGenerico("TipoDocumento", data.Tdoc).then(res => {
+                document.getElementById("tdoc-cl").innerHTML = res.Nombre
+            }).catch(err => console.log(err));
+            ObtenerGenerico("Pais", data.Pais).then(res => {
+                document.getElementById("pais-cl").innerHTML = res.Nombre
+            }).catch(err => console.log(err));
+            ObtenerGenerico("Provincia", data.Provincia).then(res => {
+                document.getElementById("provincia-cl").innerHTML = res.Nombre
+            }).catch(err => console.log(err));
+            ObtenerGenerico("Localidad", data.Localidad).then(res => {
+                document.getElementById("localidad-cl").innerHTML = res.Nombre
+            }).catch(err => console.log(err));
+            ObtenerGenerico("Barrio", data.Barrio).then(res => {
+                document.getElementById("barrio-cl").innerHTML = res.Nombre
+            }).catch(err => console.log(err));
+            ObtenerGenerico("Localidad", data.Localidad).then(res => {
+                document.getElementById("localidad-cl").innerHTML = res.Nombre
+            }).catch(err => console.log(err));
             
         } catch (error) {
             console.error("Error:", error);
@@ -50,6 +69,22 @@ const obtenerFecha = async (pais, tdoc, ndoc) => {
         console.error("Error:", error);
     }
 }
+
+const ObtenerGenerico = async (queObtener, id) => {
+    const API_URL = `http://localhost:${port}/api/${queObtener}/${id}`;
+
+    try {
+        const response = await fetch(API_URL, { method: 'GET' });
+        const data = await response.json();
+        let res;
+        (queObtener === "TipoDocumento" || queObtener === "TipoDomicilio" || queObtener === "Rol" || queObtener === "TipoEntidad" || queObtener === "Provincia" || queObtener === "Localidad" || queObtener === "Barrio" || queObtener === "Pais") ? res = data : res = data[0];
+        
+        return res;
+    } catch (error) {
+        console.error(`Error al obtener ${queObtener}:`, error);
+        return null;
+    }
+};
 
 // Método para hacer peticiones API
 const fetchApi2 = (url, method) => { 
