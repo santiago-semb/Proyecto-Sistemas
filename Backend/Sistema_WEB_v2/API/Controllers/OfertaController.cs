@@ -24,6 +24,7 @@ namespace API.Controllers
         }
 
         // GET: api/Oferta/5
+        [HttpGet]
         public Ofertas Get(int id)
         {
             Ofertas oferta = new Ofertas();
@@ -57,6 +58,28 @@ namespace API.Controllers
                 oferta.Foto = value.Foto;
                 oferta.Precio = value.Precio;
                 oferta.Estado = value.Estado;
+
+                db.Entry(oferta).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        // Actualizar estado de oferta
+        [HttpPut]
+        [Route("api/Oferta/estadoUpd/{id}")]
+        public void EstadoUpdate(int id)
+        {
+            using (sistemas2_webEntities db = new sistemas2_webEntities())
+            {
+                Ofertas oferta = db.Ofertas.Find(id);
+                if(oferta.Estado == 1)
+                {
+                    oferta.Estado = 2;
+                }
+                else
+                {
+                    oferta.Estado = 1;
+                }
 
                 db.Entry(oferta).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();

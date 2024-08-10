@@ -89,4 +89,3 @@ C:\Users\USUARIO\source\repos\Sistema_WEB\API\obj\Debug\API.dll
 C:\Users\USUARIO\source\repos\Sistema_WEB\API\obj\Debug\API.pdb
 C:\Users\USUARIO\source\repos\Sistema_WEB\API\bin\Swashbuckle.Core.dll
 C:\Users\USUARIO\source\repos\Sistema_WEB\API\bin\WebActivatorEx.dll
-C:\Users\USUARIO\source\repos\Sistema_WEB\API\obj\Debug\API.csproj.AssemblyReference.cache
