@@ -297,7 +297,7 @@
       <PropertyRef Name="Id" />
       <PropertyRef Name="Chat_Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Chat_Id" Type="Int32" Nullable="false" />
     <Property Name="PaisBloqueador" Type="Int32" Nullable="false" />
     <Property Name="TdocBloqueador" Type="Int32" Nullable="false" />
@@ -316,7 +316,7 @@
       <PropertyRef Name="TdocReceptor" />
       <PropertyRef Name="NdocReceptor" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PaisEmisor" Type="Int32" Nullable="false" />
     <Property Name="TdocEmisor" Type="Int32" Nullable="false" />
     <Property Name="NdocEmisor" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
@@ -331,7 +331,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Id_Chat" Type="Int32" Nullable="false" />
     <Property Name="PaisEmisor2" Type="Int32" Nullable="false" />
     <Property Name="TdocEmisor2" Type="Int32" Nullable="false" />

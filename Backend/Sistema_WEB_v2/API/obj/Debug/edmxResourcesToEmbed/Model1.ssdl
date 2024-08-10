@@ -13,7 +13,7 @@
       <PropertyRef Name="Id" />
       <PropertyRef Name="Chat_Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Chat_Id" Type="int" Nullable="false" />
     <Property Name="PaisBloqueador" Type="int" Nullable="false" />
     <Property Name="TdocBloqueador" Type="int" Nullable="false" />
@@ -71,7 +71,7 @@
       <PropertyRef Name="TdocReceptor" />
       <PropertyRef Name="NdocReceptor" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PaisEmisor" Type="int" Nullable="false" />
     <Property Name="TdocEmisor" Type="int" Nullable="false" />
     <Property Name="NdocEmisor" Type="char" MaxLength="25" Nullable="false" />
@@ -192,7 +192,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id_Chat" Type="int" Nullable="false" />
     <Property Name="PaisEmisor2" Type="int" Nullable="false" />
     <Property Name="TdocEmisor2" Type="int" Nullable="false" />

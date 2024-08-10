@@ -106,16 +106,18 @@ function checkOnlineStatus(lastAccessTime) {
     }
 }
 
-const VerificarExistenciaChat = () => {
-    let PaisEmisor = localStorage.getItem("pais")
-    let TdocEmisor = localStorage.getItem("tdoc")
-    let NdocEmisor = localStorage.getItem("ndoc")
-    let PaisReceptor = paisParam
-    let TdocReceptor = tdocParam
-    let NdocReceptor = ndocParam
-    const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
-    let data = fetchApi2(API_URL_chat, 'GET');
-    (data.value === undefined || data.value === null) ? chatExiste = "N" : chatExiste = "S";
+const VerificarExistenciaChat = async () => {
+    let PaisEmisor = parseInt(localStorage.getItem("pais").trim())
+    let TdocEmisor = parseInt(localStorage.getItem("tdoc").trim())
+    let NdocEmisor = localStorage.getItem("ndoc").trim()
+    let PaisReceptor = parseInt(paisParam.trim())
+    let TdocReceptor = parseInt(tdocParam.trim())
+    let NdocReceptor = ndocParam.trim()
+    console.log(PaisEmisor, TdocEmisor, NdocEmisor, PaisReceptor, TdocReceptor, NdocReceptor)
+    //const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
+    const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=1&tEmi=1&nEmi=44767442&pRec=1&tRec=3&nRec=24998546727`;
+    let data = await fetchApi2(API_URL_chat, 'GET');
+    (data[0] === undefined || data[0] === null) ? chatExiste = "N" : chatExiste = "S";
     if(chatExiste === 'S')
     {
         chatId = data.Id
@@ -159,7 +161,7 @@ const CrearChat = () => {
     });
 }
 
-const EnviarMensaje = async () => {
+const EnviarMensaje = () => {
     const API_URL = `http://localhost:${port}/api/MessageChat`;
 
     let mensaje = document.getElementById("message-input");
@@ -173,7 +175,7 @@ const EnviarMensaje = async () => {
         PaisReceptor2: paisParam,
         TdocReceptor2: tdocParam,
         NdocReceptor2: ndocParam,
-        Contenido: mensaje,
+        Mensaje: mensaje,
         Fecha: '9/6/2024',
         Leido: 0,
     }
@@ -219,7 +221,7 @@ function obtenerFecha() {
 }
 
 // Método para hacer peticiones API
-const fetchApi2 = (url, method) => { 
+const fetchApi2 = async (url, method) => { 
     return fetch(url, {method: method})
     .then(response => response.json())
     .then(data => {
@@ -234,8 +236,8 @@ const SendButton = () => {
     VerificarExistenciaChat()
     console.log(chatExiste);
     console.log(chatId)
-    if(chatExiste === 'N') CrearChat();
-    EnviarMensaje();
+    //if(chatExiste === 'N') CrearChat();
+    //EnviarMensaje();
 }
 
 obtenerEstadoConexion(paisParam, tdocParam, ndocParam)
