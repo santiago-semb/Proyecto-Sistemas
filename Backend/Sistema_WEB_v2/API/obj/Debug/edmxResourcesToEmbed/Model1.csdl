@@ -198,6 +198,9 @@
     <EntitySet Name="Ofertas" EntityType="sistemas2_webModel.Ofertas" />
     <EntitySet Name="Personas" EntityType="sistemas2_webModel.Personas" />
     <EntitySet Name="Guardar_Ofertas" EntityType="sistemas2_webModel.Guardar_Ofertas" />
+    <EntitySet Name="block_chat" EntityType="sistemas2_webModel.block_chat" />
+    <EntitySet Name="data_chat" EntityType="sistemas2_webModel.data_chat" />
+    <EntitySet Name="message_chat" EntityType="sistemas2_webModel.message_chat" />
   </EntityContainer>
   <EntityType Name="Credenciales">
     <Key>
@@ -288,5 +291,56 @@
     <Property Name="Codigo_Usu" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
     <Property Name="Id_Oferta" Type="Int32" Nullable="false" />
     <Property Name="Fecha_Guardado" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="block_chat">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Chat_Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Chat_Id" Type="Int32" Nullable="false" />
+    <Property Name="PaisBloqueador" Type="Int32" Nullable="false" />
+    <Property Name="TdocBloqueador" Type="Int32" Nullable="false" />
+    <Property Name="NdocBloqueador" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="PaisBloqueado" Type="Int32" Nullable="false" />
+    <Property Name="TdocBloqueado" Type="Int32" Nullable="false" />
+    <Property Name="NdocBloqueado" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="data_chat">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="PaisEmisor" />
+      <PropertyRef Name="TdocEmisor" />
+      <PropertyRef Name="NdocEmisor" />
+      <PropertyRef Name="PaisReceptor" />
+      <PropertyRef Name="TdocReceptor" />
+      <PropertyRef Name="NdocReceptor" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PaisEmisor" Type="Int32" Nullable="false" />
+    <Property Name="TdocEmisor" Type="Int32" Nullable="false" />
+    <Property Name="NdocEmisor" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="PaisReceptor" Type="Int32" Nullable="false" />
+    <Property Name="TdocReceptor" Type="Int32" Nullable="false" />
+    <Property Name="NdocReceptor" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="Contenido" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Leido" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="message_chat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Id_Chat" Type="Int32" Nullable="false" />
+    <Property Name="PaisEmisor2" Type="Int32" Nullable="false" />
+    <Property Name="TdocEmisor2" Type="Int32" Nullable="false" />
+    <Property Name="NdocEmisor2" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="PaisReceptor2" Type="Int32" Nullable="false" />
+    <Property Name="TdocReceptor2" Type="Int32" Nullable="false" />
+    <Property Name="NdocReceptor2" Type="String" Nullable="false" MaxLength="25" FixedLength="true" Unicode="false" />
+    <Property Name="Mensaje" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Leido" Type="Boolean" Nullable="false" />
   </EntityType>
 </Schema>

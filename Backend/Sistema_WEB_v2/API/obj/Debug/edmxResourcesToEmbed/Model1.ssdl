@@ -8,6 +8,20 @@
     <Property Name="Nombre" Type="nchar" MaxLength="50" />
     <Property Name="Localidad" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="block_chat">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Chat_Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Chat_Id" Type="int" Nullable="false" />
+    <Property Name="PaisBloqueador" Type="int" Nullable="false" />
+    <Property Name="TdocBloqueador" Type="int" Nullable="false" />
+    <Property Name="NdocBloqueador" Type="char" MaxLength="25" Nullable="false" />
+    <Property Name="PaisBloqueado" Type="int" Nullable="false" />
+    <Property Name="TdocBloqueado" Type="int" Nullable="false" />
+    <Property Name="NdocBloqueado" Type="char" MaxLength="25" Nullable="false" />
+  </EntityType>
   <EntityType Name="Categorias">
     <Key>
       <PropertyRef Name="Id" />
@@ -46,6 +60,27 @@
     <Property Name="FecAlt" Type="smalldatetime" Nullable="false" />
     <Property Name="FecUltAcc" Type="smalldatetime" />
     <Property Name="FecUltMod" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="data_chat">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="PaisEmisor" />
+      <PropertyRef Name="TdocEmisor" />
+      <PropertyRef Name="NdocEmisor" />
+      <PropertyRef Name="PaisReceptor" />
+      <PropertyRef Name="TdocReceptor" />
+      <PropertyRef Name="NdocReceptor" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="PaisEmisor" Type="int" Nullable="false" />
+    <Property Name="TdocEmisor" Type="int" Nullable="false" />
+    <Property Name="NdocEmisor" Type="char" MaxLength="25" Nullable="false" />
+    <Property Name="PaisReceptor" Type="int" Nullable="false" />
+    <Property Name="TdocReceptor" Type="int" Nullable="false" />
+    <Property Name="NdocReceptor" Type="char" MaxLength="25" Nullable="false" />
+    <Property Name="Contenido" Type="text" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Leido" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="DCL01">
     <Key>
@@ -152,6 +187,22 @@
     <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="nchar" MaxLength="50" />
     <Property Name="Provincia" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="message_chat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id_Chat" Type="int" Nullable="false" />
+    <Property Name="PaisEmisor2" Type="int" Nullable="false" />
+    <Property Name="TdocEmisor2" Type="int" Nullable="false" />
+    <Property Name="NdocEmisor2" Type="char" MaxLength="25" Nullable="false" />
+    <Property Name="PaisReceptor2" Type="int" Nullable="false" />
+    <Property Name="TdocReceptor2" Type="int" Nullable="false" />
+    <Property Name="NdocReceptor2" Type="char" MaxLength="25" Nullable="false" />
+    <Property Name="Mensaje" Type="text" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Leido" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Ofertas">
     <Key>
@@ -264,10 +315,12 @@
   </EntityType>
   <EntityContainer Name="sistemas2_webModelStoreContainer">
     <EntitySet Name="Barrios" EntityType="Self.Barrios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="block_chat" EntityType="Self.block_chat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categorias_Productos" EntityType="Self.Categorias_Productos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categorias_Servicios" EntityType="Self.Categorias_Servicios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Credenciales" EntityType="Self.Credenciales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="data_chat" EntityType="Self.data_chat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DCL01" EntityType="Self.DCL01" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DCR01" EntityType="Self.DCR01" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DPF01" EntityType="Self.DPF01" Schema="dbo" store:Type="Tables" />
@@ -277,6 +330,7 @@
     <EntitySet Name="DUS01" EntityType="Self.DUS01" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Guardar_Ofertas" EntityType="Self.Guardar_Ofertas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Localidades" EntityType="Self.Localidades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="message_chat" EntityType="Self.message_chat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ofertas" EntityType="Self.Ofertas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ofertas_Clientes" EntityType="Self.Ofertas_Clientes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />

@@ -30,6 +30,9 @@
         <EntityTypeShape EntityType="sistemas2_webModel.Ofertas" Width="1.5" PointX="13.375" PointY="11.75" />
         <EntityTypeShape EntityType="sistemas2_webModel.Personas" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="sistemas2_webModel.Guardar_Ofertas" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.block_chat" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.data_chat" Width="1.5" PointX="15.375" PointY="4.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.message_chat" Width="1.5" PointX="15.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

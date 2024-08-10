@@ -50,5 +50,8 @@ namespace API
         public virtual DbSet<Ofertas> Ofertas { get; set; }
         public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<Guardar_Ofertas> Guardar_Ofertas { get; set; }
+        public virtual DbSet<block_chat> block_chat { get; set; }
+        public virtual DbSet<data_chat> data_chat { get; set; }
+        public virtual DbSet<message_chat> message_chat { get; set; }
     }
 }

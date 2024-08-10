@@ -176,7 +176,6 @@ D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\bin\es\System.Web.W
 D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\bin\es\System.Web.WebPages.Deployment.resources.dll
 D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\bin\es\System.Web.WebPages.Razor.resources.dll
 D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\bin\es\System.Web.Optimization.resources.dll
-D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\obj\Debug\API.csproj.AssemblyReference.cache
 D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\obj\Debug\API.csproj.CoreCompileInputs.cache
 D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\obj\Debug\API.csproj.CopyComplete
 D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\obj\Debug\API.dll

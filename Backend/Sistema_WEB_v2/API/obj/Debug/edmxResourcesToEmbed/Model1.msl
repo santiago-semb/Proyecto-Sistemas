@@ -274,5 +274,52 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="block_chat">
+      <EntityTypeMapping TypeName="sistemas2_webModel.block_chat">
+        <MappingFragment StoreEntitySet="block_chat">
+          <ScalarProperty Name="NdocBloqueado" ColumnName="NdocBloqueado" />
+          <ScalarProperty Name="TdocBloqueado" ColumnName="TdocBloqueado" />
+          <ScalarProperty Name="PaisBloqueado" ColumnName="PaisBloqueado" />
+          <ScalarProperty Name="NdocBloqueador" ColumnName="NdocBloqueador" />
+          <ScalarProperty Name="TdocBloqueador" ColumnName="TdocBloqueador" />
+          <ScalarProperty Name="PaisBloqueador" ColumnName="PaisBloqueador" />
+          <ScalarProperty Name="Chat_Id" ColumnName="Chat_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="data_chat">
+      <EntityTypeMapping TypeName="sistemas2_webModel.data_chat">
+        <MappingFragment StoreEntitySet="data_chat">
+          <ScalarProperty Name="Leido" ColumnName="Leido" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+          <ScalarProperty Name="NdocReceptor" ColumnName="NdocReceptor" />
+          <ScalarProperty Name="TdocReceptor" ColumnName="TdocReceptor" />
+          <ScalarProperty Name="PaisReceptor" ColumnName="PaisReceptor" />
+          <ScalarProperty Name="NdocEmisor" ColumnName="NdocEmisor" />
+          <ScalarProperty Name="TdocEmisor" ColumnName="TdocEmisor" />
+          <ScalarProperty Name="PaisEmisor" ColumnName="PaisEmisor" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="message_chat">
+      <EntityTypeMapping TypeName="sistemas2_webModel.message_chat">
+        <MappingFragment StoreEntitySet="message_chat">
+          <ScalarProperty Name="Leido" ColumnName="Leido" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+          <ScalarProperty Name="NdocReceptor2" ColumnName="NdocReceptor2" />
+          <ScalarProperty Name="TdocReceptor2" ColumnName="TdocReceptor2" />
+          <ScalarProperty Name="PaisReceptor2" ColumnName="PaisReceptor2" />
+          <ScalarProperty Name="NdocEmisor2" ColumnName="NdocEmisor2" />
+          <ScalarProperty Name="TdocEmisor2" ColumnName="TdocEmisor2" />
+          <ScalarProperty Name="PaisEmisor2" ColumnName="PaisEmisor2" />
+          <ScalarProperty Name="Id_Chat" ColumnName="Id_Chat" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

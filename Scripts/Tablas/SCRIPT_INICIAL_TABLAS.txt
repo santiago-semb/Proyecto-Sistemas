@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS Tipos_Documentos;
 DROP TABLE IF EXISTS Paises;
 DROP TABLE IF EXISTS data_chat;
 DROP TABLE IF EXISTS block_chat;
+DROP TABLE IF EXISTS message_chat;
 
 -- Datos
 
@@ -252,17 +253,36 @@ CREATE TABLE data_chat (
 	Fecha DATETIME NOT NULL, -- Fecha en la que se envia el mensaje
 	Leido BIT NOT NULL, -- Bandera: ¿Se leyo el mensaje? (0,1)
 	 
-	PRIMARY KEY (id)
+	PRIMARY KEY (id, PaisEmisor, TdocEmisor, NdocEmisor, PaisReceptor, TdocReceptor, NdocReceptor)
 );
 
 CREATE TABLE block_chat (
 	Id INT NOT NULL, -- Id
+	Chat_Id INT NOT NULL, -- Id del chat bloqueado
 	PaisBloqueador INT NOT NULL, -- Pais de la persona bloqueadora
 	TdocBloqueador INT NOT NULL, -- Tdoc de la persona bloqueadora
 	NdocBloqueador CHAR(25) NOT NULL, -- Ndoc de la persona bloqueadora
 	PaisBloqueado INT NOT NULL, -- Pais de la persona bloqueada
 	TdocBloqueado INT NOT NULL, -- Tdoc de la persona bloqueada
 	NdocBloqueado CHAR(25) NOT NULL, -- Ndoc de la persona bloqueada
+
+	PRIMARY KEY (Id, Chat_Id)
+);
+
+CREATE TABLE message_chat (
+	Id INT NOT NULL, -- Id
+	Id_Chat INT NOT NULL, -- Id del chat al que pertenece el mensaje
+	PaisEmisor2 INT NOT NULL, -- Pais de la persona emisora del mensaje
+	TdocEmisor2 INT NOT NULL, -- Tdoc de la persona emisora del mensaje
+	NdocEmisor2 CHAR(25) NOT NULL, -- Ndoc de la persona emisora del mensaje
+	PaisReceptor2 INT NOT NULL, -- Pais de la persona receptora del mensaje
+	TdocReceptor2 INT NOT NULL, -- Tdoc de la persona receptora del mensaje
+	NdocReceptor2 CHAR(25) NOT NULL, -- Ndoc de la persona receptora del mensaje
+	Mensaje TEXT NOT NULL,
+	Fecha DATETIME NOT NULL, -- Fecha en la que se envia el mensaje
+	Leido BIT NOT NULL, -- Bandera: ¿Se leyo el mensaje? (0,1)
+
+	PRIMARY KEY (Id)
 );
 
 -- ################################## PROCEDIMIENTOS ###########################################
