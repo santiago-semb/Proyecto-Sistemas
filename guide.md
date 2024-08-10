@@ -10,5 +10,5 @@ Tecnologías :
 - **Backend** : C# (.NET Framework)
 - **Frontend** : HTML **|** CSS **|** Tailwind CSS **|** Javascript **|** JQuery
 - **Base de Datos** : SQL Server 2022
-- **Herramientas** : Git **|** Github
+- **Herramientas** : Git **|** Github **|** FontAwesome
 

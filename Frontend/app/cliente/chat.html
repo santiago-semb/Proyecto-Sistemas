@@ -10,6 +10,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../../assets/css/styles.css">
     <style>
+        /* Estilo para ocultar la barra de desplazamiento pero permitir el desplazamiento */
+        .scrollable {
+            overflow-y: scroll;
+            max-height: calc(100vh - 60px); /* Ajusta según el espacio que ocupan otros elementos del menú */
+        }
+        
+        .scrollable::-webkit-scrollbar {
+            width: 0;
+        }
+        
+        .scrollable {
+            -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+            scrollbar-width: none; /* Para Firefox */
+        }
+        /* Contenedor para permitir el desplazamiento con el mouse */
+        .scrollable-content {
+            overflow-y: scroll; /* Permite el desplazamiento vertical */
+            max-height: 300px; /* Ajusta este valor según tu diseño */
+        }
+        /* Efecto de transición suave */
+        .transition-slide {
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+        }
         /* Animación de desvanecimiento */
         .fade-in {
             opacity: 0;
@@ -20,20 +44,90 @@
                 opacity: 1;
             }
         }
+        /* Estilos para el menú desplegable de chats */
+        .dropdown-menu {
+            max-height: 0;
+            overflow-y: hidden; /* Oculta el scroll cuando el menú está colapsado */
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+        }
+        .dropdown-menu.show {
+            max-height: 300px; /* Ajusta la altura máxima para permitir el scroll si hay más de 5 elementos */
+            opacity: 1;
+            overflow-y: auto; /* Muestra el scroll si el contenido excede la altura máxima */
+        }
+        .chat-img {
+            width: 25px;
+            height: 25px;
+        }
+        .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: #1f2937; /* bg-gray-700 */
+            border-bottom: 1px solid #374151; /* border-gray-600 */
+            color: white;
+            text-decoration: none;
+        }
+        .chat-item:hover {
+            background-color: #374151; /* bg-gray-600 */
+        }
+        /* Asegura que el menú de chats no empuje el contenido */
+        .menu-container {
+            position: relative;
+        }
+        .menu-content {
+            position: relative;
+            z-index: 10; /* Asegura que el menú de chats esté encima del contenido */
+        }
     </style>
 </head>
 <body class="bg-gray-100 h-screen flex">
     <!-- Menú lateral -->
     <aside class="w-64 bg-white fixed shadow-md z-10 h-full">
         <div class="p-4 font-bold text-xl text-center bg-gray-900 text-white">NombreProyecto</div>
-        <nav class="bg-gray-800 text-white h-full">
-            <ul>
+        <nav class="bg-gray-800 text-white h-full flex flex-col">
+            <ul class="flex-1 overflow-hidden scrollable">
                 <li class="menu-item p-3"><a href="./perfil.html" class="cursor-pointer"><i class="fa-solid fa-address-card mr-2"></i> Perfil</a></li>
                 <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-envelope mr-2"></i> Mensajes</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
-                <li class="menu-item p-3"><a href="./chat.html" class="cursor-pointer"><i class="fa-brands fa-rocketchat mr-2"></i> Chat</a></li>
+                <li class="menu-item p-3 cursor-pointer" id="chat-toggle">
+                    <i class="fa-brands fa-rocketchat mr-2"></i> Chats 
+                    <i id="chat-arrow" class="fa-solid fa-chevron-down float-right"></i>
+                </li>
+                <div id="chat-list" class="dropdown-menu menu-content bg-gray-700 text-white">
+                    <!-- Solo se mostrarán 5 elementos visibles, el resto se desplazará -->
+                    <a href="./chat.html" class="chat-item">
+                        <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
+                        <span>Nombre Apellido</span>
+                    </a>
+                    <a href="./chat.html" class="chat-item">
+                        <img src="https://via.placeholder.com/25" alt="Chat 2" class="chat-img rounded-full object-cover mr-3">
+                        <span>Otro Nombre Apellido</span>
+                    </a>
+                    <a href="./chat.html" class="chat-item">
+                        <img src="https://via.placeholder.com/25" alt="Chat 3" class="chat-img rounded-full object-cover mr-3">
+                        <span>Más Nombre Apellido</span>
+                    </a>
+                    <a href="./chat.html" class="chat-item">
+                        <img src="https://via.placeholder.com/25" alt="Chat 4" class="chat-img rounded-full object-cover mr-3">
+                        <span>Nombre Cuarto</span>
+                    </a>
+                    <a href="./chat.html" class="chat-item">
+                        <img src="https://via.placeholder.com/25" alt="Chat 5" class="chat-img rounded-full object-cover mr-3">
+                        <span>Nombre Quinto</span>
+                    </a>
+                    <!-- Más elementos pueden ser añadidos aquí -->
+                    <a href="./chat.html" class="chat-item">
+                        <img src="https://via.placeholder.com/25" alt="Chat 6" class="chat-img rounded-full object-cover mr-3">
+                        <span>Nombre Sexto</span>
+                    </a>
+                    <a href="./chat.html" class="chat-item">
+                        <img src="https://via.placeholder.com/25" alt="Chat 7" class="chat-img rounded-full object-cover mr-3">
+                        <span>Nombre Séptimo</span>
+                    </a>
+                </div>
                 <div class="bg-gray-700 w-full h-1"></div>
                 <li class="menu-item p-3"><a href="./ofertas.html" class="cursor-pointer"><i class="fa-solid fa-comments-dollar text-blue-300 mr-2"></i> Ofertas</a></li>
-                <li class="menu-item p-3"><a href="./guardado.html" class="cursor-pointer"><i class="fa-solid fa-bookmark text-gray-500 mr-2"></i> Guardado</a></li>
                 <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-star text-yellow-500 mr-2"></i> Puntajes</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
                 <div class="bg-gray-700 w-full h-1"></div>
                 <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-clock mr-2"></i> Historial</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
@@ -72,6 +166,44 @@
         </main>
     </div>
 
+    <script>
+        // Función para alternar la visibilidad del menú de chats
+        function toggleChatList() {
+            const chatList = document.getElementById('chat-list');
+            const chatArrow = document.getElementById('chat-arrow');
+            chatList.classList.toggle('show');
+            if (chatList.classList.contains('show')) {
+                chatArrow.classList.remove('fa-chevron-down');
+                chatArrow.classList.add('fa-chevron-up');
+            } else {
+                chatArrow.classList.remove('fa-chevron-up');
+                chatArrow.classList.add('fa-chevron-down');
+            }
+        }
+
+        document.getElementById('chat-toggle').addEventListener('click', toggleChatList);
+
+        document.getElementById('send-button').addEventListener('click', () => {
+            const messageInput = document.getElementById('message-input');
+            const messageText = messageInput.value.trim();
+            if (messageText) {
+                appendMessage(messageText, 'sent');
+                messageInput.value = '';
+                setTimeout(() => {
+                    appendMessage('Respuesta automática', 'received');
+                }, 1000);
+            }
+        });
+
+        function appendMessage(text, type) {
+            const chatBox = document.getElementById('chat-box');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = type === 'sent' ? 'text-right' : 'text-left';
+            messageDiv.innerHTML = `<div class="inline-block p-2 my-2 rounded-lg ${type === 'sent' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-800'} fade-in">${text}</div>`;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
     <script src="../../js/app/API/usuario/chat.js"></script>
     <script src="../../js/app/API/usuario/guardado.js"></script>
     <script src="../../js/app/index.js"></script>
