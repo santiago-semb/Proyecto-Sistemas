@@ -54,12 +54,12 @@ const obtenerOfertas = async () => {
             let tipoOff = offer.Tipo_Oferta
             tipoOff = tipoOff
             let btnOnline = `
-            <button onclick="cambiarOfflineOnline(${offer.Id})" id="${offer.Id}-estado" class="online rounded bg-green-800 w-1/2 text-white uppercase text-xs font-mono border-2 border-green-900">
+            <button onclick="cambiarOfflineOnline(${offer.Id}); changeState(${offer.Id});" id="${offer.Id}-estado" class="online rounded bg-green-800 w-1/2 text-white uppercase text-xs font-mono border-2 border-green-900">
                 Online
             </button>
             `;
             let btnOffline = `
-            <button onclick="cambiarOfflineOnline(${offer.Id})" id="${offer.Id}-estado" class="offline rounded bg-red-700 w-1/2 text-white uppercase text-xs font-mono border-2 border-red-800">
+            <button onclick="cambiarOfflineOnline(${offer.Id}); changeState(${offer.Id});" id="${offer.Id}-estado" class="offline rounded bg-red-700 w-1/2 text-white uppercase text-xs font-mono border-2 border-red-800">
                 Offline
             </button>
             `;
@@ -106,6 +106,29 @@ const ObtenerGenerico = async (queObtener, id) => {
         console.error(`Error al obtener ${queObtener}:`, error);
     }
 };
+
+const changeState = (offerId) => {
+    const API_URL = `http://localhost:${port}/api/Oferta/${offerId}`;
+
+    fetch(API_URL, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Hubo un problema al enviar el formulario: " + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Respuesta de la API:", data);
+    })
+    .catch(error => {
+        console.error("Error al enviar el formulario pj:", error);
+    });
+}
 
 
 obtenerPersona(paisLs, tdocLs, ndocLs);
