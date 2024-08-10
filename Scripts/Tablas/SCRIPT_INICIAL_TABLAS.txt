@@ -22,6 +22,8 @@ DROP TABLE IF EXISTS Provincias;
 DROP TABLE IF EXISTS Roles;
 DROP TABLE IF EXISTS Tipos_Documentos;
 DROP TABLE IF EXISTS Paises;
+DROP TABLE IF EXISTS data_chat;
+DROP TABLE IF EXISTS block_chat;
 
 -- Datos
 
@@ -236,5 +238,31 @@ CREATE TABLE Credenciales (
 	PRIMARY KEY (Pais, Tdoc, Ndoc)
 );
 
+-- Chat
+
+CREATE TABLE data_chat (
+	Id INT NOT NULL, -- Id
+	PaisEmisor INT NOT NULL, -- Pais de la persona emisora del mensaje
+	TdocEmisor INT NOT NULL, -- Tdoc de la persona emisora del mensaje
+	NdocEmisor CHAR(25) NOT NULL, -- Ndoc de la persona emisora del mensaje
+	PaisReceptor INT NOT NULL, -- Pais de la persona receptora del mensaje
+	TdocReceptor INT NOT NULL, -- Tdoc de la persona receptora del mensaje
+	NdocReceptor CHAR(25) NOT NULL, -- Ndoc de la persona receptora del mensaje
+	Contenido TEXT NOT NULL, -- Contenido del mensaje
+	Fecha DATETIME NOT NULL, -- Fecha en la que se envia el mensaje
+	Leido BIT NOT NULL, -- Bandera: ¿Se leyo el mensaje? (0,1)
+	 
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE block_chat (
+	Id INT NOT NULL, -- Id
+	PaisBloqueador INT NOT NULL, -- Pais de la persona bloqueadora
+	TdocBloqueador INT NOT NULL, -- Tdoc de la persona bloqueadora
+	NdocBloqueador CHAR(25) NOT NULL, -- Ndoc de la persona bloqueadora
+	PaisBloqueado INT NOT NULL, -- Pais de la persona bloqueada
+	TdocBloqueado INT NOT NULL, -- Tdoc de la persona bloqueada
+	NdocBloqueado CHAR(25) NOT NULL, -- Ndoc de la persona bloqueada
+);
 
 -- ################################## PROCEDIMIENTOS ###########################################

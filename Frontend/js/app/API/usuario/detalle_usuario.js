@@ -9,6 +9,8 @@ let paisParam = clienteParam.substring(0,1);
 let tdocParam = clienteParam.substring(1,2);
 let ndocParam = clienteParam.substring(2);
 
+document.getElementById("chat-with-client").href = `./chat.html?ch=${paisParam}${tdocParam}${ndocParam}`
+
 const obtenerPersona = async (pais, tdoc, ndoc) => {
     const API_URL_PER = `http://localhost:${port}/api/Persona?Pais=${pais}&Tdoc=${tdoc}&Ndoc=${ndoc}`;
     try {
@@ -25,6 +27,23 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
         document.getElementById("email-cl").innerHTML = data.Email
         document.getElementById("domicilio-cl").innerHTML = data.Domicilio
         document.getElementById("tdomicilio-cl").innerHTML = data.Tipo_Domicilio
+        let tipoPersona = data.Tipo;
+        console.log(tipoPersona)
+        if(tipoPersona === "J")
+        {
+            const API_URL_PJ = `http://localhost:${port}/api/PJ?Pais=${pais}&Tdoc=${tdoc}&Ndoc=${ndoc}`;
+            try {
+                let dataPj = await fetchApi2(API_URL_PJ, "GET");
+                console.log(dataPj)
+                document.getElementById("web-page-client").href = dataPj.PagWeb;
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+        else
+        {
+            document.getElementById("web-page-client").style.display = 'none';
+        }
         const API_URL_CL = `http://localhost:${port}/api/Cliente/${pais}/${tdoc}/${ndoc}`;
         try {
             let dataCl = await fetchApi2(API_URL_CL, "GET");
