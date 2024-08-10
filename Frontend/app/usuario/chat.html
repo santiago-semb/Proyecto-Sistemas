@@ -144,13 +144,10 @@
             <div class="flex items-center p-4 bg-gray-900 rounded-t-lg shadow-sm mb-4">
                 <img src="https://via.placeholder.com/40" alt="Perfil" class="select-none w-10 h-10 rounded-full object-cover mr-4">
                 <div class="flex-1">
-                    <h2 class="text-lg text-white font-semibold">Nombre del Contacto</h2>
+                    <h2 class="text-lg text-white font-semibold"><span id="nombre-persona-chat"></span></h2>
                 </div>
-                <div class="ml-auto text-right">
-                    <p class="text-sm text-white bg-gray-800 p-1 px-2 rounded inline-flex items-center">
-                        <i class="fa-solid fa-circle text-green-400 text-xs mr-1"></i>
-                        <span class="font-bold select-none">En línea</span>
-                    </p>
+                <div class="ml-auto text-right" id="div-ult-acceso-persona-chat">
+                    
                 </div>
             </div>
 
@@ -167,46 +164,7 @@
         </main>
     </div>
 
-    <script>
-        // Función para alternar la visibilidad del menú de chats
-        function toggleChatList() {
-            const chatList = document.getElementById('chat-list');
-            const chatArrow = document.getElementById('chat-arrow');
-            chatList.classList.toggle('show');
-            if (chatList.classList.contains('show')) {
-                chatArrow.classList.remove('fa-chevron-down');
-                chatArrow.classList.add('fa-chevron-up');
-            } else {
-                chatArrow.classList.remove('fa-chevron-up');
-                chatArrow.classList.add('fa-chevron-down');
-            }
-        }
-
-        document.getElementById('chat-toggle').addEventListener('click', toggleChatList);
-
-        document.getElementById('send-button').addEventListener('click', () => {
-            const messageInput = document.getElementById('message-input');
-            const messageText = messageInput.value.trim();
-            if (messageText) {
-                appendMessage(messageText, 'sent');
-                messageInput.value = '';
-                setTimeout(() => {
-                    appendMessage('Respuesta automática', 'received');
-                }, 1000);
-            }
-        });
-
-        function appendMessage(text, type) {
-            const chatBox = document.getElementById('chat-box');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = type === 'sent' ? 'text-right' : 'text-left';
-            messageDiv.innerHTML = `<div class="inline-block p-2 my-2 rounded-lg ${type === 'sent' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-800'} fade-in">${text}</div>`;
-            chatBox.appendChild(messageDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-    </script>
     <script src="../../js/app/API/usuario/chat.js"></script>
-    <script src="../../js/app/API/usuario/guardado.js"></script>
     <script src="../../js/app/index.js"></script>
 </body>
 </html>
