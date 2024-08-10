@@ -242,7 +242,7 @@ CREATE TABLE Credenciales (
 -- Chat
 
 CREATE TABLE data_chat (
-	Id INT NOT NULL, -- Id
+	Id INT IDENTITY(1,1) NOT NULL, -- Id
 	PaisEmisor INT NOT NULL, -- Pais de la persona emisora del mensaje
 	TdocEmisor INT NOT NULL, -- Tdoc de la persona emisora del mensaje
 	NdocEmisor CHAR(25) NOT NULL, -- Ndoc de la persona emisora del mensaje
@@ -257,7 +257,7 @@ CREATE TABLE data_chat (
 );
 
 CREATE TABLE block_chat (
-	Id INT NOT NULL, -- Id
+	Id INT IDENTITY(1,1) NOT NULL, -- Id
 	Chat_Id INT NOT NULL, -- Id del chat bloqueado
 	PaisBloqueador INT NOT NULL, -- Pais de la persona bloqueadora
 	TdocBloqueador INT NOT NULL, -- Tdoc de la persona bloqueadora
@@ -270,7 +270,7 @@ CREATE TABLE block_chat (
 );
 
 CREATE TABLE message_chat (
-	Id INT NOT NULL, -- Id
+	Id INT IDENTITY(1,1) NOT NULL, -- Id
 	Id_Chat INT NOT NULL, -- Id del chat al que pertenece el mensaje
 	PaisEmisor2 INT NOT NULL, -- Pais de la persona emisora del mensaje
 	TdocEmisor2 INT NOT NULL, -- Tdoc de la persona emisora del mensaje

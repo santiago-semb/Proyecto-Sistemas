@@ -22,6 +22,26 @@ namespace API.Controllers
             return chats;
         }
 
+        [HttpGet]
+        public data_chat GetByPearson(int pEmi, int tEmi, string nEmi, int pRec, int tRec, string nRec)
+        {
+            data_chat chat = new data_chat();
+            using (sistemas2_webEntities db = new sistemas2_webEntities())
+            {
+                // Buscar el registro que coincide con las condiciones
+                chat = db.data_chat
+                             .Where(c => c.PaisEmisor == pEmi &&
+                                         c.TdocEmisor == tEmi &&
+                                         c.NdocEmisor == nEmi &&
+                                         c.PaisReceptor == pRec &&
+                                         c.TdocReceptor == tRec &&
+                                         c.NdocReceptor == nRec)
+                             .FirstOrDefault();
+
+            }
+            return chat;
+        }
+
         // GET: api/DataChat/5
         public data_chat Get(int id)
         {

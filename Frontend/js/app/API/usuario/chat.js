@@ -48,6 +48,9 @@ let paisParam = clienteParam.substring(0,1);
 let tdocParam = clienteParam.substring(1,2);
 let ndocParam = clienteParam.substring(2);
 
+let chatExiste;
+let chatId;
+
 const obtenerDatosPersona = async (pais, tdoc, ndoc) => {
     const API_URL_Personas = `http://localhost:${port}/api/Persona?Pais=${pais}&Tdoc=${tdoc}&Ndoc=${ndoc}`;
     let data = await fetchApi2(API_URL_Personas, 'GET');
@@ -103,6 +106,117 @@ function checkOnlineStatus(lastAccessTime) {
     }
 }
 
+const VerificarExistenciaChat = () => {
+    let PaisEmisor = localStorage.getItem("pais")
+    let TdocEmisor = localStorage.getItem("tdoc")
+    let NdocEmisor = localStorage.getItem("ndoc")
+    let PaisReceptor = paisParam
+    let TdocReceptor = tdocParam
+    let NdocReceptor = ndocParam
+    const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
+    let data = fetchApi2(API_URL_chat, 'GET');
+    (data.value === undefined || data.value === null) ? chatExiste = "N" : chatExiste = "S";
+    if(chatExiste === 'S')
+    {
+        chatId = data.Id
+    }
+}
+
+const CrearChat = () => {
+    const API_URL = `http://localhost:${port}/api/DataChat`;
+
+    let datosFormulario = {
+        PaisEmisor: localStorage.getItem("pais"),
+        TdocEmisor: localStorage.getItem("tdoc"),
+        NdocEmisor: localStorage.getItem("ndoc"),
+        PaisReceptor: paisParam,
+        TdocReceptor: tdocParam,
+        NdocReceptor: ndocParam,
+        Contenido: '',
+        Fecha: '9/6/2024',
+        Leido: 0,
+    }
+
+    fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosFormulario)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Hubo un problema al enviar el formulario: " + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Respuesta de la API:", data);
+        // Aquí puedes hacer algo con la respuesta de la API, como redirigir a otra página
+    })
+    .catch(error => {
+        console.error("Error al enviar el formulario:", error);
+    });
+}
+
+const EnviarMensaje = async () => {
+    const API_URL = `http://localhost:${port}/api/MessageChat`;
+
+    let mensaje = document.getElementById("message-input");
+    let fecha = obtenerFecha();
+
+    let datosFormulario = {
+        Id_Chat: chatId,
+        PaisEmisor2: localStorage.getItem("pais"),
+        TdocEmisor2: localStorage.getItem("tdoc"),
+        NdocEmisor2: localStorage.getItem("ndoc"),
+        PaisReceptor2: paisParam,
+        TdocReceptor2: tdocParam,
+        NdocReceptor2: ndocParam,
+        Contenido: mensaje,
+        Fecha: '9/6/2024',
+        Leido: 0,
+    }
+
+    fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosFormulario)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Hubo un problema al enviar el formulario: " + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Respuesta de la API:", data);
+        // Aquí puedes hacer algo con la respuesta de la API, como redirigir a otra página
+    })
+    .catch(error => {
+        console.error("Error al enviar el formulario:", error);
+    });
+}
+
+function obtenerFecha() {
+    var fechaActual = new Date();
+    var dia = fechaActual.getDate();
+    var mes = fechaActual.getMonth() + 1; // Los meses van de 0 a 11, por eso sumamos 1
+    var año = fechaActual.getFullYear();
+
+    // Formatear el día y el mes para asegurarnos de tener dos dígitos
+    if (dia < 10) {
+        dia = '0' + dia;
+    }
+    if (mes < 10) {
+        mes = '0' + mes;
+    }
+
+    var fechaFormateada = dia + '/' + mes + '/' + año;
+    return fechaFormateada;
+}
 
 // Método para hacer peticiones API
 const fetchApi2 = (url, method) => { 
@@ -114,6 +228,14 @@ const fetchApi2 = (url, method) => {
     .catch(error => {
         console.error("Error:", error);
     });
+}
+
+const SendButton = () => {
+    VerificarExistenciaChat()
+    console.log(chatExiste);
+    console.log(chatId)
+    if(chatExiste === 'N') CrearChat();
+    EnviarMensaje();
 }
 
 obtenerEstadoConexion(paisParam, tdocParam, ndocParam)
