@@ -80,7 +80,7 @@ const obtenerOfertas = async () => {
                 </td>
                 <td class="py-2 px-4 border-b underline"><a href="../../../../Frontend/app/cliente/detalle_oferta.html?id=${offer.Id}" id="a-detalle-oferta">${offer.Nombre}</a></td>
                 <td class="py-2 px-4 border-b">
-                    ${ (tipoOff === 1) ? `<div class='text-xs w-full rounded p-1 text-white bg-yellow-600 font-bold'>${offer.tipoOferta}</div>` : `<div class='text-xs w-full rounded p-1 text-white bg-pink-800 font-bold'>${offer.tipoOferta}</div>`  }
+                    ${ (tipoOff === 1) ? `<div class='text-xs w-full rounded py-1 text-black bg-gray-200 font-bold'>${offer.tipoOferta}</div>` : `<div class='text-xs w-full rounded py-1 text-black bg-gray-200 font-bold'>${offer.tipoOferta}</div>`  }
                 </td>
                 <td class="py-2 px-4 border-b"><div class="text-xs w-full mx-auto rounded p-1 text-black bg-zinc-600 font-bold">${offer.categoriaOferta}</div></td>
                 <td class="py-2 border-b">
@@ -108,7 +108,7 @@ const ObtenerGenerico = async (queObtener, id) => {
 };
 
 const changeState = (offerId) => {
-    const API_URL = `http://localhost:${port}/api/Oferta/${offerId}`;
+    const API_URL = `http://localhost:${port}/api/Oferta/estadoUpd/${offerId}`;
 
     fetch(API_URL, {
         method: "PUT",
