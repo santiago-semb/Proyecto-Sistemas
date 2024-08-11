@@ -322,6 +322,36 @@ const obtenerChat = async () => {
     }
 }
 
+// INCOMPLETO, actualizar estado del chat, para notificar si tiene nuevos mensajes no leidos
+const actualizarEstadoChatLeido = async () =>
+{
+    const API_URL = `http://localhost:${port}/api/DataChat/${chatId}`;
+
+    let datosFormulario = {
+        Leido: 1,
+      }
+    
+    fetch(API_URL, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosFormulario)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Hubo un problema al enviar el formulario: " + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Respuesta de la API:", data);
+    })
+    .catch(error => {
+        console.error("Error al enviar el formulario:", error);
+    });
+}
+
 // Método para hacer peticiones API
 const fetchApi2 = async (url, method) => { 
     return fetch(url, {method: method})

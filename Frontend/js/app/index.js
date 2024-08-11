@@ -187,6 +187,7 @@ const obtenerChatsMenu = async () => {
         // Obtener data del receptor del mensaje
         // para mostrar en el menú
         data.forEach(async chat => {
+            let hayMensajes = (chat.Leido == 0) ? '<span class="flex-shrink-0 rounded-full px-2 py-1 bg-blue-500 text-white text-xs font-bold">Nuevo</span>' : '';
             // Receptor
             let paisR = chat.PaisReceptor
             let tdocR = chat.TdocReceptor
@@ -217,9 +218,12 @@ const obtenerChatsMenu = async () => {
     
             
             menuChat.innerHTML += `
-                <a href="./chat.html?ch=${paramChat}" class="chat-item">
-                    <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
-                    <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
+                <a href="./chat.html?ch=${paramChat}" class="flex items-center justify-between chat-item">
+                    <div class='flex items-center justify-between'>
+                        <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
+                        <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
+                    </div>
+                    ${hayMensajes}
                 </a>
             `
         });
