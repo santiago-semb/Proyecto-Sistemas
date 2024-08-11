@@ -6,9 +6,9 @@ document.getElementById('send-button').addEventListener('click', () => {
     if (messageText) {
         appendMessage(messageText, 'sent');
         messageInput.value = '';
-        setTimeout(() => {
+        /*setTimeout(() => {
             appendMessage('Respuesta automática', 'received');
-        }, 1000);
+        }, 1000);*/
     }
 });
 
@@ -92,12 +92,12 @@ function checkOnlineStatus(lastAccessTime) {
 }
 
 const VerificarExistenciaChat = async () => {
-    let PaisEmisor = parseInt(localStorage.getItem("pais").trim())
-    let TdocEmisor = parseInt(localStorage.getItem("tdoc").trim())
-    let NdocEmisor = localStorage.getItem("ndoc").trim()
-    let PaisReceptor = parseInt(paisParam.trim())
-    let TdocReceptor = parseInt(tdocParam.trim())
-    let NdocReceptor = ndocParam.trim()
+    let PaisEmisor = parseInt(paisParam.trim())
+    let TdocEmisor = parseInt(tdocParam.trim())
+    let NdocEmisor = ndocParam.trim()
+    let PaisReceptor = parseInt(localStorage.getItem("pais").trim())
+    let TdocReceptor = parseInt(localStorage.getItem("tdoc").trim())
+    let NdocReceptor = localStorage.getItem("ndoc").trim()
     const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
     let data = await fetchApi2(API_URL_chat, 'GET');
     (data === undefined || data === null) ? chatExiste = "N" : chatExiste = "S";
@@ -219,21 +219,20 @@ const obtenerChat = async () => {
         let ndocp = localStorage.getItem("ndoc");
         let persona = `${paisp}${tdocp}${ndocp}`
         data.forEach(msg => {
+            let fechaMsg = msg.Fecha;
+            // Crear un objeto Date a partir de la cadena
+            const dateObj = new Date(fechaMsg);
+            // Obtener la hora y minutos
+            const horas = dateObj.getHours().toString().padStart(2, '0');
+            const minutos = dateObj.getMinutes().toString().padStart(2, '0');
+            // Formatear como HH:MM
+            const horaMinuto = `${horas}:${minutos}`;
+
             if((persona) === (`${msg.PaisEmisor2}${msg.TdocEmisor2}${msg.NdocEmisor2}`))
             {
-                let fechaMsg = msg.Fecha;
-                // Crear un objeto Date a partir de la cadena
-                const dateObj = new Date(fechaMsg);
-
-                // Obtener la hora y minutos
-                const horas = dateObj.getHours().toString().padStart(2, '0');
-                const minutos = dateObj.getMinutes().toString().padStart(2, '0');
-
-                // Formatear como HH:MM
-                const horaMinuto = `${horas}:${minutos}`;
                 chatBox.innerHTML += `
                 <div class='text-right'>
-                    <div class="inline-block p-2 rounded-lg bg-gray-700 text-white fade-in">
+                    <div class="inline-block p-2 rounded-lg bg-blue-500 text-white fade-in">
                         <span>${msg.Mensaje}</span>
                     </div>
                     <span class='text-xs text-gray-400 pl-1 select-none'>${horaMinuto}</span>
@@ -243,8 +242,11 @@ const obtenerChat = async () => {
             else
             {
                 chatBox.innerHTML += `
-                <div class='text-left '>
-                    <div class="inline-block p-2 rounded-lg bg-gray-800 text-white fade-in">${msg.Mensaje}</div>
+                <div class='text-left'>
+                    <span class='text-xs text-gray-400 pr-1 select-none'>${horaMinuto}</span>
+                    <div class="inline-block p-2 rounded-lg bg-gray-200 text-black fade-in">
+                        <span>${msg.Mensaje}</span>
+                    </div>     
                 </div>
                 `
             }
@@ -272,6 +274,7 @@ const SendButton = async () => {
     }
     let mensaje = document.getElementById("message-input").value;
     await VerificarExistenciaChat()
+    console.log(chatId)
     if(chatExiste === 'N') await CrearChat();
     await EnviarMensaje(mensaje);
 }

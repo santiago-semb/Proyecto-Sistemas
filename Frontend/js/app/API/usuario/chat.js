@@ -6,9 +6,9 @@ document.getElementById('send-button').addEventListener('click', () => {
     if (messageText) {
         appendMessage(messageText, 'sent');
         messageInput.value = '';
-        setTimeout(() => {
+        /*setTimeout(() => {
             appendMessage('Respuesta automática', 'received');
-        }, 1000);
+        }, 1000);*/
     }
 });
 
@@ -219,21 +219,20 @@ const obtenerChat = async () => {
         let ndocp = localStorage.getItem("ndoc");
         let persona = `${paisp}${tdocp}${ndocp}`
         data.forEach(msg => {
+            let fechaMsg = msg.Fecha;
+            // Crear un objeto Date a partir de la cadena
+            const dateObj = new Date(fechaMsg);
+            // Obtener la hora y minutos
+            const horas = dateObj.getHours().toString().padStart(2, '0');
+            const minutos = dateObj.getMinutes().toString().padStart(2, '0');
+            // Formatear como HH:MM
+            const horaMinuto = `${horas}:${minutos}`;
+
             if((persona) === (`${msg.PaisEmisor2}${msg.TdocEmisor2}${msg.NdocEmisor2}`))
             {
-                let fechaMsg = msg.Fecha;
-                // Crear un objeto Date a partir de la cadena
-                const dateObj = new Date(fechaMsg);
-
-                // Obtener la hora y minutos
-                const horas = dateObj.getHours().toString().padStart(2, '0');
-                const minutos = dateObj.getMinutes().toString().padStart(2, '0');
-
-                // Formatear como HH:MM
-                const horaMinuto = `${horas}:${minutos}`;
                 chatBox.innerHTML += `
                 <div class='text-right'>
-                    <div class="inline-block p-2 rounded-lg bg-gray-700 text-white fade-in">
+                    <div class="inline-block p-2 rounded-lg bg-blue-500 text-white fade-in">
                         <span>${msg.Mensaje}</span>
                     </div>
                     <span class='text-xs text-gray-400 pl-1 select-none'>${horaMinuto}</span>
@@ -243,8 +242,11 @@ const obtenerChat = async () => {
             else
             {
                 chatBox.innerHTML += `
-                <div class='text-left '>
-                    <div class="inline-block p-2 rounded-lg bg-gray-800 text-white fade-in">${msg.Mensaje}</div>
+                <div class='text-left'>
+                    <span class='text-xs text-gray-400 pr-1 select-none'>${horaMinuto}</span>
+                    <div class="inline-block p-2 rounded-lg bg-gray-200 text-black fade-in">
+                        <span>${msg.Mensaje}</span>
+                    </div>     
                 </div>
                 `
             }
