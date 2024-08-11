@@ -48,7 +48,9 @@ namespace API.Controllers
             data_chat chat = new data_chat();
             using (sistemas2_webEntities db = new sistemas2_webEntities())
             {
-                chat = db.data_chat.Find(id);
+                chat = db.data_chat
+                            .Where(c => c.Id == id)
+                             .FirstOrDefault();
             }
             return chat;
         }

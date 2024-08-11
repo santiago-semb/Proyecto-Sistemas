@@ -22,6 +22,23 @@ namespace API.Controllers
             return msgs;
         }
 
+        // GET: api/MessageChat
+        [HttpGet]
+        [Route("api/MessageChat/list/{id}")]
+        public List<message_chat> GetByIdList(int id)
+        {
+            List<message_chat> msgs = new List<message_chat>();
+
+            using (sistemas2_webEntities db = new sistemas2_webEntities())
+            {
+                msgs = db.message_chat
+                            .Where(m => m.Id_Chat == id)
+                            .ToList();
+            }
+
+            return msgs;
+        }
+
         // GET: api/MessageChat/5
         public message_chat Get(int id)
         {

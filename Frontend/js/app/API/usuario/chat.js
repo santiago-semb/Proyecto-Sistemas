@@ -113,18 +113,13 @@ const VerificarExistenciaChat = async () => {
     let PaisReceptor = parseInt(paisParam.trim())
     let TdocReceptor = parseInt(tdocParam.trim())
     let NdocReceptor = ndocParam.trim()
-    console.log(PaisEmisor, TdocEmisor, NdocEmisor, PaisReceptor, TdocReceptor, NdocReceptor)
-    //const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
-    const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=1&tEmi=1&nEmi=44767442&pRec=1&tRec=3&nRec=24998546727`;
+    const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
     let data = await fetchApi2(API_URL_chat, 'GET');
-    (data[0] === undefined || data[0] === null) ? chatExiste = "N" : chatExiste = "S";
-    if(chatExiste === 'S')
-    {
-        chatId = data.Id
-    }
+    (data === undefined || data === null) ? chatExiste = "N" : chatExiste = "S";
+    (chatExiste === 'S') ? chatId = data.Id : chatId = 0;
 }
 
-const CrearChat = () => {
+const CrearChat = async () => {
     const API_URL = `http://localhost:${port}/api/DataChat`;
 
     let datosFormulario = {
@@ -161,10 +156,9 @@ const CrearChat = () => {
     });
 }
 
-const EnviarMensaje = () => {
+const EnviarMensaje = async (mensaje) => {
     const API_URL = `http://localhost:${port}/api/MessageChat`;
 
-    let mensaje = document.getElementById("message-input");
     let fecha = obtenerFecha();
 
     let datosFormulario = {
@@ -179,6 +173,8 @@ const EnviarMensaje = () => {
         Fecha: '9/6/2024',
         Leido: 0,
     }
+
+
 
     fetch(API_URL, {
         method: "POST",
@@ -220,6 +216,57 @@ function obtenerFecha() {
     return fechaFormateada;
 }
 
+const obtenerChat = async () => {
+    await VerificarExistenciaChat()
+    const API_URL_Chat = `http://localhost:${port}/api/MessageChat/list/${chatId}`;
+    let data = await fetchApi2(API_URL_Chat, 'GET');
+    const cartelNoMessages = document.getElementById("sin-mensajes-disponibles")
+    if(data[0] === undefined || data[0] === null)
+    {
+        cartelNoMessages.style.display = 'block'
+    }
+    else
+    {
+        cartelNoMessages.style.display = 'none'
+        const chatBox = document.getElementById("chat-box")
+        let paisp = localStorage.getItem("pais");
+        let tdocp = localStorage.getItem("tdoc");
+        let ndocp = localStorage.getItem("ndoc");
+        let persona = `${paisp}${tdocp}${ndocp}`
+        data.forEach(msg => {
+            if((persona) === (`${msg.PaisEmisor2}${msg.TdocEmisor2}${msg.NdocEmisor2}`))
+            {
+                let fechaMsg = msg.Fecha;
+                // Crear un objeto Date a partir de la cadena
+                const dateObj = new Date(fechaMsg);
+
+                // Obtener la hora y minutos
+                const horas = dateObj.getHours().toString().padStart(2, '0');
+                const minutos = dateObj.getMinutes().toString().padStart(2, '0');
+
+                // Formatear como HH:MM
+                const horaMinuto = `${horas}:${minutos}`;
+                chatBox.innerHTML += `
+                <div class='text-right'>
+                    <div class="inline-block p-2 rounded-lg bg-gray-700 text-white fade-in">
+                        <span>${msg.Mensaje}</span>
+                    </div>
+                    <span class='text-xs text-gray-400 pl-1 select-none'>${horaMinuto}</span>
+                </div>
+                `
+            }
+            else
+            {
+                chatBox.innerHTML += `
+                <div class='text-left '>
+                    <div class="inline-block p-2 rounded-lg bg-gray-800 text-white fade-in">${msg.Mensaje}</div>
+                </div>
+                `
+            }
+        });
+    }
+}
+
 // Método para hacer peticiones API
 const fetchApi2 = async (url, method) => { 
     return fetch(url, {method: method})
@@ -232,13 +279,18 @@ const fetchApi2 = async (url, method) => {
     });
 }
 
-const SendButton = () => {
-    VerificarExistenciaChat()
-    console.log(chatExiste);
-    console.log(chatId)
-    //if(chatExiste === 'N') CrearChat();
-    //EnviarMensaje();
+const SendButton = async () => {
+    if(document.getElementById("sin-mensajes-disponibles") != undefined || document.getElementById("sin-mensajes-disponibles") != null)
+    {
+        const cartelNoMessages = document.getElementById("sin-mensajes-disponibles")
+        cartelNoMessages.style.display = 'none'
+    }
+    let mensaje = document.getElementById("message-input").value;
+    await VerificarExistenciaChat()
+    if(chatExiste === 'N') await CrearChat();
+    await EnviarMensaje(mensaje);
 }
 
 obtenerEstadoConexion(paisParam, tdocParam, ndocParam)
 obtenerDatosPersona(paisParam, tdocParam, ndocParam)
+obtenerChat()
