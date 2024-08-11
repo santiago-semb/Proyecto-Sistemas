@@ -102,6 +102,20 @@ const VerificarExistenciaChat = async () => {
     let data = await fetchApi2(API_URL_chat, 'GET');
     (data === undefined || data === null) ? chatExiste = "N" : chatExiste = "S";
     if(chatExiste === 'S') chatId = data.Id;
+    if(chatExiste === 'N')
+        {
+            await CrearChat();
+            let PaisUsuario = parseInt(localStorage.getItem("pais").trim())
+            let TdocUsuario= parseInt(localStorage.getItem("tdoc").trim())
+            let NdocUsuario = localStorage.getItem("ndoc").trim()
+            let PaisCliente = parseInt(paisParam.trim())
+            let TdocCliente = parseInt(tdocParam.trim())
+            let NdocCliente = ndocParam.trim()
+            // Recupero el Id creado del chat
+            const API_URL_chat_id = `http://localhost:${port}/api/DataChat?pEmi=${PaisUsuario}&tEmi=${TdocUsuario}&nEmi=${NdocUsuario}&pRec=${PaisCliente}&tRec=${TdocCliente}&nRec=${NdocCliente}`;
+            let data = await fetchApi2(API_URL_chat_id, 'GET');
+            chatId = data.Chat_Id;
+        }
 }
 
 const CrearChat = async () => {
@@ -141,13 +155,13 @@ const CrearChat = async () => {
     });
 }
 
-const EnviarMensaje = async (mensaje) => {
+const EnviarMensaje = async (mensaje, chat) => {
     const API_URL = `http://localhost:${port}/api/MessageChat`;
 
     let fecha = obtenerFecha();
 
     let datosFormulario = {
-        Id_Chat: chatId,
+        Id_Chat: chat,
         PaisEmisor2: localStorage.getItem("pais"),
         TdocEmisor2: localStorage.getItem("tdoc"),
         NdocEmisor2: localStorage.getItem("ndoc"),
@@ -274,9 +288,7 @@ const SendButton = async () => {
     }
     let mensaje = document.getElementById("message-input").value;
     await VerificarExistenciaChat()
-    console.log(chatId)
-    if(chatExiste === 'N') await CrearChat();
-    await EnviarMensaje(mensaje);
+    await EnviarMensaje(mensaje, chatId);
 }
 
 obtenerEstadoConexion(paisParam, tdocParam, ndocParam)

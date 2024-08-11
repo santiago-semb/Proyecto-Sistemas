@@ -34,7 +34,7 @@ let tdocParam = clienteParam.substring(1,2);
 let ndocParam = clienteParam.substring(2);
 
 let chatExiste;
-let chatId;
+let chatId = 0;
 
 const obtenerDatosPersona = async (pais, tdoc, ndoc) => {
     const API_URL_Personas = `http://localhost:${port}/api/Persona?Pais=${pais}&Tdoc=${tdoc}&Ndoc=${ndoc}`;
@@ -92,16 +92,30 @@ function checkOnlineStatus(lastAccessTime) {
 }
 
 const VerificarExistenciaChat = async () => {
-    let PaisEmisor = parseInt(localStorage.getItem("pais").trim())
-    let TdocEmisor = parseInt(localStorage.getItem("tdoc").trim())
-    let NdocEmisor = localStorage.getItem("ndoc").trim()
-    let PaisReceptor = parseInt(paisParam.trim())
-    let TdocReceptor = parseInt(tdocParam.trim())
-    let NdocReceptor = ndocParam.trim()
-    const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
+    let PaisUsuario = parseInt(localStorage.getItem("pais").trim())
+    let TdocUsuario= parseInt(localStorage.getItem("tdoc").trim())
+    let NdocUsuario = localStorage.getItem("ndoc").trim()
+    let PaisCliente = parseInt(paisParam.trim())
+    let TdocCliente = parseInt(tdocParam.trim())
+    let NdocCliente = ndocParam.trim()
+    const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisUsuario}&tEmi=${TdocUsuario}&nEmi=${NdocUsuario}&pRec=${PaisCliente}&tRec=${TdocCliente}&nRec=${NdocCliente}`;
     let data = await fetchApi2(API_URL_chat, 'GET');
     (data === undefined || data === null) ? chatExiste = "N" : chatExiste = "S";
     if(chatExiste === 'S') chatId = data.Id;
+    if(chatExiste === 'N')
+    {
+        await CrearChat();
+        let PaisUsuario = parseInt(localStorage.getItem("pais").trim())
+        let TdocUsuario= parseInt(localStorage.getItem("tdoc").trim())
+        let NdocUsuario = localStorage.getItem("ndoc").trim()
+        let PaisCliente = parseInt(paisParam.trim())
+        let TdocCliente = parseInt(tdocParam.trim())
+        let NdocCliente = ndocParam.trim()
+        // Recupero el Id creado del chat
+        const API_URL_chat_id = `http://localhost:${port}/api/DataChat?pEmi=${PaisUsuario}&tEmi=${TdocUsuario}&nEmi=${NdocUsuario}&pRec=${PaisCliente}&tRec=${TdocCliente}&nRec=${NdocCliente}`;
+        let data = await fetchApi2(API_URL_chat_id, 'GET');
+        chatId = data.Chat_Id;
+    }
 }
 
 const CrearChat = async () => {
@@ -141,13 +155,15 @@ const CrearChat = async () => {
     });
 }
 
-const EnviarMensaje = async (mensaje) => {
+const EnviarMensaje = async (mensaje, chat) => {
+
+    // Si ya existe el chat...
     const API_URL = `http://localhost:${port}/api/MessageChat`;
 
     let fecha = obtenerFecha();
 
     let datosFormulario = {
-        Id_Chat: chatId,
+        Id_Chat: chat,
         PaisEmisor2: localStorage.getItem("pais"),
         TdocEmisor2: localStorage.getItem("tdoc"),
         NdocEmisor2: localStorage.getItem("ndoc"),
@@ -274,8 +290,7 @@ const SendButton = async () => {
     }
     let mensaje = document.getElementById("message-input").value;
     await VerificarExistenciaChat()
-    if(chatExiste === 'N') await CrearChat();
-    await EnviarMensaje(mensaje);
+    await EnviarMensaje(mensaje, chatId);
 }
 
 obtenerEstadoConexion(paisParam, tdocParam, ndocParam)
