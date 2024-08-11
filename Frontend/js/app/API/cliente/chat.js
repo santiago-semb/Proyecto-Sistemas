@@ -101,7 +101,7 @@ const VerificarExistenciaChat = async () => {
     const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
     let data = await fetchApi2(API_URL_chat, 'GET');
     (data === undefined || data === null) ? chatExiste = "N" : chatExiste = "S";
-    (chatExiste === 'S') ? chatId = data.Id : chatId = 0;
+    if(chatExiste === 'S') chatId = data.Id;
 }
 
 const CrearChat = async () => {
