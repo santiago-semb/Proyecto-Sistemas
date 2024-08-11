@@ -455,6 +455,17 @@ const ObtenerGenerico = async (queObtener, id) => {
     }
 };
 
+// Método para hacer peticiones API
+const fetchApi2 = async (url, method) => { 
+    return fetch(url, {method: method})
+    .then(response => response.json())
+    .then(data => {
+        return data;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+}
 
 document.getElementById("btn-guardar-perfil").addEventListener("click", () => {
     actualizarPersona(paisLs, tdocLs, ndocLs);

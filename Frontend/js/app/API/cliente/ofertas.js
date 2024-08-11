@@ -130,6 +130,18 @@ const changeState = (offerId) => {
     });
 }
 
+// Método para hacer peticiones API
+const fetchApi2 = async (url, method) => { 
+    return fetch(url, {method: method})
+    .then(response => response.json())
+    .then(data => {
+        return data;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+}
+
 
 obtenerPersona(paisLs, tdocLs, ndocLs);
 obtenerOfertas();

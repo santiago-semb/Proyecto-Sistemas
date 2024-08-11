@@ -184,19 +184,38 @@ const obtenerChatsMenu = async () => {
             let paisR = chat.PaisReceptor
             let tdocR = chat.TdocReceptor
             let ndocR = chat.NdocReceptor
-            const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisR}&Tdoc=${tdocR}&Ndoc=${ndocR}`;
-            let dataPersona = await fetchApi2(API_URL_Per, 'GET');
-            let nombreCompleto = dataPersona.Nombre;
-
-            let paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`
-            menuChat.innerHTML += `
-                <a href="./chat.html?ch=${paramChat}" class="chat-item">
-                    <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
-                    <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
-                </a>
-            `
+            if(paisR === pais && tdocR === tdoc && ndocR === ndoc)
+            {   
+                const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisR}&Tdoc=${tdocR}&Ndoc=${ndocR}`;
+                let dataPersona = await fetchApi2(API_URL_Per, 'GET');
+                let nombreCompleto = dataPersona.Nombre;
+    
+                let paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`
+                menuChat.innerHTML += `
+                    <a href="./chat.html?ch=${paramChat}" class="chat-item">
+                        <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
+                        <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
+                    </a>
+                `
+            }
+            else
+            {
+                let paisE = chat.PaisEmisor
+                let tdocE = chat.TdocEmisor
+                let ndocE = chat.NdocEmisor
+                const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisE}&Tdoc=${tdocE}&Ndoc=${ndocE}`;
+                let dataPersona = await fetchApi2(API_URL_Per, 'GET');
+                let nombreCompleto = dataPersona.Nombre;
+    
+                let paramChat = `${chat.PaisEmisor}${chat.TdocEmisor}${chat.NdocEmisor}`
+                menuChat.innerHTML += `
+                    <a href="./chat.html?ch=${paramChat}" class="chat-item">
+                        <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
+                        <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
+                    </a>
+                `
+            }
         });
-
     }
 }
 
