@@ -15,11 +15,63 @@ document.getElementById('send-button').addEventListener('click', () => {
 function appendMessage(text, type) {
     const chatBox = document.getElementById('chat-box');
     const messageDiv = document.createElement('div');
+    let horaActual = obtenerHoraActualArgentina();
     messageDiv.className = type === 'sent' ? 'text-right' : 'text-left';
-    messageDiv.innerHTML = `<div class="inline-block p-2 my-2 rounded-lg ${type === 'sent' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-800'} fade-in">${text}</div>`;
+    messageDiv.innerHTML = `
+        <div class="inline-block p-2 my-2 rounded-lg ${type === 'sent' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-800'} fade-in">
+            ${text}
+        </div>
+        <span class='text-xs text-gray-400 pr-1 select-none'>${horaActual}</span>
+        `;
     chatBox.appendChild(messageDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+function obtenerHoraActualArgentina() {
+    // Crea un objeto Date con la fecha y hora actuales
+    const now = new Date();
+
+    // Define las opciones para formatear la hora en la zona horaria de Argentina
+    const opciones = {
+        timeZone: 'America/Argentina/Buenos_Aires',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false // Usa el formato de 24 horas
+    };
+
+    // Crea un formateador para la hora con las opciones especificadas
+    const formateador = new Intl.DateTimeFormat('es-AR', opciones);
+
+    // Obtiene la hora formateada en una cadena
+    const horaFormateada = formateador.format(now);
+
+    // Devuelve el formato HH:MM
+    return horaFormateada;
+}
+
+function obtenerHoraActualArgentinaConSegundos() {
+    // Crea un objeto Date con la fecha y hora actuales
+    const now = new Date();
+
+    // Define las opciones para formatear la hora en la zona horaria de Argentina
+    const opciones = {
+        timeZone: 'America/Argentina/Buenos_Aires',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false // Usa el formato de 24 horas
+    };
+
+    // Crea un formateador para la hora con las opciones especificadas
+    const formateador = new Intl.DateTimeFormat('es-AR', opciones);
+
+    // Obtiene la hora formateada en una cadena
+    const horaFormateada = formateador.format(now);
+
+    // Devuelve el formato HH:mm:ss
+    return horaFormateada;
+}
+
 /* ---------------------- JAVASCRIPT PARA CHAT ---------------------- */
 
 const port = 55939;
@@ -158,7 +210,7 @@ const CrearChat = async () => {
 const EnviarMensaje = async (mensaje, chat) => {
     const API_URL = `http://localhost:${port}/api/MessageChat`;
 
-    let fecha = obtenerFecha();
+    let fecha = obtenerHoraActualArgentinaConSegundos();
 
     let datosFormulario = {
         Id_Chat: chat,
@@ -169,7 +221,7 @@ const EnviarMensaje = async (mensaje, chat) => {
         TdocReceptor2: tdocParam,
         NdocReceptor2: ndocParam,
         Mensaje: mensaje,
-        Fecha: '9/6/2024',
+        Fecha: fecha,
         Leido: 0,
     }
 
