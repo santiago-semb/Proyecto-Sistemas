@@ -145,3 +145,59 @@ btnServicios.addEventListener('click', () => {
     btnProductos.classList.add('bg-white', 'text-black');
 });
 */
+
+
+// Función para alternar la visibilidad del menú de chats
+function toggleChatList() {
+    const chatList = document.getElementById('chat-list');
+    const chatArrow = document.getElementById('chat-arrow');
+    chatList.classList.toggle('show');
+    if (chatList.classList.contains('show')) {
+        chatArrow.classList.remove('fa-chevron-down');
+        chatArrow.classList.add('fa-chevron-up');
+    } else {
+        chatArrow.classList.remove('fa-chevron-up');
+        chatArrow.classList.add('fa-chevron-down');
+    }
+}
+
+document.getElementById('chat-toggle').addEventListener('click', toggleChatList);
+
+const obtenerChatsMenu = async () => {
+    let pais = localStorage.getItem("pais")
+    let tdoc = localStorage.getItem("tdoc")
+    let ndoc = localStorage.getItem("ndoc")
+    const API_URL_Chat = `http://localhost:${port}/api/DataChat/listdoc/${pais}/${tdoc}/${ndoc}`;
+    let data = await fetchApi2(API_URL_Chat, 'GET');
+    const menuChat = document.getElementById("chat-list")
+    if(data[0] === undefined || data[0] === null)
+    {
+        menuChat.innerHTML += `
+            <p>No tienes chats</p>
+        `
+    }
+    else
+    {
+        // Obtener data del receptor del mensaje
+        // para mostrar en el menú
+        data.forEach(async chat => {
+            let paisR = chat.PaisReceptor
+            let tdocR = chat.TdocReceptor
+            let ndocR = chat.NdocReceptor
+            const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisR}&Tdoc=${tdocR}&Ndoc=${ndocR}`;
+            let dataPersona = await fetchApi2(API_URL_Per, 'GET');
+            let nombreCompleto = dataPersona.Nombre;
+
+            let paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`
+            menuChat.innerHTML += `
+                <a href="./chat.html?ch=${paramChat}" class="chat-item">
+                    <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
+                    <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
+                </a>
+            `
+        });
+
+    }
+}
+
+obtenerChatsMenu()

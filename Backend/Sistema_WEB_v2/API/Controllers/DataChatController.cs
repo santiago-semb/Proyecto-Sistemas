@@ -22,6 +22,27 @@ namespace API.Controllers
             return chats;
         }
 
+        // GET: api/DataChat
+        [HttpGet]
+        [Route("api/DataChat/listdoc/{pais}/{tdoc}/{ndoc}")]
+        public List<data_chat> GetChatsByDoc(int pais, int tdoc, string ndoc)
+        {
+            List<data_chat> chats = new List<data_chat>();
+
+            using (sistemas2_webEntities db = new sistemas2_webEntities())
+            {
+                chats = db.data_chat
+                                    .Where(m =>
+                                          (m.PaisEmisor == pais && m.TdocEmisor == tdoc && m.NdocEmisor == ndoc)
+                                          ||
+                                          (m.PaisReceptor == pais && m.TdocReceptor == tdoc && m.NdocReceptor == ndoc)
+                                          )
+                                    .ToList();
+            }
+
+            return chats;
+        }
+
         [HttpGet]
         public data_chat GetByPearson(int pEmi, int tEmi, string nEmi, int pRec, int tRec, string nRec)
         {

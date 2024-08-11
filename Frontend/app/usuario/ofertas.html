@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/d3ba0e2c6d.js" crossorigin="anonymous"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
 </head>
 <body class="bg-gray-100 h-screen flex">
     <!-- Menú lateral -->
@@ -17,7 +18,12 @@
             <ul>
                 <li class="menu-item p-3"><a href="./perfil.html" class="cursor-pointer"><i class="fa-solid fa-address-card mr-2"></i> Perfil</a></li>
                 <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-envelope mr-2"></i> Mensajes</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
-                <li class="menu-item p-3"><a href="./chat.html" class="cursor-pointer"><i class="fa-brands fa-rocketchat mr-2"></i> Chat</a></li>
+                <li class="menu-item p-3 cursor-pointer" id="chat-toggle">
+                    <i class="fa-brands fa-rocketchat mr-2"></i> Chats 
+                    <i id="chat-arrow" class="fa-solid fa-chevron-down float-right"></i>
+                </li>
+                <div id="chat-list" class="dropdown-menu menu-content bg-gray-700 text-white">
+                </div>
                 <div class="bg-gray-700 w-full h-1"></div>
                 <li class="menu-item p-3"><a href="./ofertas.html" class="cursor-pointer"><i class="fa-solid fa-comments-dollar text-blue-300 mr-2"></i> Ofertas</a></li>
                 <li class="menu-item p-3"><a href="./guardado.html" class="cursor-pointer"><i class="fa-solid fa-bookmark text-gray-500 mr-2"></i> Guardado</a></li>

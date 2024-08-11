@@ -1,3 +1,4 @@
+
 const port = 55939;
 
 let paisLs = localStorage.getItem("pais");
@@ -42,6 +43,18 @@ const obtenerOfertas = async (Codigo_Usu) => {
 
 // Método para hacer peticiones API
 const fetchApi = async (url, method) => { 
+    return fetch(url, {method: method})
+    .then(response => response.json())
+    .then(data => {
+        return data;
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+}
+
+// Método para hacer peticiones API
+const fetchApi2 = async (url, method) => { 
     return fetch(url, {method: method})
     .then(response => response.json())
     .then(data => {

@@ -1,19 +1,4 @@
 /* ---------------------- JAVASCRIPT PARA CHAT ---------------------- */
-// Función para alternar la visibilidad del menú de chats
-function toggleChatList() {
-    const chatList = document.getElementById('chat-list');
-    const chatArrow = document.getElementById('chat-arrow');
-    chatList.classList.toggle('show');
-    if (chatList.classList.contains('show')) {
-        chatArrow.classList.remove('fa-chevron-down');
-        chatArrow.classList.add('fa-chevron-up');
-    } else {
-        chatArrow.classList.remove('fa-chevron-up');
-        chatArrow.classList.add('fa-chevron-down');
-    }
-}
-
-document.getElementById('chat-toggle').addEventListener('click', toggleChatList);
 
 document.getElementById('send-button').addEventListener('click', () => {
     const messageInput = document.getElementById('message-input');

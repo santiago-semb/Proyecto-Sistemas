@@ -34,3 +34,74 @@
         animation: girar 3s linear infinite;
     }
 }
+
+/* Estilo para ocultar la barra de desplazamiento pero permitir el desplazamiento */
+.scrollable {
+    overflow-y: scroll;
+    max-height: calc(100vh - 60px); /* Ajusta según el espacio que ocupan otros elementos del menú */
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 0;
+}
+
+.scrollable {
+    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+    scrollbar-width: none; /* Para Firefox */
+}
+/* Contenedor para permitir el desplazamiento con el mouse */
+.scrollable-content {
+    overflow-y: scroll; /* Permite el desplazamiento vertical */
+    max-height: 300px; /* Ajusta este valor según tu diseño */
+}
+/* Efecto de transición suave */
+.transition-slide {
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+}
+/* Animación de desvanecimiento */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+/* Estilos para el menú desplegable de chats */
+.dropdown-menu {
+    max-height: 0;
+    overflow-y: hidden; /* Oculta el scroll cuando el menú está colapsado */
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    opacity: 0;
+}
+.dropdown-menu.show {
+    max-height: 300px; /* Ajusta la altura máxima para permitir el scroll si hay más de 5 elementos */
+    opacity: 1;
+    overflow-y: auto; /* Muestra el scroll si el contenido excede la altura máxima */
+}
+.chat-img {
+    width: 25px;
+    height: 25px;
+}
+.chat-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: #1f2937; /* bg-gray-700 */
+    border-bottom: 1px solid #374151; /* border-gray-600 */
+    color: white;
+    text-decoration: none;
+}
+.chat-item:hover {
+    background-color: #374151; /* bg-gray-600 */
+}
+/* Asegura que el menú de chats no empuje el contenido */
+.menu-container {
+    position: relative;
+}
+.menu-content {
+    position: relative;
+    z-index: 10; /* Asegura que el menú de chats esté encima del contenido */
+}
