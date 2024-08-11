@@ -173,7 +173,10 @@ const obtenerChatsMenu = async () => {
     if(data[0] === undefined || data[0] === null)
     {
         menuChat.innerHTML += `
-            <p>No tienes chats</p>
+            <p class="chat-item-for-nochat select-none">
+                
+                <span class='text-xs font-bold mx-auto'>No tienes chats disponibles</span>
+            </p>
         `
     }
     else

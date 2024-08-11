@@ -23,6 +23,27 @@ namespace API.Controllers
             return ofertas;
         }
 
+        // GET: api/Oferta
+        [HttpGet]
+        [Route("api/Oferta/byDoc/{pais}/{tdoc}/{ndoc}")]
+        public List<Ofertas> GetOfferByDoc(int pais, int tdoc, string ndoc)
+        {
+            List<Ofertas> ofertas = new List<Ofertas>();
+
+            using (sistemas2_webEntities db = new sistemas2_webEntities())
+            {
+                ofertas = db.Ofertas
+                                    .Where(offer =>
+                                          (offer.Pais == pais && offer.Tdoc == tdoc && offer.Ndoc == ndoc)
+                                          )
+                                    .OrderByDescending(offer => offer.FechaPubl)
+                                    .ThenBy(offer => offer.Id)
+                                    .ToList();
+            }
+
+            return ofertas;
+        }
+
         // GET: api/Oferta/5
         [HttpGet]
         public Ofertas Get(int id)

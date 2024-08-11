@@ -510,14 +510,14 @@ function RedirigirCliUs()
         {
             setInterval(() => {
                 localStorage.removeItem("rol-elegido");
-                window.location.href = `${url}/app/usuario/ofertas.html`; 
+                window.location.href = `${url}/Frontend/app/usuario/ofertas.html`; 
             }, 3000);
         }
         else if(rolElegido === "2")
         {
             setInterval(() => {
                 localStorage.removeItem("rol-elegido");
-                window.location.href = `${url}/app/cliente/ofertas.html`;
+                window.location.href = `${url}/Frontend/app/cliente/ofertas.html`;
             }, 3000);
         }
         else

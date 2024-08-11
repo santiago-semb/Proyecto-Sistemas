@@ -16,8 +16,9 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
     }
 }
 
-const obtenerOfertas = async () => {
-    const API_URL = `http://localhost:${port}/api/Oferta`;
+const obtenerOfertas = async (pais, tdoc, ndoc) => {
+    console.log(pais, tdoc, ndoc)
+    const API_URL = `http://localhost:${port}/api/Oferta/byDoc/${pais}/${tdoc}/${ndoc}`;
     const _tbody = document.getElementById("tbody_offers");
 
     try {
@@ -144,4 +145,4 @@ const fetchApi2 = async (url, method) => {
 
 
 obtenerPersona(paisLs, tdocLs, ndocLs);
-obtenerOfertas();
+obtenerOfertas(paisLs, tdocLs, ndocLs);

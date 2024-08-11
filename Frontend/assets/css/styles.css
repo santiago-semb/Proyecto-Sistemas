@@ -97,6 +97,15 @@
 .chat-item:hover {
     background-color: #374151; /* bg-gray-600 */
 }
+.chat-item-for-nochat {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: #1f2937; /* bg-gray-700 */
+    border-bottom: 1px solid #374151; /* border-gray-600 */
+    color: white;
+    text-decoration: none;
+}
 /* Asegura que el menú de chats no empuje el contenido */
 .menu-container {
     position: relative;
