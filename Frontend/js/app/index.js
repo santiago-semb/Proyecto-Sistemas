@@ -164,8 +164,8 @@ function toggleChatList() {
 document.getElementById('chat-toggle').addEventListener('click', toggleChatList);
 
 const obtenerChatsMenu = async () => {
-    let pais = localStorage.getItem("pais")
-    let tdoc = localStorage.getItem("tdoc")
+    let pais = parseInt(localStorage.getItem("pais"))
+    let tdoc = parseInt(localStorage.getItem("tdoc"))
     let ndoc = localStorage.getItem("ndoc")
     const API_URL_Chat = `http://localhost:${port}/api/DataChat/listdoc/${pais}/${tdoc}/${ndoc}`;
     let data = await fetchApi2(API_URL_Chat, 'GET');
@@ -177,44 +177,45 @@ const obtenerChatsMenu = async () => {
         `
     }
     else
-    {
+    {   
+        let paisApi;
+        let tdocApi;
+        let ndocApi;
         // Obtener data del receptor del mensaje
         // para mostrar en el menú
         data.forEach(async chat => {
+            // Receptor
             let paisR = chat.PaisReceptor
             let tdocR = chat.TdocReceptor
             let ndocR = chat.NdocReceptor
+            // Emisor
+            let paisE = chat.PaisEmisor
+            let tdocE = chat.TdocEmisor
+            let ndocE = chat.NdocEmisor
             if(paisR === pais && tdocR === tdoc && ndocR === ndoc)
             {   
-                const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisR}&Tdoc=${tdocR}&Ndoc=${ndocR}`;
-                let dataPersona = await fetchApi2(API_URL_Per, 'GET');
-                let nombreCompleto = dataPersona.Nombre;
-    
-                let paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`
-                menuChat.innerHTML += `
-                    <a href="./chat.html?ch=${paramChat}" class="chat-item">
-                        <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
-                        <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
-                    </a>
-                `
+                paisApi = paisE;
+                tdocApi = tdocE;
+                ndocApi = ndocE;
             }
-            else
+
+            if(paisE === pais && tdocE === tdoc && ndocE === ndoc)
             {
-                let paisE = chat.PaisEmisor
-                let tdocE = chat.TdocEmisor
-                let ndocE = chat.NdocEmisor
-                const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisE}&Tdoc=${tdocE}&Ndoc=${ndocE}`;
-                let dataPersona = await fetchApi2(API_URL_Per, 'GET');
-                let nombreCompleto = dataPersona.Nombre;
-    
-                let paramChat = `${chat.PaisEmisor}${chat.TdocEmisor}${chat.NdocEmisor}`
-                menuChat.innerHTML += `
-                    <a href="./chat.html?ch=${paramChat}" class="chat-item">
-                        <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
-                        <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
-                    </a>
-                `
+                paisApi = paisR;
+                tdocApi = tdocR;
+                ndocApi = ndocR;
             }
+            const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
+            let dataPersona = await fetchApi2(API_URL_Per, 'GET');
+            let nombreCompleto = dataPersona.Nombre;
+    
+            let paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`
+            menuChat.innerHTML += `
+                <a href="./chat.html?ch=${paramChat}" class="chat-item">
+                    <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
+                    <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
+                </a>
+            `
         });
     }
 }
