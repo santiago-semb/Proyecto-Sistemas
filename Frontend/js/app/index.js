@@ -192,24 +192,27 @@ const obtenerChatsMenu = async () => {
             let paisE = chat.PaisEmisor
             let tdocE = chat.TdocEmisor
             let ndocE = chat.NdocEmisor
+            // Parametros para linkear el chat
+            let paramChat;
             if(paisR === pais && tdocR === tdoc && ndocR === ndoc)
             {   
                 paisApi = paisE;
                 tdocApi = tdocE;
                 ndocApi = ndocE;
+                paramChat = `${chat.PaisEmisor}${chat.TdocEmisor}${chat.NdocEmisor}`
             }
-
             if(paisE === pais && tdocE === tdoc && ndocE === ndoc)
             {
                 paisApi = paisR;
                 tdocApi = tdocR;
                 ndocApi = ndocR;
+                paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`
             }
             const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
             let dataPersona = await fetchApi2(API_URL_Per, 'GET');
             let nombreCompleto = dataPersona.Nombre;
     
-            let paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`
+            
             menuChat.innerHTML += `
                 <a href="./chat.html?ch=${paramChat}" class="chat-item">
                     <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
