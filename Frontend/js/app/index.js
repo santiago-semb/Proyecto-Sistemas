@@ -220,21 +220,25 @@ const obtenerChatsMenu = async () => {
             
             // Para obtener mensajes no leidos e informarlo
             const API_URL_Chat = `http://localhost:${port}/api/MessageChat/list/noread/${pais}/${tdoc}/${ndoc}`;
-            let data = await fetchApi2(API_URL_Chat, 'GET');
+            let datamessage = await fetchApi2(API_URL_Chat, 'GET');
             // si el documento = mensaje RECEPTOR, entonces actualizar el estado
             // sino, el mensaje fue enviado por este documento y le corresponde
             // a otro usuario/cliente actualizar el estado
             let hayMensajesNoLeidos;
             let paramNoLeidos;
-            if(data[0] === undefined || data[0] === null)
+            if(datamessage[0] === undefined || datamessage[0] === null)
             {
                 hayMensajesNoLeidos = ''
                 paramNoLeidos = 0
             }
             else
             {
+                let mensajesNoLeidos = 0;
+                datamessage.forEach(msg => {
+                    if(msg.Leido == 0) mensajesNoLeidos++;
+                });
                 hayMensajesNoLeidos = `
-                    <span id="mensajesNoLeidos" class="flex-shrink-0 rounded-full px-2 py-1 bg-blue-500 text-white text-xs font-bold">Nuevo</span>
+                    <span id="mensajesNoLeidos" class="flex-shrink-0 rounded-full px-2 py-1 bg-blue-500 text-white text-xs font-bold">${mensajesNoLeidos}</span>
                 `
                 paramNoLeidos = 1
             }
