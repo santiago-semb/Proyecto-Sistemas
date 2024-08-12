@@ -282,11 +282,19 @@ const obtenerChat = async () => {
     {
         cartelNoMessages.style.display = 'none'
         const chatBox = document.getElementById("chat-box")
-        let paisp = localStorage.getItem("pais");
-        let tdocp = localStorage.getItem("tdoc");
+        let paisp = parseInt(localStorage.getItem("pais"));
+        let tdocp = parseInt(localStorage.getItem("tdoc"));
         let ndocp = localStorage.getItem("ndoc");
         let persona = `${paisp}${tdocp}${ndocp}`
+        let idMsg = 0;
+        let actualizarEstadoMensaje = false;
         data.forEach(msg => {
+            if(paisp === msg.PaisReceptor2 && tdocp === msg.TdocReceptor2 && ndocp === msg.NdocReceptor2)
+            {   
+                idMsg = msg.Id;
+                actualizarEstadoMensaje = true
+            }
+
             let fechaMsg = msg.Fecha;
             // Crear un objeto Date a partir de la cadena
             const dateObj = new Date(fechaMsg);
@@ -298,8 +306,12 @@ const obtenerChat = async () => {
 
             if((persona) === (`${msg.PaisEmisor2}${msg.TdocEmisor2}${msg.NdocEmisor2}`))
             {
+                let enviado_o_visto;
+                (msg.Leido == 0) ? enviado_o_visto = "<span class='text-blue-700 text-xs'><i class='fa-regular fa-circle-check'></i></span>" : enviado_o_visto = "<span class='text-blue-700 text-xs'><i class='fa-regular fa-eye'></i></span>";
+
                 chatBox.innerHTML += `
                 <div class='text-right'>
+                    ${enviado_o_visto}
                     <div class="inline-block p-2 rounded-lg bg-blue-500 text-white fade-in">
                         <span>${msg.Mensaje}</span>
                     </div>
@@ -318,14 +330,14 @@ const obtenerChat = async () => {
                 </div>
                 `
             }
+            if(actualizarEstadoMensaje) updateEstadoChat(idMsg);
         });
+
     }
 }
 
-// INCOMPLETO, actualizar estado del chat, para notificar si tiene nuevos mensajes no leidos
-const actualizarEstadoChatLeido = async () =>
-{
-    const API_URL = `http://localhost:${port}/api/DataChat/${chatId}`;
+const updateEstadoChat = (id) => {
+    const API_URL = `http://localhost:${port}/api/MessageChat/${id}`;
 
     let datosFormulario = {
         Leido: 1,

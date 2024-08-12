@@ -88,6 +88,7 @@ let ndocParam = clienteParam.substring(2);
 let chatExiste;
 let chatId;
 
+
 const obtenerDatosPersona = async (pais, tdoc, ndoc) => {
     const API_URL_Personas = `http://localhost:${port}/api/Persona?Pais=${pais}&Tdoc=${tdoc}&Ndoc=${ndoc}`;
     let data = await fetchApi2(API_URL_Personas, 'GET');
@@ -155,19 +156,19 @@ const VerificarExistenciaChat = async () => {
     (data === undefined || data === null) ? chatExiste = "N" : chatExiste = "S";
     if(chatExiste === 'S') chatId = data.Id;
     if(chatExiste === 'N')
-        {
-            await CrearChat();
-            let PaisUsuario = parseInt(localStorage.getItem("pais").trim())
-            let TdocUsuario= parseInt(localStorage.getItem("tdoc").trim())
-            let NdocUsuario = localStorage.getItem("ndoc").trim()
-            let PaisCliente = parseInt(paisParam.trim())
-            let TdocCliente = parseInt(tdocParam.trim())
-            let NdocCliente = ndocParam.trim()
-            // Recupero el Id creado del chat
-            const API_URL_chat_id = `http://localhost:${port}/api/DataChat?pEmi=${PaisUsuario}&tEmi=${TdocUsuario}&nEmi=${NdocUsuario}&pRec=${PaisCliente}&tRec=${TdocCliente}&nRec=${NdocCliente}`;
-            let data = await fetchApi2(API_URL_chat_id, 'GET');
-            chatId = data.Chat_Id;
-        }
+    {
+        await CrearChat();
+        let PaisUsuario = parseInt(localStorage.getItem("pais").trim())
+        let TdocUsuario= parseInt(localStorage.getItem("tdoc").trim())
+        let NdocUsuario = localStorage.getItem("ndoc").trim()
+        let PaisCliente = parseInt(paisParam.trim())
+        let TdocCliente = parseInt(tdocParam.trim())
+        let NdocCliente = ndocParam.trim()
+        // Recupero el Id creado del chat
+        const API_URL_chat_id = `http://localhost:${port}/api/DataChat?pEmi=${PaisUsuario}&tEmi=${TdocUsuario}&nEmi=${NdocUsuario}&pRec=${PaisCliente}&tRec=${TdocCliente}&nRec=${NdocCliente}`;
+        let data = await fetchApi2(API_URL_chat_id, 'GET');
+        chatId = data.Chat_Id;
+    }
 }
 
 const CrearChat = async () => {
@@ -280,11 +281,19 @@ const obtenerChat = async () => {
     {
         cartelNoMessages.style.display = 'none'
         const chatBox = document.getElementById("chat-box")
-        let paisp = localStorage.getItem("pais");
-        let tdocp = localStorage.getItem("tdoc");
+        let paisp = parseInt(localStorage.getItem("pais"));
+        let tdocp = parseInt(localStorage.getItem("tdoc"));
         let ndocp = localStorage.getItem("ndoc");
         let persona = `${paisp}${tdocp}${ndocp}`
+        let idMsg = 0;
+        let actualizarEstadoMensaje = false;
         data.forEach(msg => {
+            if(paisp === msg.PaisReceptor2 && tdocp === msg.TdocReceptor2 && ndocp === msg.NdocReceptor2)
+            {   
+                idMsg = msg.Id;
+                actualizarEstadoMensaje = true
+            }
+
             let fechaMsg = msg.Fecha;
             // Crear un objeto Date a partir de la cadena
             const dateObj = new Date(fechaMsg);
@@ -296,8 +305,12 @@ const obtenerChat = async () => {
 
             if((persona) === (`${msg.PaisEmisor2}${msg.TdocEmisor2}${msg.NdocEmisor2}`))
             {
+                let enviado_o_visto;
+                (msg.Leido == 0) ? enviado_o_visto = "<span class='text-blue-700 text-xs'><i class='fa-regular fa-circle-check'></i></span>" : enviado_o_visto = "<span class='text-blue-700 text-xs'><i class='fa-regular fa-eye'></i></span>";
+
                 chatBox.innerHTML += `
                 <div class='text-right'>
+                    ${enviado_o_visto}
                     <div class="inline-block p-2 rounded-lg bg-blue-500 text-white fade-in">
                         <span>${msg.Mensaje}</span>
                     </div>
@@ -316,8 +329,38 @@ const obtenerChat = async () => {
                 </div>
                 `
             }
+            if(actualizarEstadoMensaje) updateEstadoChat(idMsg);
         });
+
     }
+}
+
+const updateEstadoChat = (id) => {
+    const API_URL = `http://localhost:${port}/api/MessageChat/${id}`;
+
+    let datosFormulario = {
+        Leido: 1,
+      }
+    
+    fetch(API_URL, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosFormulario)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Hubo un problema al enviar el formulario: " + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Respuesta de la API:", data);
+    })
+    .catch(error => {
+        console.error("Error al enviar el formulario:", error);
+    });
 }
 
 // Método para hacer peticiones API

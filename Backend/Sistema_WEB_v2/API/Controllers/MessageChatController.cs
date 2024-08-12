@@ -22,6 +22,23 @@ namespace API.Controllers
             return msgs;
         }
 
+        [HttpGet]
+        [Route("api/MessageChat/list/noread/{pais}/{tdoc}/{ndoc}")]
+        public List<message_chat> GetChatsNoLeidos(int pais, int tdoc, string ndoc)
+        {
+            List<message_chat> msgs = new List<message_chat>();
+
+            using (sistemas2_webEntities db = new sistemas2_webEntities())
+            {
+                msgs = db.message_chat
+                            .Where(m => m.PaisReceptor2 == pais && m.TdocReceptor2 == tdoc && m.NdocReceptor2 == ndoc
+                                    && m.Leido == false)
+                            .ToList();
+            }
+
+            return msgs;
+        }
+
         // GET: api/MessageChat
         [HttpGet]
         [Route("api/MessageChat/list/{id}")]
@@ -66,7 +83,6 @@ namespace API.Controllers
             using (sistemas2_webEntities db = new sistemas2_webEntities())
             {
                 message_chat msg = db.message_chat.Find(id);
-                msg.Mensaje = value.Mensaje;
                 msg.Leido = value.Leido;
 
                 db.Entry(msg).State = System.Data.Entity.EntityState.Modified;

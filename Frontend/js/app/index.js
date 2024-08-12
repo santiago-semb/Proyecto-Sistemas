@@ -187,7 +187,7 @@ const obtenerChatsMenu = async () => {
         // Obtener data del receptor del mensaje
         // para mostrar en el menú
         data.forEach(async chat => {
-            let hayMensajes = (chat.Leido == 0) ? '<span class="flex-shrink-0 rounded-full px-2 py-1 bg-blue-500 text-white text-xs font-bold">Nuevo</span>' : '';
+            //let hayMensajes = (chat.Leido == 0) ? '<span class="flex-shrink-0 rounded-full px-2 py-1 bg-blue-500 text-white text-xs font-bold">Nuevo</span>' : '';
             // Receptor
             let paisR = chat.PaisReceptor
             let tdocR = chat.TdocReceptor
@@ -204,6 +204,7 @@ const obtenerChatsMenu = async () => {
                 tdocApi = tdocE;
                 ndocApi = ndocE;
                 paramChat = `${chat.PaisEmisor}${chat.TdocEmisor}${chat.NdocEmisor}`
+                paramChat.trim()
             }
             if(paisE === pais && tdocE === tdoc && ndocE === ndoc)
             {
@@ -211,19 +212,40 @@ const obtenerChatsMenu = async () => {
                 tdocApi = tdocR;
                 ndocApi = ndocR;
                 paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`
+                paramChat.trim()
             }
             const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
             let dataPersona = await fetchApi2(API_URL_Per, 'GET');
             let nombreCompleto = dataPersona.Nombre;
-    
             
+            // Para obtener mensajes no leidos e informarlo
+            const API_URL_Chat = `http://localhost:${port}/api/MessageChat/list/noread/${pais}/${tdoc}/${ndoc}`;
+            let data = await fetchApi2(API_URL_Chat, 'GET');
+            // si el documento = mensaje RECEPTOR, entonces actualizar el estado
+            // sino, el mensaje fue enviado por este documento y le corresponde
+            // a otro usuario/cliente actualizar el estado
+            let hayMensajesNoLeidos;
+            let paramNoLeidos;
+            if(data[0] === undefined || data[0] === null)
+            {
+                hayMensajesNoLeidos = ''
+                paramNoLeidos = 0
+            }
+            else
+            {
+                hayMensajesNoLeidos = `
+                    <span id="mensajesNoLeidos" class="flex-shrink-0 rounded-full px-2 py-1 bg-blue-500 text-white text-xs font-bold">Nuevo</span>
+                `
+                paramNoLeidos = 1
+            }
+
             menuChat.innerHTML += `
-                <a href="./chat.html?ch=${paramChat}" class="flex items-center justify-between chat-item">
+                <a href="./chat.html?ch=${paramChat}&nr=${paramNoLeidos}" class="flex items-center justify-between chat-item">
                     <div class='flex items-center justify-between'>
                         <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
                         <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
                     </div>
-                    ${hayMensajes}
+                    ${hayMensajesNoLeidos}
                 </a>
             `
         });
@@ -231,3 +253,4 @@ const obtenerChatsMenu = async () => {
 }
 
 obtenerChatsMenu()
+
