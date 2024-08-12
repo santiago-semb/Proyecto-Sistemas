@@ -164,97 +164,87 @@ function toggleChatList() {
 document.getElementById('chat-toggle').addEventListener('click', toggleChatList);
 
 const obtenerChatsMenu = async () => {
-    let pais = parseInt(localStorage.getItem("pais"))
-    let tdoc = parseInt(localStorage.getItem("tdoc"))
-    let ndoc = localStorage.getItem("ndoc")
-    const API_URL_Chat = `http://localhost:${port}/api/DataChat/listdoc/${pais}/${tdoc}/${ndoc}`;
-    let data = await fetchApi2(API_URL_Chat, 'GET');
-    const menuChat = document.getElementById("chat-list")
-    if(data[0] === undefined || data[0] === null)
-    {
+    let pais = parseInt(localStorage.getItem("pais"));
+    let tdoc = parseInt(localStorage.getItem("tdoc"));
+    let ndoc = localStorage.getItem("ndoc");
+    const API_URL_Chats = `http://localhost:${port}/api/DataChat/listdoc/${pais}/${tdoc}/${ndoc}`;
+    let data = await fetchApi2(API_URL_Chats, 'GET');
+    const menuChat = document.getElementById("chat-list");
+    
+    if (!data || data.length === 0) {
         menuChat.innerHTML += `
             <p class="chat-item-for-nochat select-none">
-                
                 <span class='text-xs font-bold mx-auto'>No tienes chats disponibles</span>
             </p>
-        `
+        `;
+        return;
     }
-    else
-    {   
-        let paisApi;
-        let tdocApi;
-        let ndocApi;
-        // Obtener data del receptor del mensaje
-        // para mostrar en el menú
-        data.forEach(async chat => {
-            //let hayMensajes = (chat.Leido == 0) ? '<span class="flex-shrink-0 rounded-full px-2 py-1 bg-blue-500 text-white text-xs font-bold">Nuevo</span>' : '';
-            // Receptor
-            let paisR = chat.PaisReceptor
-            let tdocR = chat.TdocReceptor
-            let ndocR = chat.NdocReceptor
-            // Emisor
-            let paisE = chat.PaisEmisor
-            let tdocE = chat.TdocEmisor
-            let ndocE = chat.NdocEmisor
-            // Parametros para linkear el chat
-            let paramChat;
-            if(paisR === pais && tdocR === tdoc && ndocR === ndoc)
-            {   
-                paisApi = paisE;
-                tdocApi = tdocE;
-                ndocApi = ndocE;
-                paramChat = `${chat.PaisEmisor}${chat.TdocEmisor}${chat.NdocEmisor}`
-                paramChat.trim()
-            }
-            if(paisE === pais && tdocE === tdoc && ndocE === ndoc)
-            {
-                paisApi = paisR;
-                tdocApi = tdocR;
-                ndocApi = ndocR;
-                paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`
-                paramChat.trim()
-            }
-            const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
-            let dataPersona = await fetchApi2(API_URL_Per, 'GET');
-            let nombreCompleto = dataPersona.Nombre;
-            
-            // Para obtener mensajes no leidos e informarlo
-            const API_URL_Chat = `http://localhost:${port}/api/MessageChat/list/noread/${pais}/${tdoc}/${ndoc}`;
-            let datamessage = await fetchApi2(API_URL_Chat, 'GET');
-            // si el documento = mensaje RECEPTOR, entonces actualizar el estado
-            // sino, el mensaje fue enviado por este documento y le corresponde
-            // a otro usuario/cliente actualizar el estado
-            let hayMensajesNoLeidos;
-            let paramNoLeidos;
-            if(datamessage[0] === undefined || datamessage[0] === null)
-            {
-                hayMensajesNoLeidos = ''
-                paramNoLeidos = 0
-            }
-            else
-            {
-                let mensajesNoLeidos = 0;
-                datamessage.forEach(msg => {
-                    if(msg.Leido == 0) mensajesNoLeidos++;
-                });
-                hayMensajesNoLeidos = `
-                    <span id="mensajesNoLeidos" class="flex-shrink-0 rounded-full px-2 py-1 bg-blue-500 text-white text-xs font-bold">${mensajesNoLeidos}</span>
-                `
-                paramNoLeidos = 1
-            }
 
-            menuChat.innerHTML += `
-                <a href="./chat.html?ch=${paramChat}&nr=${paramNoLeidos}" class="flex items-center justify-between chat-item">
-                    <div class='flex items-center justify-between'>
-                        <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
-                        <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
-                    </div>
-                    ${hayMensajesNoLeidos}
-                </a>
-            `
+    let chats = [];
+    for (const chat of data) {
+        chats.push(chat.Id);
+    }
+
+    // Obtener mensajes no leídos para todos los chats
+    const API_URL_UnreadMessages = `http://localhost:${port}/api/MessageChat/list/noread/${pais}/${tdoc}/${ndoc}`;
+    let datamessage = await fetchApi2(API_URL_UnreadMessages, 'GET');
+    
+    // Crear un mapa para contar mensajes no leídos por chat
+    let unreadMessageCount = new Map();
+    if (datamessage && datamessage.length > 0) {
+        datamessage.forEach(msg => {
+            if (msg.Leido == 0 && chats.includes(msg.Id_Chat)) {
+                let currentCount = unreadMessageCount.get(msg.Id_Chat) || 0;
+                unreadMessageCount.set(msg.Id_Chat, currentCount + 1);
+            }
         });
     }
-}
+
+    for (const chat of data) {
+        let paisR = chat.PaisReceptor;
+        let tdocR = chat.TdocReceptor;
+        let ndocR = chat.NdocReceptor;
+        let paisE = chat.PaisEmisor;
+        let tdocE = chat.TdocEmisor;
+        let ndocE = chat.NdocEmisor;
+        
+        let paisApi, tdocApi, ndocApi;
+        let paramChat;
+
+        if (paisR === pais && tdocR === tdoc && ndocR === ndoc) {
+            paisApi = paisE;
+            tdocApi = tdocE;
+            ndocApi = ndocE;
+            paramChat = `${chat.PaisEmisor}${chat.TdocEmisor}${chat.NdocEmisor}`;
+        } else if (paisE === pais && tdocE === tdoc && ndocE === ndoc) {
+            paisApi = paisR;
+            tdocApi = tdocR;
+            ndocApi = ndocR;
+            paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`;
+        }
+
+        const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
+        let dataPersona = await fetchApi2(API_URL_Per, 'GET');
+        let nombreCompleto = dataPersona.Nombre;
+
+        // Obtener la cantidad de mensajes no leídos para este chat
+        let cantMensajesNoLeidos = unreadMessageCount.get(chat.Id) || 0;
+        let hayMensajesNoLeidos = cantMensajesNoLeidos > 0 
+            ? `<span id="mensajesNoLeidos" class="flex-shrink-0 rounded-full px-2 py-1 bg-blue-500 text-white text-xs font-bold">${cantMensajesNoLeidos}</span>`
+            : '';
+
+        menuChat.innerHTML += `
+            <a href="./chat.html?ch=${paramChat}&nr=${cantMensajesNoLeidos}" class="flex items-center justify-between chat-item">
+                <div class='flex items-center justify-between'>
+                    <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
+                    <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
+                </div>
+                ${hayMensajesNoLeidos}
+            </a>
+        `;
+    }
+};
+
 
 obtenerChatsMenu()
 
