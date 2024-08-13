@@ -29,7 +29,11 @@ const obtenerOfertas = async (Codigo_Usu) => {
                 <td class="py-2 px-4 border-b font-bold text-gray-600">${oferta.Fecha_Guardado}</td>
                 <td class="py-2 px-4 border-b font-bold text-gray-600">${mi_oferta.FechaPubl}</td>
                 <td class="py-2 px-4 border-b underline"><a href="./detalle_oferta.html?id=${mi_oferta.Id}">${mi_oferta.Nombre}</a></td>
-                <td class="py-2 px-4 border-b underline"><a href="./detalle_usuario.html?cl=${offerOwnerPK}">${offerOwner.Nombre}</a></td>
+                <td class="py-2 px-4 border-b underline">
+                    <a href="./detalle_usuario.html?cl=${offerOwnerPK}">
+                    ${offerOwner.Nombre}
+                    </a>
+                </td>
                 <td class="py-2 px-4 border-b text-black font-bold">$${mi_oferta.Precio}</td>
                 <td class="py-2 px-4 border-b" >
                     <button onclick="eliminarOfertaGuardada(${cod_usu},${offerId})" class="text-red-500 px-3 py-1 rounded hover:text-red-700">
