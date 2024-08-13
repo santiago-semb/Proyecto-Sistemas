@@ -18,6 +18,7 @@ function appendMessage(text, type) {
     let horaActual = obtenerHoraActualArgentina();
     messageDiv.className = type === 'sent' ? 'text-right' : 'text-left';
     messageDiv.innerHTML = `
+        <span class='text-blue-700 text-xs'><i class='fa-regular fa-circle-check'></i></span>
         <div class="inline-block p-2 my-2 rounded-lg ${type === 'sent' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-800'} fade-in">
             ${text}
         </div>
