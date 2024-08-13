@@ -27,6 +27,9 @@ const obtenerOfertas = async () => {
     try {
         let data = await fetchApi2(API_URL, "GET");
         const divPublicaciones = document.getElementById("publicaciones")
+        divPublicaciones.innerHTML = ''
+        let inputBuscar = document.getElementById("buscar-oferta");
+        inputBuscar.value = '';
         data.forEach(async publi => {
             let pais = publi.Pais;
             let tdoc = publi.Tdoc;
@@ -91,7 +94,8 @@ const buscarOferta = async () => {
             divPublicaciones.innerHTML = `
             <div class='text-center mx-auto mt-24'>
                 <i class="fa-solid fa-face-sad-tear text-gray-800" style='font-size: 100px;'></i>
-                <p class="text-2xl text-gray-900 mt-4">No se encontraron búsquedas para <b>${busqueda}</b></p>
+                <p class="text-2xl text-gray-900 my-4">No se encontraron búsquedas para <b>${busqueda}</b></p>
+                <p clas="text-2xl"><button onclick="obtenerOfertas()" class="bg-gray-200 text-black border-2 border-gray-800 hover:bg-gray-300 px-2 py-1 rounded">Volver</button></p>
             </div>
         `
         } 
