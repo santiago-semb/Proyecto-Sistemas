@@ -174,6 +174,8 @@ const VerificarExistenciaChat = async () => {
 const CrearChat = async () => {
     const API_URL = `http://localhost:${port}/api/DataChat`;
 
+    let fecha = obtenerHoraActualArgentinaConSegundos();
+
     let datosFormulario = {
         PaisEmisor: localStorage.getItem("pais"),
         TdocEmisor: localStorage.getItem("tdoc"),
@@ -182,7 +184,7 @@ const CrearChat = async () => {
         TdocReceptor: tdocParam,
         NdocReceptor: ndocParam,
         Contenido: '',
-        Fecha: '9/6/2024',
+        Fecha: fecha,
         Leido: 0,
     }
 
@@ -292,8 +294,12 @@ const obtenerChat = async () => {
         data.forEach(msg => {
             if(paisp === msg.PaisReceptor2 && tdocp === msg.TdocReceptor2 && ndocp === msg.NdocReceptor2)
             {   
+            // 17.08.2024
+               if(msg.Leido === 0)
+               {
                 idMsg = msg.Id;
                 actualizarEstadoMensaje = true
+               }
             }
 
             let fechaMsg = msg.Fecha;
@@ -387,6 +393,51 @@ const SendButton = async () => {
     await VerificarExistenciaChat()
     await EnviarMensaje(mensaje, chatId);
 }
+
+const bloquearChat = async () => {
+    const API_URL = `http://localhost:${port}/api/BlockChat`;
+
+    let datosFormulario = {
+        Chat_Id: chatId,
+        PaisBloqueador: localStorage.getItem("pais"),
+        TdocBloqueador: localStorage.getItem("tdoc"),
+        NdocBloqueador: localStorage.getItem("ndoc"),
+        PaisBloqueado: paisParam,
+        TdocBloqueado: tdocParam,
+        NdocBloqueado: ndocParam,
+    }
+
+    fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosFormulario)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Hubo un problema al enviar el formulario: " + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Respuesta de la API:", data);
+        // Aquí puedes hacer algo con la respuesta de la API, como redirigir a otra página
+    })
+    .catch(error => {
+        console.error("Error al enviar el formulario:", error);
+    });
+}
+
+$('#menu-config-chat').click(() => {
+    $('#mini-menu').toggle();
+})
+
+document.getElementById("btn-eliminar-chat").addEventListener("click", async () => {
+    //await eliminarChat(chatId);
+    await bloquearChat();
+})
+
 
 obtenerEstadoConexion(paisParam, tdocParam, ndocParam)
 obtenerDatosPersona(paisParam, tdocParam, ndocParam)

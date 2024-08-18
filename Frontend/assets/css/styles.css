@@ -114,3 +114,8 @@
     position: relative;
     z-index: 10; /* Asegura que el menú de chats esté encima del contenido */
 }
+
+.btn-zoom-1 {
+    transform: scale(1.1);
+    transition: 200ms all;
+}

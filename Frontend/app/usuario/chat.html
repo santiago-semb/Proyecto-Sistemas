@@ -43,12 +43,19 @@
             <div class="flex items-center p-4 bg-gray-900 rounded-t-lg shadow-sm mb-4">
                 <img src="https://via.placeholder.com/40" alt="Perfil" class="select-none w-10 h-10 rounded-full object-cover mr-4">
                 <div class="flex-1">
-                    <h2 class="text-lg text-white font-semibold"><span id="nombre-persona-chat"></span></h2>
+                    <h2 class="text-lg text-white font-semibold">
+                        <span id="nombre-persona-chat"></span>
+                        <span class="text-right mx-4" id="div-ult-acceso-persona-chat"></span>
+                    </h2>
                 </div>
-                <div class="ml-auto text-right" id="div-ult-acceso-persona-chat">
-                    
+                <div class="ml-4 relative">
+                    <span class="bg-gray-700 p-1 rounded cursor-pointer" id="menu-config-chat"><i class="fa-solid fa-gear text-white"></i></span>
+                    <div style="width: 150px;" class="rounded absolute hidden bg-gray-700 p-2 text-center shadow-lg right-0 top-full mt-1" id="mini-menu">
+                        <p class="text-white font-bold cursor-pointer" id="btn-eliminar-chat"><i class="fa-regular fa-trash-can"></i></p>
+                    </div>
                 </div>
             </div>
+            
 
             <!-- Área de chat -->
             <div id="chat-box" class="flex-1 overflow-y-auto p-4 bg-white rounded-lg space-y-4">

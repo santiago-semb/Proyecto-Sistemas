@@ -96,9 +96,11 @@ namespace API.Controllers
         {
             using (sistemas2_webEntities db = new sistemas2_webEntities())
             {
-                data_chat chat = db.data_chat.Find(id);
-                db.data_chat.Remove(chat);
-                db.SaveChanges();
+                //data_chat chat = db.data_chat.Find(id);
+                //db.data_chat.Remove(chat);
+                //db.SaveChanges();
+
+                //db.Database.ExecuteSqlCommand("DELETE FROM data_chat WHERE id = @p0", id);
             }
         }
     }
