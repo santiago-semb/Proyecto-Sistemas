@@ -427,8 +427,19 @@ $('#menu-config-chat').click(() => {
 })
 
 document.getElementById("btn-eliminar-chat").addEventListener("click", async () => {
-    //await eliminarChat(chatId);
+    const API_URL_Chat = `http://localhost:${port}/api/MessageChat/list/${chatId}`;
+    let data = await fetchApi2(API_URL_Chat, 'GET');
+    console.log(chatId)
     await bloquearChat();
+    $('#mini-menu').hide();
+    let inputMessage = document.getElementById("message-input")
+    let btnSendMessage = document.getElementById("send-button")
+    btnSendMessage.style.display = 'none'
+    inputMessage.disabled = true;
+    inputMessage.placeholder = 'Has bloqueado este chat'
+    inputMessage.style.backgroundColor = '#d1d1d4'
+    inputMessage.style.color = 'black'
+    inputMessage.style.textAlign = 'center'
 })
 
 obtenerEstadoConexion(paisParam, tdocParam, ndocParam)

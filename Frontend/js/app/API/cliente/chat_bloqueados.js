@@ -6,14 +6,19 @@ const obtenerChatsBloqueados = async () => {
     let tdocLs = localStorage.getItem("tdoc")
     let ndocLs = localStorage.getItem("ndoc")
     const tbody = document.getElementById("tbody-tabla-bloqueados");
+    const cartelNoChat = document.getElementById("no-chat");
+    const tablaChatsNoBloqueados = document.getElementById("tabla-chat-bloqueados");
     const API_URL_Chat = `http://localhost:${port}/api/BlockChat/list/${paisLs}/${tdocLs}/${ndocLs}`;
     let data = await fetchApi2(API_URL_Chat, 'GET');
     if(data[0] === undefined || data[0] === null)
     {
-            cartelNoMessages.style.display = 'block'
+        tablaChatsNoBloqueados.classList.add('hidden'); // Usa Tailwind CSS para ocultar
+        cartelNoChat.classList.remove('hidden'); // Usa Tailwind CSS para mostrar
     }
     else
     {
+        tablaChatsNoBloqueados.classList.remove('hidden'); // Usa Tailwind CSS para mostrar
+        cartelNoChat.classList.add('hidden'); // Usa Tailwind CSS para ocultar
         data.forEach(async e => {
             let paisForEach = e.PaisBloqueado
             let tdocForEach = e.TdocBloqueado
@@ -25,7 +30,7 @@ const obtenerChatsBloqueados = async () => {
             let ownerNdoc = ndocForEach;
             let offerOwnerPK = `${ownerPais}${ownerTdoc}${ownerNdoc}`;
             tbody.innerHTML += `
-                <tr class="border-b border-gray-300">
+                <tr class="border border-gray-300">
                     <td class="py-4"><b>${e.Chat_Id}</b></td>
                     <td>
                         <div class='flex items-center justify-center'>
