@@ -52,6 +52,28 @@ namespace API.Controllers
             return chat;
         }
 
+
+        // GET: api/BlockChat
+        [HttpGet]
+        [Route("api/BlockChat/blocked/{id_chat}")]
+        public bool ChatBlocked(int id_chat)
+        {
+            block_chat chat = new block_chat();
+            bool existe = false;
+            using (sistemas2_webEntities db = new sistemas2_webEntities())
+            {
+                // Buscar el registro que coincide con las condiciones
+                chat = db.block_chat
+                             .Where(c => c.Chat_Id == id_chat)
+                             .FirstOrDefault();
+                if (chat != null)
+                {
+                    existe = true;
+                }
+            }
+            return existe;
+        }
+
         // GET: api/BlockChat
         [HttpGet]
         [Route("api/BlockChat/blocked/{pais}/{tdoc}/{ndoc}/{id_chat}")]

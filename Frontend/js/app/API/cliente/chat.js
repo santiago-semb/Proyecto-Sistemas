@@ -155,7 +155,24 @@ const VerificarExistenciaChat = async () => {
     const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
     let data = await fetchApi2(API_URL_chat, 'GET');
     (data === undefined || data === null) ? chatExiste = "N" : chatExiste = "S";
-    if(chatExiste === 'S') chatId = data.Id;
+    if(chatExiste === 'S')
+    {
+        chatId = data.Id
+        // Verificar si el chat se encuentra bloqueado
+        const API_URL_chat_block = `http://localhost:${port}/api/BlockChat/blocked/${chatId}`;
+        let dataChatBlock = await fetchApi2(API_URL_chat_block, 'GET');
+        if(dataChatBlock)
+        {
+            let inputMessage = document.getElementById("message-input")
+            let btnSendMessage = document.getElementById("send-button")
+            btnSendMessage.style.display = 'none'
+            inputMessage.disabled = true;
+            inputMessage.placeholder = 'Has bloqueado este chat'
+            inputMessage.style.backgroundColor = '#d1d1d4'
+            inputMessage.style.color = 'black'
+            inputMessage.style.textAlign = 'center'
+        }
+    }
     if(chatExiste === 'N')
     {
         await CrearChat();
@@ -427,9 +444,6 @@ $('#menu-config-chat').click(() => {
 })
 
 document.getElementById("btn-eliminar-chat").addEventListener("click", async () => {
-    const API_URL_Chat = `http://localhost:${port}/api/MessageChat/list/${chatId}`;
-    let data = await fetchApi2(API_URL_Chat, 'GET');
-    console.log(chatId)
     await bloquearChat();
     $('#mini-menu').hide();
     let inputMessage = document.getElementById("message-input")
