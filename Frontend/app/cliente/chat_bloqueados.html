@@ -23,9 +23,11 @@
                     <i id="chat-arrow" class="fa-solid fa-chevron-down float-right"></i>
                 </li>
                 <div id="chat-list" class="dropdown-menu menu-content bg-gray-700 text-white">
+                    
                 </div>
                 <div class="bg-gray-700 w-full h-1"></div>
                 <li class="menu-item p-3"><a href="./ofertas.html" class="cursor-pointer"><i class="fa-solid fa-comments-dollar text-blue-300 mr-2"></i> Ofertas</a></li>
+                <li class="menu-item p-3"><a href="./guardado.html" class="cursor-pointer"><i class="fa-solid fa-bookmark text-gray-500 mr-2"></i> Guardado</a></li>
                 <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-star text-yellow-500 mr-2"></i> Puntajes</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
                 <div class="bg-gray-700 w-full h-1"></div>
                 <li class="menu-item p-3"><a href="#" class="cursor-pointer"><i class="fa-solid fa-clock mr-2"></i> Historial</a> <span class="float-right bg-red-500 text-white text-sm p-1 rounded">No Disponible</span></li>
@@ -37,41 +39,23 @@
     <!-- Contenido principal -->
     <div class="flex-1 flex flex-col ml-64">
         <main class="flex-1 flex flex-col bg-white rounded-lg shadow-lg mx-4 mt-4 mb-4 p-4">
-            <!-- Encabezado del chat -->
-            <div class="flex items-center p-4 bg-gray-900 rounded-t-lg shadow-sm mb-4">
-                <img src="https://via.placeholder.com/40" alt="Perfil" class="select-none w-10 h-10 rounded-full object-cover mr-4">
-                <div class="flex-1">
-                    <h2 class="text-lg text-white font-semibold">
-                        <span id="nombre-persona-chat"></span>
-                        <span class="text-right mx-4" id="div-ult-acceso-persona-chat"></span>
-                    </h2>
-                </div>
-                <div class="ml-4 relative">
-                    <span class="bg-gray-700 p-1 rounded cursor-pointer" id="menu-config-chat"><i class="fa-solid fa-gear text-white"></i></span>
-                    <div style="width: 150px;" class="rounded absolute hidden bg-gray-700 p-2 text-center shadow-lg right-0 top-full mt-1" id="mini-menu">
-                        <p class="text-white font-bold cursor-pointer" id="btn-eliminar-chat"><i class="fa-regular fa-trash-can"></i></p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Área de chat -->
-            <div id="chat-box" class="flex-1 overflow-y-auto p-4 bg-white rounded-lg space-y-4">
-                <!-- Mensajes se mostrarán aquí -->
-                <div class="w-full h-96 text-center" id="sin-mensajes-disponibles">
-                    <i class="fa-solid fa-circle-info text-5xl mt-24 my-4 text-gray-400"></i>
-                    <p class="text-gray-400">Aún no tienes mensajes disponibles</p>
-                 </div>
-            </div>
-
-            <!-- Input de mensaje -->
-            <div class="flex items-center p-4 border-t border-gray-300 bg-white">
-                <input id="message-input" type="text" placeholder="Escribe un mensaje..." class="px-4 flex-1 p-2 border border-gray-300 rounded-lg mr-2 focus:outline-none focus:ring-2 focus:ring-gray-300">
-                <button id="send-button" onclick="SendButton()" class="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-900 focus:outline-none"><i class="fa-solid fa-paper-plane mr-1"></i></button>
-            </div>
+            <h1 class="text-5xl mb-8">Chat Bloqueados</h1>
+            <table class="text-center bg-gray-100 rounded border-2 border-gray-200">
+                <thead>
+                    <tr>
+                        <th class="p-2 text-xl bg-gray-900 text-white">Id Chat</th>
+                        <th class="text-xl bg-gray-900 text-white">Usuario</th>
+                        <th class="bg-gray-900 text-white"></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-tabla-bloqueados">
+                    
+                </tbody>
+            </table>
         </main>
     </div>
 
-    <script src="../../js/app/API/cliente/chat.js"></script>
+    <script src="../../js/app/API/cliente/chat_bloqueados.js"></script>
     <script src="../../js/app/index.js"></script>
 </body>
 </html>

@@ -387,6 +387,50 @@ const SendButton = async () => {
     await EnviarMensaje(mensaje, chatId);
 }
 
+const bloquearChat = async () => {
+    const API_URL = `http://localhost:${port}/api/BlockChat`;
+
+    let datosFormulario = {
+        Chat_Id: chatId,
+        PaisBloqueador: localStorage.getItem("pais"),
+        TdocBloqueador: localStorage.getItem("tdoc"),
+        NdocBloqueador: localStorage.getItem("ndoc"),
+        PaisBloqueado: paisParam,
+        TdocBloqueado: tdocParam,
+        NdocBloqueado: ndocParam,
+    }
+
+    fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(datosFormulario)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Hubo un problema al enviar el formulario: " + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log("Respuesta de la API:", data);
+        // Aquí puedes hacer algo con la respuesta de la API, como redirigir a otra página
+    })
+    .catch(error => {
+        console.error("Error al enviar el formulario:", error);
+    });
+}
+
+$('#menu-config-chat').click(() => {
+    $('#mini-menu').toggle();
+})
+
+document.getElementById("btn-eliminar-chat").addEventListener("click", async () => {
+    //await eliminarChat(chatId);
+    await bloquearChat();
+})
+
 obtenerEstadoConexion(paisParam, tdocParam, ndocParam)
 obtenerDatosPersona(paisParam, tdocParam, ndocParam)
 obtenerChat()
