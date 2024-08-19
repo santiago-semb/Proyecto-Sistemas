@@ -16,20 +16,6 @@
     <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
     <Property Name="Tipo_Oferta" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
   </EntityType>
-  <EntityType Name="Categorias_Productos">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-  </EntityType>
-  <EntityType Name="Categorias_Servicios">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-  </EntityType>
   <EntityType Name="DCR01">
     <Key>
       <PropertyRef Name="Id" />
@@ -175,8 +161,6 @@
   <EntityContainer Name="sistemas2_webEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Barrios" EntityType="Self.Barrios" />
     <EntitySet Name="Categorias" EntityType="Self.Categorias" />
-    <EntitySet Name="Categorias_Productos" EntityType="Self.Categorias_Productos" />
-    <EntitySet Name="Categorias_Servicios" EntityType="Self.Categorias_Servicios" />
     <EntitySet Name="DCR01" EntityType="Self.DCR01" />
     <EntitySet Name="DPF01" EntityType="Self.DPF01" />
     <EntitySet Name="DPJ01" EntityType="Self.DPJ01" />

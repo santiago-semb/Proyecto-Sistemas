@@ -35,20 +35,6 @@
           <Property Name="Nombre" Type="nchar" MaxLength="30" />
           <Property Name="Tipo_Oferta" Type="char" MaxLength="1" />
         </EntityType>
-        <EntityType Name="Categorias_Productos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="Categorias_Servicios">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nchar" MaxLength="100" />
-        </EntityType>
         <EntityType Name="Credenciales">
           <Key>
             <PropertyRef Name="Pais" />
@@ -322,8 +308,6 @@
           <EntitySet Name="Barrios" EntityType="Self.Barrios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="block_chat" EntityType="Self.block_chat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Categorias_Productos" EntityType="Self.Categorias_Productos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Categorias_Servicios" EntityType="Self.Categorias_Servicios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Credenciales" EntityType="Self.Credenciales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="data_chat" EntityType="Self.data_chat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DCL01" EntityType="Self.DCL01" Schema="dbo" store:Type="Tables" />
@@ -367,20 +351,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="Tipo_Oferta" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Categorias_Productos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Categorias_Servicios">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="DCR01">
           <Key>
@@ -527,8 +497,6 @@
         <EntityContainer Name="sistemas2_webEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Barrios" EntityType="Self.Barrios" />
           <EntitySet Name="Categorias" EntityType="Self.Categorias" />
-          <EntitySet Name="Categorias_Productos" EntityType="Self.Categorias_Productos" />
-          <EntitySet Name="Categorias_Servicios" EntityType="Self.Categorias_Servicios" />
           <EntitySet Name="DCR01" EntityType="Self.DCR01" />
           <EntitySet Name="DPF01" EntityType="Self.DPF01" />
           <EntitySet Name="DPJ01" EntityType="Self.DPJ01" />
@@ -716,22 +684,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Tipo_Oferta" ColumnName="Tipo_Oferta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categorias_Productos">
-            <EntityTypeMapping TypeName="sistemas2_webModel.Categorias_Productos">
-              <MappingFragment StoreEntitySet="Categorias_Productos">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categorias_Servicios">
-            <EntityTypeMapping TypeName="sistemas2_webModel.Categorias_Servicios">
-              <MappingFragment StoreEntitySet="Categorias_Servicios">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -27,8 +27,6 @@ namespace API
     
         public virtual DbSet<Barrios> Barrios { get; set; }
         public virtual DbSet<Categorias> Categorias { get; set; }
-        public virtual DbSet<Categorias_Productos> Categorias_Productos { get; set; }
-        public virtual DbSet<Categorias_Servicios> Categorias_Servicios { get; set; }
         public virtual DbSet<DCR01> DCR01 { get; set; }
         public virtual DbSet<DPF01> DPF01 { get; set; }
         public virtual DbSet<DPJ01> DPJ01 { get; set; }

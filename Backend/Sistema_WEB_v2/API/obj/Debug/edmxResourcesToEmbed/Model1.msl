@@ -19,22 +19,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Categorias_Productos">
-      <EntityTypeMapping TypeName="sistemas2_webModel.Categorias_Productos">
-        <MappingFragment StoreEntitySet="Categorias_Productos">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Categorias_Servicios">
-      <EntityTypeMapping TypeName="sistemas2_webModel.Categorias_Servicios">
-        <MappingFragment StoreEntitySet="Categorias_Servicios">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DCR01">
       <EntityTypeMapping TypeName="sistemas2_webModel.DCR01">
         <MappingFragment StoreEntitySet="DCR01">

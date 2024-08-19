@@ -30,20 +30,6 @@
     <Property Name="Nombre" Type="nchar" MaxLength="30" />
     <Property Name="Tipo_Oferta" Type="char" MaxLength="1" />
   </EntityType>
-  <EntityType Name="Categorias_Productos">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="nchar" MaxLength="100" />
-  </EntityType>
-  <EntityType Name="Categorias_Servicios">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="nchar" MaxLength="100" />
-  </EntityType>
   <EntityType Name="Credenciales">
     <Key>
       <PropertyRef Name="Pais" />
@@ -317,8 +303,6 @@
     <EntitySet Name="Barrios" EntityType="Self.Barrios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="block_chat" EntityType="Self.block_chat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Categorias_Productos" EntityType="Self.Categorias_Productos" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Categorias_Servicios" EntityType="Self.Categorias_Servicios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Credenciales" EntityType="Self.Credenciales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="data_chat" EntityType="Self.data_chat" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DCL01" EntityType="Self.DCL01" Schema="dbo" store:Type="Tables" />

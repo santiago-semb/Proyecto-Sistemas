@@ -7,8 +7,6 @@
       <Diagram DiagramId="2cd6a2189ed64bfb85d100fe4eb28488" Name="Diagram1">
         <EntityTypeShape EntityType="sistemas2_webModel.Barrios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.Categorias" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="sistemas2_webModel.Categorias_Productos" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="sistemas2_webModel.Categorias_Servicios" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.DCR01" PointX="13.375" PointY="6.75" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.DPF01" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.DPJ01" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
