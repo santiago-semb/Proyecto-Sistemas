@@ -262,7 +262,7 @@ const obtenerChatsMenu = async () => {
             <span><i class="fa-solid fa-ban text-red-700"></i> Chats Bloqueados</span>
         </div>
     </a>
-`
+    `
 }
 
     

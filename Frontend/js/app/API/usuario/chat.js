@@ -170,6 +170,7 @@ const VerificarExistenciaChat = async () => {
             inputMessage.style.backgroundColor = '#d1d1d4'
             inputMessage.style.color = 'black'
             inputMessage.style.textAlign = 'center'
+            document.getElementById("config-chat").style.display = 'none'
         }
     }
     if(chatExiste === 'N')
@@ -461,6 +462,7 @@ document.getElementById("btn-eliminar-chat").addEventListener("click", async () 
     inputMessage.style.backgroundColor = '#d1d1d4'
     inputMessage.style.color = 'black'
     inputMessage.style.textAlign = 'center'
+    document.getElementById("config-chat").style.display = 'none'
 })
 
 
