@@ -166,11 +166,12 @@ const VerificarExistenciaChat = async () => {
             let btnSendMessage = document.getElementById("send-button")
             btnSendMessage.style.display = 'none'
             inputMessage.disabled = true;
-            inputMessage.placeholder = 'Has bloqueado este chat'
+            inputMessage.placeholder = 'El usuario y/o usted ha bloqueado este chat'
             inputMessage.style.backgroundColor = '#d1d1d4'
             inputMessage.style.color = 'black'
             inputMessage.style.textAlign = 'center'
-            document.getElementById("config-chat").style.display = 'none'
+            inputMessage.style.cursor = 'not-allowed'
+            document.getElementById("btn-eliminar-chat").style.display = 'none'
         }
     }
     if(chatExiste === 'N')
@@ -458,7 +459,7 @@ document.getElementById("btn-eliminar-chat").addEventListener("click", async () 
     let btnSendMessage = document.getElementById("send-button")
     btnSendMessage.style.display = 'none'
     inputMessage.disabled = true;
-    inputMessage.placeholder = 'Has bloqueado este chat'
+    inputMessage.placeholder = 'El usuario y/o usted ha bloqueado este chat'
     inputMessage.style.backgroundColor = '#d1d1d4'
     inputMessage.style.color = 'black'
     inputMessage.style.textAlign = 'center'

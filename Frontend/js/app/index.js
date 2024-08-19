@@ -257,8 +257,8 @@ const obtenerChatsMenu = async () => {
             }
     }
     menuChat.innerHTML += `
-    <a href="./chat_bloqueados.html" class="flex items-center justify-center bg-gray-900 py-1"> 
-        <div class="">
+    <a href="./chat_bloqueados.html" class="flex items-center justify-center bg-gray-900 py-1 border-t-4 border-gray-700"> 
+        <div>
             <span><i class="fa-solid fa-ban text-red-700"></i> Chats Bloqueados</span>
         </div>
     </a>
