@@ -42,6 +42,23 @@ namespace API.Controllers
 
         // GET: api/Oferta
         [HttpGet]
+        //[Route("api/Oferta/likeName/{category}")]
+        public List<Ofertas> GetByFilterCategory(int categoria)
+        {
+            List<Ofertas> ofertas = new List<Ofertas>();
+            using (sistemas2_webEntities db = new sistemas2_webEntities())
+            {
+                ofertas = db.Ofertas
+                    .Where(oferta => oferta.Categoria == categoria)
+                    .OrderByDescending(oferta => oferta.FechaPubl)
+                    .ThenBy(oferta => oferta.Id)
+                    .ToList();
+            }
+            return ofertas;
+        }
+
+        // GET: api/Oferta
+        [HttpGet]
         [Route("api/Oferta/byDoc/{pais}/{tdoc}/{ndoc}")]
         public List<Ofertas> GetOfferByDoc(int pais, int tdoc, string ndoc)
         {
