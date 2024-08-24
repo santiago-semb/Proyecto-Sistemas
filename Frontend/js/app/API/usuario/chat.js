@@ -314,7 +314,7 @@ const obtenerChat = async () => {
             if(paisp === msg.PaisReceptor2 && tdocp === msg.TdocReceptor2 && ndocp === msg.NdocReceptor2)
             {   
             // 17.08.2024
-               if(msg.Leido === 0)
+               if(msg.Leido === 0 || msg.Leido === false)
                {
                 idMsg = msg.Id;
                 actualizarEstadoMensaje = true
@@ -356,6 +356,7 @@ const obtenerChat = async () => {
                 </div>
                 `
             }
+            console.log(actualizarEstadoMensaje)
             if(actualizarEstadoMensaje) updateEstadoChat(idMsg);
         });
 
@@ -410,7 +411,16 @@ const SendButton = async () => {
     }
     let mensaje = document.getElementById("message-input").value;
     await VerificarExistenciaChat()
-    await EnviarMensaje(mensaje, chatId);
+    // Si no se escribió nada en el input, debe mostrar un error
+    if(mensaje === '' || mensaje === null || mensaje === undefined)
+        {
+            document.getElementById("message-input").style.border = '1px outset #423ab8'
+            document.getElementById("message-input").placeholder = 'Debe escribir un mensaje'
+        }
+    else
+    {
+        await EnviarMensaje(mensaje, chatId);
+    }
 }
 
 const bloquearChat = async () => {

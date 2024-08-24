@@ -154,6 +154,7 @@ const VerificarExistenciaChat = async () => {
     let NdocReceptor = localStorage.getItem("ndoc").trim()
     const API_URL_chat = `http://localhost:${port}/api/DataChat?pEmi=${PaisEmisor}&tEmi=${TdocEmisor}&nEmi=${NdocEmisor}&pRec=${PaisReceptor}&tRec=${TdocReceptor}&nRec=${NdocReceptor}`;
     let data = await fetchApi2(API_URL_chat, 'GET');
+    console.log(data);
     (data === undefined || data === null) ? chatExiste = "N" : chatExiste = "S";
     if(chatExiste === 'S')
     {
@@ -310,8 +311,12 @@ const obtenerChat = async () => {
         data.forEach(msg => {
             if(paisp === msg.PaisReceptor2 && tdocp === msg.TdocReceptor2 && ndocp === msg.NdocReceptor2)
             {   
-                idMsg = msg.Id;
-                actualizarEstadoMensaje = true
+            // 17.08.2024
+                if(msg.Leido === 0 || msg.Leido === false)
+                {
+                    idMsg = msg.Id;
+                    actualizarEstadoMensaje = true
+                }
             }
 
             let fechaMsg = msg.Fecha;
@@ -403,8 +408,18 @@ const SendButton = async () => {
     }
     let mensaje = document.getElementById("message-input").value;
     await VerificarExistenciaChat()
-    await EnviarMensaje(mensaje, chatId);
+    // Si no se escribió nada en el input, debe mostrar un error
+    if(mensaje === '' || mensaje === null || mensaje === undefined)
+    {
+        document.getElementById("message-input").style.border = '1px outset #423ab8'
+        document.getElementById("message-input").placeholder = 'Debe escribir un mensaje'
+    }
+    else
+    {
+        await EnviarMensaje(mensaje, chatId);
+    }
 }
+
 
 const bloquearChat = async () => {
     const API_URL = `http://localhost:${port}/api/BlockChat`;

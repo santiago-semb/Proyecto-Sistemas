@@ -40,7 +40,7 @@
     <div class="flex-1 flex flex-col ml-64">
         <main class="flex-1 flex flex-col bg-white rounded-lg shadow-lg mx-4 mt-4 mb-4 p-4">
             <!-- Encabezado del chat -->
-            <div class="flex items-center p-4 bg-gray-900 rounded-t-lg shadow-sm mb-4">
+            <div class="flex items-center p-4 bg-gray-900 rounded-t-lg shadow-sm">
                 <img src="https://via.placeholder.com/40" alt="Perfil" class="select-none w-10 h-10 rounded-full object-cover mr-4">
                 <div class="flex-1">
                     <h2 class="text-lg text-white font-semibold">
@@ -50,16 +50,17 @@
                 </div>
                 <div class="ml-4 relative" id="config-chat">
                     <span class="bg-gray-700 p-1 rounded cursor-pointer" id="menu-config-chat"><i class="fa-solid fa-gear text-white"></i></span>
-                    <div style="width: 150px;" class="rounded absolute hidden bg-gray-700 p-2 text-center shadow-lg right-0 top-full mt-1" id="mini-menu">
-                        <p class="text-white font-bold cursor-pointer">Info</p>
-                        <p class="text-white font-bold cursor-pointer" id="btn-eliminar-chat">Bloquear</p>
+                    <div style="width: 150px;" class="rounded absolute hidden bg-gray-700 p-2 text-center shadow-lg right-0 top-full mt-1 z-10" id="mini-menu">
+                        <p class="p-2 text-white font-bold cursor-pointer">Info</p>
+                        <hr>
+                        <p class="p-2 bg-red-800 text-white font-bold cursor-pointer hover:bg-red-600" id="btn-eliminar-chat">Bloquear</p>
                     </div>
                 </div>
             </div>
             
 
             <!-- Área de chat -->
-            <div id="chat-box" class="flex-1 overflow-y-auto p-4 bg-white rounded-lg space-y-4">
+            <div id="chat-box" class="flex-1 overflow-y-auto p-4 space-y-4 chat-color">
                 <!-- Mensajes se mostrarán aquí -->
                  <div class="w-full h-96 text-center" id="sin-mensajes-disponibles">
                     <i class="fa-solid fa-circle-info text-5xl mt-24 my-4 text-gray-400"></i>
@@ -68,9 +69,9 @@
             </div>
 
             <!-- Input de mensaje -->
-            <div class="flex items-center p-4 border-t border-gray-300 bg-white">
+            <div class="flex items-center p-4 border-t border-gray-300 bg-gray-200">
                 <input id="message-input" type="text" placeholder="Escribe un mensaje..." class="px-4 flex-1 p-2 border border-gray-300 rounded-lg mr-2 focus:outline-none focus:ring-2 focus:ring-gray-300">
-                <button id="send-button" onclick="SendButton()" class="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-900 focus:outline-none"><i class="fa-solid fa-paper-plane mr-1"></i></button>
+                <button id="send-button" onclick="SendButton()" class="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-900 focus:outline-none"><i class="fa-solid fa-angles-right"></i></button>
             </div>
         </main>
     </div>
