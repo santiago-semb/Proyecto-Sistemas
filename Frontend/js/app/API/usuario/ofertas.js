@@ -23,6 +23,7 @@ const obtenerCategorias = async () => {
 }
 
 const obtenerOfertas = async () => {
+    document.getElementById("categoria-buscada").style.display = 'none'
     const API_URL = `http://localhost:${port}/api/Oferta`;
     try {
         let data = await fetchApi2(API_URL, "GET");
@@ -143,6 +144,7 @@ const buscarOfertaPorCategoria = async (categoria) => {
     const API_URL = `http://localhost:${port}/api/Oferta?categoria=${categoria}`;
     let data = await fetchApi2(API_URL, "GET");
     const divPublicaciones = document.getElementById("publicaciones")
+    document.getElementById("categoria-buscada").style.display = 'none'
     if(data[0] === undefined || data[0] === null)
     {
             divPublicaciones.innerHTML = `
@@ -156,6 +158,16 @@ const buscarOfertaPorCategoria = async (categoria) => {
     else
     {
         divPublicaciones.innerHTML = ''
+        document.getElementById("categoria-buscada").style.display = 'block'
+        document.getElementById("categoria-buscada").innerHTML = `
+        <div class='text-center my-4'>
+            <b class="text-md">Se está filtrando por </b>
+            <span class="text-sm rounded p-1 ml-1 text-white bg-red-500 font-bold">
+                ${nombreCategoria}
+            </span>
+            <span onclick="obtenerOfertas()" class='ml-3 text-xs text-blue-700 cursor-pointer hover:underline'>Quitar</span>
+        </div>
+        `
         data.forEach(async publi => {
             let pais = publi.Pais;
             let tdoc = publi.Tdoc;
