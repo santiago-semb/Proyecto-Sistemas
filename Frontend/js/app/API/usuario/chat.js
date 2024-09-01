@@ -356,7 +356,6 @@ const obtenerChat = async () => {
                 </div>
                 `
             }
-            console.log(actualizarEstadoMensaje)
             if(actualizarEstadoMensaje) updateEstadoChat(idMsg);
         });
 
@@ -473,8 +472,30 @@ document.getElementById("btn-eliminar-chat").addEventListener("click", async () 
     inputMessage.style.backgroundColor = '#d1d1d4'
     inputMessage.style.color = 'black'
     inputMessage.style.textAlign = 'center'
-    document.getElementById("config-chat").style.display = 'none'
+    document.getElementById("config-chat").style.display = 'none' 
+    // quitar del chat una vez bloqueado
+    let nombrePersonaReceptor = document.getElementById("nombre-persona-chat").textContent;
+    nombrePersonaReceptor = nombrePersonaReceptor.toUpperCase().trim();
+    //console.log(nombrePersonaReceptor);
+    eliminarChatDelMenu(nombrePersonaReceptor);
+
 })
+
+const eliminarChatDelMenu = (nombreCompleto) => {
+    // Seleccionar todos los elementos <a> con la clase 'chat-item'
+    let items = document.querySelectorAll('.chat-item');
+    
+    items.forEach(function(item) {
+        // Obtener el nombre completo del chat del elemento <a>
+        let nombre = item.querySelector('span').textContent.trim();
+        //console.log(nombre);
+        // Verificar si el nombre completo coincide con el nombre dado
+        if (nombre === nombreCompleto) {
+            // Eliminar el elemento <a> del DOM
+            item.remove();
+        }
+    });
+}
 
 
 obtenerEstadoConexion(paisParam, tdocParam, ndocParam)
