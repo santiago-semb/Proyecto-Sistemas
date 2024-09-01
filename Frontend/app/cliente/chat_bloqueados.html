@@ -39,9 +39,11 @@
     <!-- Contenido principal -->
     <div class="flex-1 flex flex-col ml-64">
         <main class="flex-1 flex flex-col bg-white rounded-lg shadow-lg mx-4 mt-4 mb-4 p-4">
-            <h1 class="text-5xl mb-8">Chats Bloqueados</h1>
-            <div id="no-chat">
-                <p>Aún no tienes chats</p>
+            <h1 class="text-5xl mb-8">Chat Bloqueados</h1>
+            <hr class="mb-4">
+            <div id="no-chat" class="text-center bg-gray-100 py-24 rounded">
+                <i class="fa-solid fa-person-circle-exclamation text-gray-900" style="font-size: 100px;"></i>
+                <p class="text-3xl mt-4 text-gray-700">Aún no tienes chats para desbloquear</p>
             </div>
             <table class="w-full text-center bg-gray-100 rounded" id="tabla-chat-bloqueados">
                 <thead>

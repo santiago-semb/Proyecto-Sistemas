@@ -1,7 +1,11 @@
 const port = 55939;
 const url = 'http://127.0.0.1:5500'
 
-const obtenerChatsBloqueados = async () => {
+let paisLs = localStorage.getItem("pais")
+let tdocLs = localStorage.getItem("tdoc")
+let ndocLs = localStorage.getItem("ndoc")
+
+const obtenerChatsBloqueados = async (paisLs, tdocLs, ndocLs) => {
     let paisLs = localStorage.getItem("pais")
     let tdocLs = localStorage.getItem("tdoc")
     let ndocLs = localStorage.getItem("ndoc")
@@ -55,6 +59,23 @@ const desbloquearChat = (id, chat_id) => {
     const boton = event.target.closest('button');
     const tr = boton.closest('tr');
     tr.remove();
+    verificarRegistrosTabla();
+}
+
+const verificarRegistrosTabla = () => {
+    // Seleccionar el tbody de la tabla
+    let tbody = document.getElementById('tbody-tabla-bloqueados');
+    // Contar el número de filas en el tbody
+    let filas = tbody.getElementsByTagName('tr').length;
+    // Obtener el elemento para el mensaje de error
+    let mensajeError = document.getElementById('no-chat');
+    // Mostrar o ocultar el mensaje de error basado en el número de filas
+    if (filas === 0) {
+        mensajeError.style.display = 'block'; // Mostrar el mensaje de error
+        document.getElementById("tabla-chat-bloqueados").style.display = 'none'
+    } else {
+        mensajeError.style.display = 'none'; // Ocultar el mensaje de error
+    }
 }
 
 // Método para hacer peticiones API
@@ -69,4 +90,4 @@ const fetchApi2 = async (url, method) => {
     });
 }
 
-obtenerChatsBloqueados();
+obtenerChatsBloqueados(paisLs, tdocLs, ndocLs);
