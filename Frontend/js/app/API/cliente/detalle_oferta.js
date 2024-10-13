@@ -25,6 +25,8 @@ const obtenerOferta = async (id) => {
         descOferta.value = data.Descripcion.trim()
         spanFechaPubl.innerHTML = data.FechaPubl
         let categoriaElegida = data.Categoria;
+        let fotoPubli = document.getElementById("foto-publi")
+        fotoPubli.src = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
         obtenerCategorias(categoriaElegida)
     } catch (error) {
         console.error("Error:", error);
@@ -39,7 +41,7 @@ const actualizarOferta = (id) => {
         Nombre: nombreOferta.value,
         Descripcion: descOferta.value,
         Categoria: selectCategorias.value,
-        Foto: null,
+        //Foto: null,
         Precio: precioOferta.value,
         Estado: 1,
         FechaPubl: "2024-06-09T12:18:02.3174827-03:00"
@@ -71,6 +73,17 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
     try {
         let data = await fetchApi2(API_URL, "GET");
         document.getElementById("usuario-detalle").innerHTML = data.RazSoc;
+        const API_URL_CL = `http://localhost:${port}/api/Cliente/${pais}/${tdoc}/${ndoc}`;
+            try{
+                let data = await fetchApi(API_URL_CL, "GET");
+                // Cliente o Usuario
+                let fotoInput = document.getElementById("logo-cli");
+                fotoInput.src = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
+            }
+            catch(error)
+            {
+                console.error("Error:", error);
+            }
     } catch (error) {
         console.error("Error:", error);
     }
@@ -114,6 +127,41 @@ function redireccionarAOfertas()
     }, 200);
 }
 
+const ofertaUpdatePhoto = async (id) => {
+    const API_URL = `http://localhost:${port}/api/Oferta/updatePhoto/${id}`;
+    
+    const fotoInput = document.getElementById('file-input-oferta');
+    const formData = new FormData();
+
+    if (fotoInput.files.length === 0) {
+        alert("Por favor, selecciona una imagen.");
+        return;
+    }
+
+    // Añade el archivo seleccionado al FormData
+    formData.append('foto', fotoInput.files[0]);
+
+    fetch(API_URL, {
+        method: 'PUT',
+        body: formData,
+        headers: {
+            // Si tu API requiere autenticación, añade el token aquí
+            // 'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Error al actualizar la foto');
+        return response.text(); // O response.json() si tu API devuelve JSON
+    })
+    .then(data => {
+
+    })
+    .catch(error => {
+
+    });
+}
+
+
 // Método para hacer peticiones API
 const fetchApi2 = (url, method) => { 
     return fetch(url, {method: method})
@@ -132,8 +180,26 @@ document.getElementById("delete-offer").addEventListener("click", () => {
 })
 document.getElementById("save-offer").addEventListener("click", () => {
     actualizarOferta(idOferta);
+    ofertaUpdatePhoto(idOferta);
     redireccionarAOfertas();
 })
 
 obtenerPersona(paisLs, tdocLs, ndocLs)
 obtenerOferta(idOferta);
+
+const fotoInput = document.getElementById('file-input-oferta');
+const fotoPubli = document.getElementById('foto-publi');
+
+fotoInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = (e) => {
+            fotoPubli.src = e.target.result; // Actualiza la fuente de la imagen
+        };
+        
+        reader.readAsDataURL(file); // Lee el archivo como URL de datos
+    }
+});

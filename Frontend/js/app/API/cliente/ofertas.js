@@ -11,6 +11,17 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
         let nombrePersona = data.Nombre
         let titulopersona = document.getElementById("nombre-persona-juridica")
         titulopersona.textContent = nombrePersona;
+        const API_URL_CL = `http://localhost:${port}/api/Cliente/${pais}/${tdoc}/${ndoc}`;
+        try{
+            let data = await fetchApi(API_URL_CL, "GET");
+            // Cliente o Usuario
+            let logoCli = document.getElementById("logo-cli");
+            logoCli.src = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
+        }
+        catch(error)
+        {
+            console.error("Error:", error);
+        }
     } catch (error) {
         console.error("Error:", error);
     }

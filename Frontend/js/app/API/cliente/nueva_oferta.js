@@ -13,6 +13,17 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
         let data = await fetchApi(API_URL, "GET");
         let nombreCliente = document.getElementById("nombre-cliente");
         nombreCliente.textContent = data.Nombre;
+        const API_URL_CL = `http://localhost:${port}/api/Cliente/${pais}/${tdoc}/${ndoc}`;
+            try{
+                let data = await fetchApi(API_URL_CL, "GET");
+                // Cliente o Usuario
+                let fotoInput = document.getElementById("logo-cli");
+                fotoInput.src = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
+            }
+            catch(error)
+            {
+                console.error("Error:", error);
+            }
     } catch (error) {
         console.error("Error:", error);
     }
@@ -70,11 +81,10 @@ const crearOferta = () => {
         },
         body: JSON.stringify(datosFormulario)
     })
-    .then(response => {
+    .then(async response => {
         if (!response.ok) {
             throw new Error("Hubo un problema al enviar el formulario: " + response.status);
         }
-        return response.json();
     })
     .then(data => {
         console.log("Respuesta de la API:", data);
@@ -85,6 +95,51 @@ const crearOferta = () => {
     });
 }
 
+
+
+const ofertaUpdatePhoto = async () => {
+    // Obtengo último id de oferta (para saber cual es el que se creó)
+    let UltimoId = 0;
+    const API_URL_Gid = `http://localhost:${port}/api/Oferta/byIdDesc`;
+    try {
+        let data = await fetchApi(API_URL_Gid, "GET");
+        UltimoId = data[0].Id;
+    } catch (error) {
+        console.error("Error:", error);
+    }
+
+    const API_URL = `http://localhost:${port}/api/Oferta/updatePhoto/${UltimoId+1}`;
+    
+    const fotoInput = document.getElementById('file-input-oferta');
+    const formData = new FormData();
+
+    if (fotoInput.files.length === 0) {
+        alert("Por favor, selecciona una imagen.");
+        return;
+    }
+
+    // Añade el archivo seleccionado al FormData
+    formData.append('foto', fotoInput.files[0]);
+
+    fetch(API_URL, {
+        method: 'PUT',
+        body: formData,
+        headers: {
+            // Si tu API requiere autenticación, añade el token aquí
+            // 'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Error al actualizar la foto');
+        return response.text(); // O response.json() si tu API devuelve JSON
+    })
+    .then(data => {
+
+    })
+    .catch(error => {
+
+    });
+}
 
 function redireccionarAOfertas()
 {
@@ -125,9 +180,26 @@ const fetchApi2 = async (url, method) => {
 obtenerPersona(paisLs, tdocLs, ndocLs)
 obtenerCategorias()
 
-document.getElementById("btn-crear-oferta").addEventListener("click", () => {
-    crearOferta();
+document.getElementById("btn-crear-oferta").addEventListener("click", async () => {
+    await crearOferta();
+    await ofertaUpdatePhoto();
     document.getElementById("btn-crear-oferta").textContent = 'Creando...'
     redireccionarAOfertas();
 })
   
+const fotoInput = document.getElementById('file-input-oferta');
+const fotoPubli = document.getElementById('foto-publi');
+
+fotoInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    
+    if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = (e) => {
+            fotoPubli.src = e.target.result; // Actualiza la fuente de la imagen
+        };
+        
+        reader.readAsDataURL(file); // Lee el archivo como URL de datos
+    }
+});
