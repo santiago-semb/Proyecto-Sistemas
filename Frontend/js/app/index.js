@@ -219,16 +219,17 @@ const obtenerChatsMenu = async () => {
                 let paisE = chat.PaisEmisor;
                 let tdocE = chat.TdocEmisor;
                 let ndocE = chat.NdocEmisor;
+
                 
                 let paisApi, tdocApi, ndocApi;
                 let paramChat;
-        
-                if (paisR === pais && tdocR === tdoc && ndocR === ndoc) {
+
+                if (paisR === pais && tdocR === tdoc && ndocR.trim() === ndoc) {
                     paisApi = paisE;
                     tdocApi = tdocE;
                     ndocApi = ndocE;
                     paramChat = `${chat.PaisEmisor}${chat.TdocEmisor}${chat.NdocEmisor}`;
-                } else if (paisE === pais && tdocE === tdoc && ndocE === ndoc) {
+                } else if (paisE === pais && tdocE === tdoc && ndocE.trim() === ndoc) {
                     paisApi = paisR;
                     tdocApi = tdocR;
                     ndocApi = ndocR;
@@ -238,7 +239,21 @@ const obtenerChatsMenu = async () => {
                 const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
                 let dataPersona = await fetchApi2(API_URL_Per, 'GET');
                 let nombreCompleto = dataPersona.Nombre;
-        
+                let rolPersona = dataPersona.Rol;
+                let fotoPersona = "";
+                if(rolPersona == 1)
+                {
+                    const API_URL_Us = `http://localhost:${port}/api/Usuario?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
+                    let data = await fetchApi2(API_URL_Us, 'GET');
+                    fotoPersona = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : '../../assets/img/user.jfif';
+                }
+                if(rolPersona == 2)
+                {
+                    const API_URL_Cl = `http://localhost:${port}/api/Cliente?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
+                    let data = await fetchApi2(API_URL_Cl, 'GET');
+                    fotoPersona = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : '../../assets/img/user.jfif';
+                }
+
                 // Obtener la cantidad de mensajes no leídos para este chat
                 let cantMensajesNoLeidos = unreadMessageCount.get(chat.Id) || 0;
                 let hayMensajesNoLeidos = cantMensajesNoLeidos > 0 
@@ -248,7 +263,7 @@ const obtenerChatsMenu = async () => {
                 menuChat.innerHTML += `
                     <a href="./chat.html?ch=${paramChat}&nr=${cantMensajesNoLeidos}" class="flex items-center justify-between chat-item">
                         <div class='flex items-center justify-between'>
-                            <img src="https://via.placeholder.com/25" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
+                            <img src="${fotoPersona}" alt="Chat 1" class="chat-img rounded-full object-cover mr-3">
                             <span class='text-xs font-bold'>${nombreCompleto.toUpperCase()}</span>
                         </div>
                         ${hayMensajesNoLeidos}

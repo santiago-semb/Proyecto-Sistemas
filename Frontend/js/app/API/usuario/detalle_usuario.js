@@ -53,6 +53,8 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
             fechaAlt.then((fecha) => {
                 document.getElementById("fecha-desde-cl").innerHTML = fecha;
             })
+            let fotoUsu = document.getElementById("foto-usu")
+            fotoUsu.src = dataCl.FotoBase64 ? `data:image/jpeg;base64,${dataCl.FotoBase64}` : 'ruta/por_defecto.jpg';
             ObtenerGenerico("TipoDocumento", data.Tdoc).then(res => {
                 document.getElementById("tdoc-cl").innerHTML = res.Nombre
             }).catch(err => console.log(err));

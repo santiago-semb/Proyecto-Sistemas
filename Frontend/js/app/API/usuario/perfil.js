@@ -559,6 +559,7 @@ const ObtenerGenerico = async (queObtener, id) => {
 
 document.getElementById("btn-guardar-perfil").addEventListener("click", () => {
     actualizarPersona(paisLs, tdocLs, ndocLs);
+    usuarioUpdatePhoto(paisLs, tdocLs, ndocLs);
 })
 
 obtenerPersona(paisLs, tdocLs, ndocLs);

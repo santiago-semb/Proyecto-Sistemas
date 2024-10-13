@@ -34,12 +34,16 @@ namespace API.Controllers
             {
                 usu = db.DUS01.Find(Pais, Tdoc, Ndoc);
 
-                // Si la foto no es nula, conviértela a base64 y asigna a una nueva propiedad
-                if (usu.Foto != null)
+                if(usu != null)
                 {
-                    // Usar una propiedad temporal para almacenar la cadena base64
-                    usu.FotoBase64 = Convert.ToBase64String(usu.Foto);
+                    // Si la foto no es nula, conviértela a base64 y asigna a una nueva propiedad
+                    if (usu.Foto != null)
+                    {
+                        // Usar una propiedad temporal para almacenar la cadena base64
+                        usu.FotoBase64 = Convert.ToBase64String(usu.Foto);
+                    }
                 }
+
 
             }
             return usu;
