@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="sistemas2_webModel.DSE01" PointX="11.375" PointY="12.75" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.Localidades" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.Ofertas_Clientes" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="sistemas2_webModel.Paises" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.Provincias" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.Puntajes" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.Roles" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
@@ -23,14 +22,15 @@
         <EntityTypeShape EntityType="sistemas2_webModel.Tipos_Entidades" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.Tipos_Ofertas" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sistemas2_webModel.Credenciales" Width="1.5" PointX="5.375" PointY="12.75" />
-        <EntityTypeShape EntityType="sistemas2_webModel.DCL01" Width="1.5" PointX="7.375" PointY="13.75" />
-        <EntityTypeShape EntityType="sistemas2_webModel.DUS01" Width="1.5" PointX="13.375" PointY="8.75" />
-        <EntityTypeShape EntityType="sistemas2_webModel.Ofertas" Width="1.5" PointX="13.375" PointY="11.75" />
         <EntityTypeShape EntityType="sistemas2_webModel.Personas" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="sistemas2_webModel.Guardar_Ofertas" Width="1.5" PointX="7.375" PointY="4.75" />
         <EntityTypeShape EntityType="sistemas2_webModel.block_chat" Width="1.5" PointX="15.375" PointY="0.75" />
         <EntityTypeShape EntityType="sistemas2_webModel.data_chat" Width="1.5" PointX="15.375" PointY="4.75" />
         <EntityTypeShape EntityType="sistemas2_webModel.message_chat" Width="1.5" PointX="15.375" PointY="8.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.DUS01" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.DCL01" Width="1.5" PointX="7.375" PointY="13.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Ofertas" Width="1.5" PointX="13.375" PointY="12.75" />
+        <EntityTypeShape EntityType="sistemas2_webModel.Paises" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

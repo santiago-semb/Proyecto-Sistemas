@@ -180,3 +180,4 @@ D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\obj\Debug\API.cspro
 D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\obj\Debug\API.csproj.CopyComplete
 D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\obj\Debug\API.dll
 D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\obj\Debug\API.pdb
+D:\USUARIO\Desktop\Sistema_Web_IC\Backend\Sistema_WEB_v2\API\obj\Debug\API.csproj.AssemblyReference.cache

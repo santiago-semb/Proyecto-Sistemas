@@ -17,6 +17,7 @@ namespace API
         public int Codigo { get; set; }
         public string Nombre { get; set; }
         public string ISO3 { get; set; }
-        public string Bandera { get; set; }
+        public byte[] Bandera { get; set; }
+        public string BanderaBase64 { get; set; } // Nueva propiedad para almacenar base64
     }
 }

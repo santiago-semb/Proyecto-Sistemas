@@ -13,7 +13,7 @@ TRUNCATE TABLE Paises;
 
 -- ######################## INSERTS ########################
 
-INSERT INTO Paises (Nombre, ISO3, Bandera) VALUES ('Argentina', 'ARG', '');
+INSERT INTO Paises (Nombre, ISO3, Bandera) VALUES ('Argentina', 'ARG', NULL);
 INSERT INTO Provincias (Nombre, Pais) VALUES ('Buenos Aires', 1);
 INSERT INTO Provincias (Nombre, Pais) VALUES ('Catamarca', 1);
 INSERT INTO Provincias (Nombre, Pais) VALUES ('Chaco', 1);

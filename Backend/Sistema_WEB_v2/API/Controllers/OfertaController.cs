@@ -86,6 +86,12 @@ namespace API.Controllers
             using (sistemas2_webEntities db = new sistemas2_webEntities())
             {
                 oferta = db.Ofertas.Find(id);
+                // Si la foto no es nula, conviértela a base64 y asigna a una nueva propiedad
+                if (oferta.Foto != null)
+                {
+                    // Usar una propiedad temporal para almacenar la cadena base64
+                    oferta.FotoBase64 = Convert.ToBase64String(oferta.Foto);
+                }
             }
             return oferta;
         }

@@ -17,7 +17,8 @@ namespace API
         public int Pais { get; set; }
         public int Tdoc { get; set; }
         public string Ndoc { get; set; }
-        public string Foto { get; set; }
+        public byte[] Foto { get; set; }
+        public string FotoBase64 { get; set; } // Nueva propiedad para almacenar base64
         public string Presentacion { get; set; }
         public Nullable<int> CantCon { get; set; }
         public Nullable<int> Score { get; set; }

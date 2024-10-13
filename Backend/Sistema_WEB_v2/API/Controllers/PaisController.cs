@@ -31,6 +31,12 @@ namespace API.Controllers
             using (sistemas2_webEntities db = new sistemas2_webEntities())
             {
                 pais = db.Paises.Find(Codigo);
+                // Si la foto no es nula, conviértela a base64 y asigna a una nueva propiedad
+                if (pais.Bandera != null)
+                {
+                    // Usar una propiedad temporal para almacenar la cadena base64
+                    pais.BanderaBase64 = Convert.ToBase64String(pais.Bandera);
+                }
             }
             return pais;
         }

@@ -34,7 +34,6 @@ namespace API
         public virtual DbSet<DSE01> DSE01 { get; set; }
         public virtual DbSet<Localidades> Localidades { get; set; }
         public virtual DbSet<Ofertas_Clientes> Ofertas_Clientes { get; set; }
-        public virtual DbSet<Paises> Paises { get; set; }
         public virtual DbSet<Provincias> Provincias { get; set; }
         public virtual DbSet<Puntajes> Puntajes { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
@@ -43,13 +42,14 @@ namespace API
         public virtual DbSet<Tipos_Entidades> Tipos_Entidades { get; set; }
         public virtual DbSet<Tipos_Ofertas> Tipos_Ofertas { get; set; }
         public virtual DbSet<Credenciales> Credenciales { get; set; }
-        public virtual DbSet<DCL01> DCL01 { get; set; }
-        public virtual DbSet<DUS01> DUS01 { get; set; }
-        public virtual DbSet<Ofertas> Ofertas { get; set; }
         public virtual DbSet<Personas> Personas { get; set; }
         public virtual DbSet<Guardar_Ofertas> Guardar_Ofertas { get; set; }
         public virtual DbSet<block_chat> block_chat { get; set; }
         public virtual DbSet<data_chat> data_chat { get; set; }
         public virtual DbSet<message_chat> message_chat { get; set; }
+        public virtual DbSet<DUS01> DUS01 { get; set; }
+        public virtual DbSet<DCL01> DCL01 { get; set; }
+        public virtual DbSet<Ofertas> Ofertas { get; set; }
+        public virtual DbSet<Paises> Paises { get; set; }
     }
 }

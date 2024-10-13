@@ -32,7 +32,7 @@ CREATE TABLE Paises (
 	Codigo INT IDENTITY(1,1) NOT NULL, -- Código
 	Nombre NCHAR(70) UNIQUE, -- Nombre
 	ISO3 NCHAR(3) UNIQUE, -- Abreviatura ISO
-	Bandera NTEXT, -- Imagen bandera
+	Bandera VARBINARY(MAX), -- Imagen bandera
 
 	PRIMARY KEY(Codigo)
 )
@@ -145,7 +145,7 @@ CREATE TABLE DCL01 ( -- Clientes
 	Ndoc NCHAR(25) NOT NULL, -- Número de Documento
 	--FecAlt SMALLDATETIME, -- Fecha de Alta del Cliente
 	--FecUltAcc SMALLDATETIME, -- Fecha de último acceso del Cliente
-	Foto NTEXT, -- Fotografía del Cliente
+	Foto VARBINARY(MAX), -- Fotografía del Cliente
 	Presentacion NTEXT, -- Carta de Presentación del Cliente
 	CantCon INT, -- Cantidad de Servicios o Productos concretados
 	Score INT, -- Porcentaje de aceptación
@@ -161,7 +161,7 @@ CREATE TABLE DUS01 ( -- Usuarios
 	Ndoc NCHAR(25) NOT NULL, -- Número de Documento
 	--FecAlt SMALLDATETIME, -- Fecha de Alta del Usuario
 	--FecUltAcc SMALLDATETIME, -- Fecha de último acceso del Usuario
-	Foto NTEXT, -- Fotografía del Usuario
+	Foto VARBINARY(MAX), -- Fotografía del Usuario
 	Presentacion NTEXT, -- Carta de Presentación del Usuario
 
 	PRIMARY KEY(Pais, Tdoc, Ndoc),
@@ -214,7 +214,7 @@ CREATE TABLE Ofertas (
 	Nombre NCHAR(50), -- Título de la Oferta
 	Descripcion NCHAR(200), -- Descripción de la Oferta
 	Categoria INT, -- Categoría de la Oferta
-	Foto NCHAR(100), -- Fotografía
+	Foto VARBINARY(MAX), -- Fotografía
 	Precio DECIMAL(18, 2), -- Precio
 	Estado INT, -- Estado de la Oferta (1 = Online - 2 = Offline)
 	FechaPubl SMALLDATETIME, -- Fecha de publicación

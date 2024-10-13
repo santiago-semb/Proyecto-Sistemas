@@ -77,7 +77,7 @@
     <Property Name="Pais" Type="int" Nullable="false" />
     <Property Name="Tdoc" Type="int" Nullable="false" />
     <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
-    <Property Name="Foto" Type="ntext" />
+    <Property Name="Foto" Type="varbinary(max)" />
     <Property Name="Presentacion" Type="ntext" />
     <Property Name="CantCon" Type="int" />
     <Property Name="Score" Type="int" />
@@ -154,7 +154,7 @@
     <Property Name="Pais" Type="int" Nullable="false" />
     <Property Name="Tdoc" Type="int" Nullable="false" />
     <Property Name="Ndoc" Type="nchar" MaxLength="25" Nullable="false" />
-    <Property Name="Foto" Type="ntext" />
+    <Property Name="Foto" Type="varbinary(max)" />
     <Property Name="Presentacion" Type="ntext" />
   </EntityType>
   <EntityType Name="Guardar_Ofertas">
@@ -202,7 +202,7 @@
     <Property Name="Nombre" Type="nchar" MaxLength="50" />
     <Property Name="Descripcion" Type="nchar" MaxLength="200" />
     <Property Name="Categoria" Type="int" />
-    <Property Name="Foto" Type="nchar" MaxLength="100" />
+    <Property Name="Foto" Type="varbinary(max)" />
     <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
     <Property Name="Estado" Type="int" />
     <Property Name="FechaPubl" Type="smalldatetime" />
@@ -222,7 +222,7 @@
     <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="nchar" MaxLength="70" />
     <Property Name="ISO3" Type="nchar" MaxLength="3" />
-    <Property Name="Bandera" Type="ntext" />
+    <Property Name="Bandera" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Personas">
     <Key>

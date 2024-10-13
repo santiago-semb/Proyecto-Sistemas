@@ -457,17 +457,6 @@ function EnviarFormularioUsuCli()
     let cliente_o_usuario = (rol.trim() === "Usuario") ? 'Usuario' : 'Cliente';
     const API_URL = `http://localhost:${port}/api/${cliente_o_usuario}`;
 
-    let fileInput = document.getElementById("foto");
-    let fileName = ""
-    // Verificar si se seleccionó un archivo
-    if (fileInput.files.length > 0) {
-        // Obtener el primer archivo seleccionado
-        let file = fileInput.files[0];
-        
-        // Obtener el nombre del archivo
-        fileName = file.name;
-    }
-
     let presentacion = document.getElementById("presentacion").value;
 
     // Construir un objeto con los datos del formulario
@@ -477,7 +466,7 @@ function EnviarFormularioUsuCli()
         "Ndoc": ndoc_aux,
         "FecAlt": "2024-06-05T19:42:50.7576633-03:00",
         "FecUltAcc": "2024-06-05T19:42:50.7576633-03:00",
-        "Foto": fileName,
+        "Foto": null,
         "Presentacion": presentacion
       };
     
@@ -531,6 +520,41 @@ function RedirigirCliUs()
         }
 }
 
+const clienteUsuarioPhoto = (pais, tdoc, ndoc) => {
+    let tipo = (localStorage.getItem("rol") === "1") ? "Usuario" : "Cliente";
+    const API_URL = `http://localhost:${port}/api/${tipo}/updatePhoto/${pais}/${tdoc}/${ndoc}`;
+    
+    const fotoInput = document.getElementById('foto');
+    const formData = new FormData();
+
+    if (fotoInput.files.length === 0) {
+        alert("Por favor, selecciona una imagen.");
+        return;
+    }
+
+    // Añade el archivo seleccionado al FormData
+    formData.append('foto', fotoInput.files[0]);
+
+    fetch(API_URL, {
+        method: 'PUT',
+        body: formData,
+        headers: {
+            // Si tu API requiere autenticación, añade el token aquí
+            // 'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Error al actualizar la foto');
+        return response.text(); // O response.json() si tu API devuelve JSON
+    })
+    .then(data => {
+
+    })
+    .catch(error => {
+
+    });
+}
+
 function EnviarData()
 {
     let tipoPersona = localStorage.getItem("tipo-persona");
@@ -538,6 +562,7 @@ function EnviarData()
     if(tipoPersona === "F"){EnviarFormularioPF()}else{EnviarFormularioPJ()};
     EnviarFormularioUsuCli();
     EnviarFormularioCreden();
+    clienteUsuarioPhoto(localStorage.getItem("pais"), localStorage.getItem("tdoc"), localStorage.getItem("ndoc"));
 
     localStorage.removeItem("tipo-persona");
 

@@ -151,9 +151,9 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
             try{
                 let data = await fetchApi2(API_URL_CL, "GET");
                 // Cliente o Usuario
-                let fotoInput = document.getElementById("foto-input");
+                let fotoInput = document.getElementById("foto-usu");
                 let descripcionTextarea = document.getElementById("presentacion-textarea");
-                //fotoInput.value = data.Foto;
+                fotoInput.src = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
                 descripcionTextarea.value = data.Presentacion;
             }
             catch(error)
@@ -176,6 +176,7 @@ const actualizarPersona = (pais, tdoc, ndoc) => {
     if(TipoPersona === "F") pfUpdate(pais, tdoc, ndoc);
     if(TipoPersona === "J") pjUpdate(pais, tdoc, ndoc);
     usuarioUpdate(pais, tdoc, ndoc);
+    usuarioUpdatePhoto(pais, tdoc, ndoc);
 }
 
 const personaUpdate = (pais, tdoc, ndoc) => {
@@ -307,7 +308,7 @@ const usuarioUpdate = (pais, tdoc, ndoc) => {
     let presentacion = document.getElementById("presentacion-textarea").value;
 
     let datosFormulario = {
-        Foto: null,
+        //Foto: null,
         Presentacion: presentacion,
       }
     
@@ -329,6 +330,40 @@ const usuarioUpdate = (pais, tdoc, ndoc) => {
     })
     .catch(error => {
         console.error("Error al enviar el formulario:", error);
+    });
+}
+
+const usuarioUpdatePhoto = (pais, tdoc, ndoc) => {
+    const API_URL = `http://localhost:${port}/api/Usuario/updatePhoto/${pais}/${tdoc}/${ndoc}`;
+    
+    const fotoInput = document.getElementById('foto');
+    const formData = new FormData();
+
+    if (fotoInput.files.length === 0) {
+        alert("Por favor, selecciona una imagen.");
+        return;
+    }
+
+    // Añade el archivo seleccionado al FormData
+    formData.append('foto', fotoInput.files[0]);
+
+    fetch(API_URL, {
+        method: 'PUT',
+        body: formData,
+        headers: {
+            // Si tu API requiere autenticación, añade el token aquí
+            // 'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Error al actualizar la foto');
+        return response.text(); // O response.json() si tu API devuelve JSON
+    })
+    .then(data => {
+
+    })
+    .catch(error => {
+
     });
 }
 

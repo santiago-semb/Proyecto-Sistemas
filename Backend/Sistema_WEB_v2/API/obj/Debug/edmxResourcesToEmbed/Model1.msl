@@ -100,16 +100,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Paises">
-      <EntityTypeMapping TypeName="sistemas2_webModel.Paises">
-        <MappingFragment StoreEntitySet="Paises">
-          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="ISO3" ColumnName="ISO3" />
-          <ScalarProperty Name="Bandera" ColumnName="Bandera" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Provincias">
       <EntityTypeMapping TypeName="sistemas2_webModel.Provincias">
         <MappingFragment StoreEntitySet="Provincias">
@@ -187,48 +177,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DCL01">
-      <EntityTypeMapping TypeName="sistemas2_webModel.DCL01">
-        <MappingFragment StoreEntitySet="DCL01">
-          <ScalarProperty Name="Score" ColumnName="Score" />
-          <ScalarProperty Name="CantCon" ColumnName="CantCon" />
-          <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
-          <ScalarProperty Name="Foto" ColumnName="Foto" />
-          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
-          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
-          <ScalarProperty Name="Pais" ColumnName="Pais" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DUS01">
-      <EntityTypeMapping TypeName="sistemas2_webModel.DUS01">
-        <MappingFragment StoreEntitySet="DUS01">
-          <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
-          <ScalarProperty Name="Foto" ColumnName="Foto" />
-          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
-          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
-          <ScalarProperty Name="Pais" ColumnName="Pais" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Ofertas">
-      <EntityTypeMapping TypeName="sistemas2_webModel.Ofertas">
-        <MappingFragment StoreEntitySet="Ofertas">
-          <ScalarProperty Name="FechaPubl" ColumnName="FechaPubl" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Precio" ColumnName="Precio" />
-          <ScalarProperty Name="Foto" ColumnName="Foto" />
-          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
-          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
-          <ScalarProperty Name="Pais" ColumnName="Pais" />
-          <ScalarProperty Name="Tipo_Oferta" ColumnName="Tipo_Oferta" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Personas">
       <EntityTypeMapping TypeName="sistemas2_webModel.Personas">
         <MappingFragment StoreEntitySet="Personas">
@@ -302,6 +250,58 @@
           <ScalarProperty Name="PaisEmisor2" ColumnName="PaisEmisor2" />
           <ScalarProperty Name="Id_Chat" ColumnName="Id_Chat" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DUS01">
+      <EntityTypeMapping TypeName="sistemas2_webModel.DUS01">
+        <MappingFragment StoreEntitySet="DUS01">
+          <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DCL01">
+      <EntityTypeMapping TypeName="sistemas2_webModel.DCL01">
+        <MappingFragment StoreEntitySet="DCL01">
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="CantCon" ColumnName="CantCon" />
+          <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ofertas">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Ofertas">
+        <MappingFragment StoreEntitySet="Ofertas">
+          <ScalarProperty Name="FechaPubl" ColumnName="FechaPubl" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Ndoc" ColumnName="Ndoc" />
+          <ScalarProperty Name="Tdoc" ColumnName="Tdoc" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Tipo_Oferta" ColumnName="Tipo_Oferta" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paises">
+      <EntityTypeMapping TypeName="sistemas2_webModel.Paises">
+        <MappingFragment StoreEntitySet="Paises">
+          <ScalarProperty Name="Bandera" ColumnName="Bandera" />
+          <ScalarProperty Name="ISO3" ColumnName="ISO3" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

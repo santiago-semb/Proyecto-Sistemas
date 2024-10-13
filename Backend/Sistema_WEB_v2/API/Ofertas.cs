@@ -22,7 +22,8 @@ namespace API
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public Nullable<int> Categoria { get; set; }
-        public string Foto { get; set; }
+        public byte[] Foto { get; set; }
+        public string FotoBase64 { get; set; } // Nueva propiedad para almacenar base64
         public Nullable<decimal> Precio { get; set; }
         public Nullable<int> Estado { get; set; }
         public Nullable<System.DateTime> FechaPubl { get; set; }

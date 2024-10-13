@@ -148,9 +148,9 @@ const obtenerPersona = async (pais, tdoc, ndoc) => {
             try{
                 let data = await fetchApi(API_URL_CL, "GET");
                 // Cliente o Usuario
-                let fotoInput = document.getElementById("foto-input");
+                let fotoInput = document.getElementById("foto-cli");
                 let descripcionTextarea = document.getElementById("presentacion-textarea");
-                //fotoInput.value = data.Foto;
+                fotoInput.src = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
                 descripcionTextarea.value = data.Presentacion;
             }
             catch(error)
@@ -172,6 +172,7 @@ const actualizarPersona = (pais, tdoc, ndoc) => {
     personaUpdate(pais, tdoc, ndoc);
     pjUpdate(pais, tdoc, ndoc);
     clienteUpdate(pais, tdoc, ndoc);
+    clienteUpdatePhoto(pais, tdoc, ndoc);
 }
 
 const personaUpdate = (pais, tdoc, ndoc) => {
@@ -293,6 +294,40 @@ const clienteUpdate = (pais, tdoc, ndoc) => {
         console.error("Error al enviar el formulario cliente:", error);
     });
 
+}
+
+const clienteUpdatePhoto = (pais, tdoc, ndoc) => {
+    const API_URL = `http://localhost:${port}/api/Cliente/updatePhoto/${pais}/${tdoc}/${ndoc}`;
+    
+    const fotoInput = document.getElementById('foto');
+    const formData = new FormData();
+
+    if (fotoInput.files.length === 0) {
+        alert("Por favor, selecciona una imagen.");
+        return;
+    }
+
+    // Añade el archivo seleccionado al FormData
+    formData.append('foto', fotoInput.files[0]);
+
+    fetch(API_URL, {
+        method: 'PUT',
+        body: formData,
+        headers: {
+            // Si tu API requiere autenticación, añade el token aquí
+            // 'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Error al actualizar la foto');
+        return response.text(); // O response.json() si tu API devuelve JSON
+    })
+    .then(data => {
+
+    })
+    .catch(error => {
+
+    });
 }
 
 function CargarPaises()

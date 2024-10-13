@@ -13,7 +13,7 @@
 <body class="bg-gray-100 flex">
     <!-- Menú lateral -->
     <aside class="w-64 bg-white fixed shadow-md h-screen z-10 h-full">
-        <div class="p-4 font-bold text-xl text-center bg-gray-900 text-white">NombreProyecto</div>
+        <div class="p-4 font-bold text-xl text-center bg-gray-900 text-white"><img class="w-48 h-12" src="../../assets/img/ServiOnline.png"></div>
         <nav class="bg-gray-800 text-white h-full">
             <ul>
                 <li class="menu-item p-3"><a href="./perfil.html" class="cursor-pointer"><i class="fa-solid fa-address-card mr-2"></i> Perfil</a></li>
@@ -385,7 +385,7 @@
                                 Fotografía del Cliente <small>(opcional)</small>
                             </label>
                             <div class="text-gray-400 focus-within:text-gray-600 relative">
-                                <input disabled type="file" class="hidden" id="foto-input" accept="image/*">
+                                <input disabled type="file" class="hidden" id="foto" accept="image/*">
                                 <label for="foto" class="cursor-pointer bg-white border border-gray-400 rounded-md px-3 py-2 block w-full text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                     Subir Fotografía
                                     <span class="absolute right-3 top-2 transition duration-300">
@@ -393,6 +393,7 @@
                                     </span>
                                 </label>
                             </div>
+                            <img src="#" id="foto-cli">
                         </div>
                         <br>
                         <div class="mb-4 col-span-2">
