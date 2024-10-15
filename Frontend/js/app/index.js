@@ -224,18 +224,26 @@ const obtenerChatsMenu = async () => {
                 let paisApi, tdocApi, ndocApi;
                 let paramChat;
 
-                if (paisR === pais && tdocR === tdoc && ndocR.trim() === ndoc) {
+                if (paisR === pais && tdocR === tdoc && ndocR.trim() === ndoc.trim()) {
                     paisApi = paisE;
                     tdocApi = tdocE;
                     ndocApi = ndocE;
                     paramChat = `${chat.PaisEmisor}${chat.TdocEmisor}${chat.NdocEmisor}`;
-                } else if (paisE === pais && tdocE === tdoc && ndocE.trim() === ndoc) {
+                } else if (paisE === pais && tdocE === tdoc && ndocE.trim() === ndoc.trim()) {
                     paisApi = paisR;
                     tdocApi = tdocR;
                     ndocApi = ndocR;
                     paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`;
                 }
-        
+                
+                console.log(pais, tdoc, ndoc)
+
+                console.log(paisR, tdocR, ndocR.trim())
+                console.log(paisE, tdocE, ndocE.trim())
+
+                console.log(paisR === pais && tdocR === tdoc && ndocR.trim() === ndoc)
+                console.log(paisE === pais && tdocE === tdoc && ndocE.trim() === ndoc)
+
                 const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
                 let dataPersona = await fetchApi2(API_URL_Per, 'GET');
                 let nombreCompleto = dataPersona.Nombre;

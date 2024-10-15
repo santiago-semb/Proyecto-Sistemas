@@ -41,6 +41,20 @@ const obtenerOferta = async (id) => {
             let tdocUsu = localStorage.getItem("tdoc");
             let ndocUsu = localStorage.getItem("ndoc");
             const CodUsu = paisUsu.trim()+tdocUsu.trim()+ndocUsu.trim()
+
+
+            const API_URL_Of = `http://localhost:${port}/api/Oferta/${idOferta}`;
+            try{
+                let data = await fetchApi2(API_URL_Of, "GET");
+                // Cliente o Usuario
+                let fotoInput = document.getElementById("foto-publi");
+                fotoInput.src = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
+            }
+            catch(error)
+            {
+                console.error("Error:", error);
+            }
+
             // SI la oferta ya se guardó, entonces dar error
             let oferta = await ObtenerOfertasGuardadas(CodUsu, id);
 
