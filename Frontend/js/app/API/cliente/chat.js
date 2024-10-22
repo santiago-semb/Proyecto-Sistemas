@@ -94,6 +94,29 @@ const obtenerDatosPersona = async (pais, tdoc, ndoc) => {
     const API_URL_Personas = `http://localhost:${port}/api/Persona?Pais=${pais}&Tdoc=${tdoc}&Ndoc=${ndoc}`;
     let data = await fetchApi2(API_URL_Personas, 'GET');
     document.getElementById("nombre-persona-chat").textContent = data.Nombre;
+    let rolPersona = data.Rol;
+    try{
+        if(rolPersona == 1)
+        {
+            const API_URL_US = `http://localhost:${port}/api/Usuario/${pais}/${tdoc}/${ndoc}`;
+            let data = await fetchApi2(API_URL_US, "GET");
+            // Cliente o Usuario
+            let fotoInput = document.getElementById("foto-usu");
+            fotoInput.src = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
+        }
+        if(rolPersona == 2)
+        {
+            const API_URL_CL = `http://localhost:${port}/api/Cliente/${pais}/${tdoc}/${ndoc}`;
+            let data = await fetchApi2(API_URL_CL, "GET");
+            // Cliente o Usuario
+            let fotoInput = document.getElementById("foto-usu");
+            fotoInput.src = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
+        }
+    }
+    catch(error)
+    {
+        console.error("Error:", error);
+    }
 }
 
 const obtenerEstadoConexion = async (pais, tdoc, ndoc) => {

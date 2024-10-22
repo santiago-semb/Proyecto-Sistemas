@@ -23,6 +23,14 @@ const obtenerOferta = async (id) => {
         document.getElementById("precio-oferta").innerHTML = data.Precio
         document.getElementById("desc-oferta").innerHTML = data.Descripcion
 
+        let paisDuenioOffer = data.Pais
+        let tdocDuenioOffer = data.Tdoc
+        let ndocDuenioOffer = data.Ndoc
+        const API_URL_CL_OF = `http://localhost:${port}/api/Cliente/${paisDuenioOffer}/${tdocDuenioOffer}/${ndocDuenioOffer}`;
+        let dataCL = await fetchApi2(API_URL_CL_OF, "GET");
+
+        document.getElementById("detalle_oferta_client").src = dataCL.FotoBase64 ? `data:image/jpeg;base64,${dataCL.FotoBase64}` : 'ruta/por_defecto.jpg'
+
         let pais = data.Pais;
         let tdoc = data.Tdoc;
         let ndoc = data.Ndoc;

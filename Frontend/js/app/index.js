@@ -236,6 +236,7 @@ const obtenerChatsMenu = async () => {
                     paramChat = `${chat.PaisReceptor}${chat.TdocReceptor}${chat.NdocReceptor}`;
                 }
                 
+                /*
                 console.log(pais, tdoc, ndoc)
 
                 console.log(paisR, tdocR, ndocR.trim())
@@ -243,21 +244,26 @@ const obtenerChatsMenu = async () => {
 
                 console.log(paisR === pais && tdocR === tdoc && ndocR.trim() === ndoc)
                 console.log(paisE === pais && tdocE === tdoc && ndocE.trim() === ndoc)
+                */
 
                 const API_URL_Per = `http://localhost:${port}/api/Persona?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
                 let dataPersona = await fetchApi2(API_URL_Per, 'GET');
                 let nombreCompleto = dataPersona.Nombre;
                 let rolPersona = dataPersona.Rol;
                 let fotoPersona = "";
+
+                console.log(nombreCompleto, rolPersona)
                 if(rolPersona == 1)
                 {
-                    const API_URL_Us = `http://localhost:${port}/api/Usuario?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
+                    console.log(paisApi, tdocApi, ndocApi)
+                    const API_URL_Us = `http://localhost:${port}/api/Usuario/${paisApi}/${tdocApi}/${ndocApi}`;
                     let data = await fetchApi2(API_URL_Us, 'GET');
+                    console.log(data)
                     fotoPersona = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : '../../assets/img/user.jfif';
                 }
                 if(rolPersona == 2)
                 {
-                    const API_URL_Cl = `http://localhost:${port}/api/Cliente?Pais=${paisApi}&Tdoc=${tdocApi}&Ndoc=${ndocApi}`;
+                    const API_URL_Cl = `http://localhost:${port}/api/Cliente/${paisApi}/${tdocApi}/${ndocApi}`;
                     let data = await fetchApi2(API_URL_Cl, 'GET');
                     fotoPersona = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : '../../assets/img/user.jfif';
                 }

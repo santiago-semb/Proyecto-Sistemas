@@ -104,6 +104,9 @@ let telefonoAuxiliar = document.getElementById("telefono_aux").value;
 let email = document.getElementById("email").value;
 let fechaAlt = Date.now();
 
+let caracteristica_telefono = document.getElementById("c-telefono").value;
+let caracteristica_telefono_aux = document.getElementById("c-telefono_aux").value;
+
 nuevo_ndoc_aux = numeroDocumento;
 nuevo_rol_aux = rol;
 
@@ -119,8 +122,8 @@ let datosFormulario = {
     "Barrio": barrio,
     "Tipo_Domicilio": tipoDomicilio,
     "Domicilio": domicilio,
-    "Telefono": telefono,
-    "Telefono_aux": telefonoAuxiliar,
+    "Telefono": caracteristica_telefono.trim() + telefono.trim(),
+    "Telefono_aux": caracteristica_telefono_aux.trim() + telefonoAuxiliar.trim(),
     "Email": email
   };
 

@@ -40,13 +40,21 @@ const obtenerOfertas = async () => {
             let tdocPersona = persona.Tdoc.toString();
             let ndocPersona = persona.Ndoc;
             let categoryOffer = await ObtenerGenerico("Categoria", publi.Categoria);
+           
+            
+            const API_URL_Of = `http://localhost:${port}/api/Oferta/${publi.Id}`;
+            let dataOf = await fetchApi2(API_URL_Of, "GET");
+
+            // Imagen oferta
+            let imgOffer = dataOf.FotoBase64 ? `data:image/jpeg;base64,${dataOf.FotoBase64}` : 'ruta/por_defecto.jpg';
+
             divPublicaciones.innerHTML += `
             <div class="bg-white shadow-md rounded-lg p-4 m-2 w-80">
                 <div class="flex items-center justify-between">
                     <div class="mb-4" style="user-select: none;"><div class="font-bold"><div class="text-xs rounded p-1 text-white bg-red-500 font-bold">${categoryOffer.Nombre}</div></div></div>
                     <div class="text-gray-600 text-sm mb-2" style="user-select: none;">${publi.FechaPubl}</div>
                 </div>
-                <a href="./detalle_oferta.html?id=${publi.Id}"><img src="../../assets/img/imagen-index.png" alt="Foto de la publicación" class="mb-4 rounded-lg"></a>
+                <a href="./detalle_oferta.html?id=${publi.Id}"><img src="${imgOffer}" alt="Foto de la publicación" class="mb-4 rounded-lg"></a>
                 <div class="font-bold text-xl mb-2 text-center" style="user-select: none;">${publi.Nombre}</div>
                 <div class="p-2 text-center text-gray-900"><b class="text-3xl" style="user-select: none;">$${publi.Precio}</b></div>
                 <hr>
@@ -58,6 +66,7 @@ const obtenerOfertas = async () => {
                 </div>
             </div>
             `
+
         });
         
     } catch (error) {
@@ -115,13 +124,20 @@ const buscarOferta = async () => {
             let tdocPersona = persona.Tdoc.toString();
             let ndocPersona = persona.Ndoc;
             let categoryOffer = await ObtenerGenerico("Categoria", publi.Categoria);
+
+            const API_URL_Of = `http://localhost:${port}/api/Oferta/${publi.Id}`;
+            let dataOf = await fetchApi2(API_URL_Of, "GET");
+
+            // Imagen oferta
+            let imgOffer = dataOf.FotoBase64 ? `data:image/jpeg;base64,${dataOf.FotoBase64}` : 'ruta/por_defecto.jpg';
+
             divPublicaciones.innerHTML += `
             <div class="bg-white shadow-md rounded-lg p-4 m-2 w-80">
                 <div class="flex items-center justify-between">
                     <div class="mb-4" style="user-select: none;"><div class="font-bold"><div class="text-xs rounded p-1 text-white bg-red-500 font-bold">${categoryOffer.Nombre}</div></div></div>
                     <div class="text-gray-600 text-sm mb-2" style="user-select: none;">${publi.FechaPubl}</div>
                 </div>
-                <a href="./detalle_oferta.html?id=${publi.Id}"><img src="../../assets/img/imagen-index.png" alt="Foto de la publicación" class="mb-4 rounded-lg"></a>
+                <a href="./detalle_oferta.html?id=${publi.Id}"><img src="${imgOffer}" alt="Foto de la publicación" class="mb-4 rounded-lg"></a>
                 <div class="font-bold text-xl mb-2 text-center" style="user-select: none;">${publi.Nombre}</div>
                 <div class="p-2 text-center text-gray-900"><b class="text-3xl" style="user-select: none;">$${publi.Precio}</b></div>
                 <hr>
@@ -177,13 +193,20 @@ const buscarOfertaPorCategoria = async (categoria) => {
             let tdocPersona = persona.Tdoc.toString();
             let ndocPersona = persona.Ndoc;
             let categoryOffer = await ObtenerGenerico("Categoria", publi.Categoria);
+
+            const API_URL_Of = `http://localhost:${port}/api/Oferta/${publi.Id}`;
+            let dataOf = await fetchApi2(API_URL_Of, "GET");
+
+            // Imagen oferta
+            let imgOffer = dataOf.FotoBase64 ? `data:image/jpeg;base64,${dataOf.FotoBase64}` : 'ruta/por_defecto.jpg';
+
             divPublicaciones.innerHTML += `
             <div class="bg-white shadow-md rounded-lg p-4 m-2 w-80">
                 <div class="flex items-center justify-between">
                     <div class="mb-4" style="user-select: none;"><div class="font-bold"><div class="text-xs rounded p-1 text-white bg-red-500 font-bold">${categoryOffer.Nombre}</div></div></div>
                     <div class="text-gray-600 text-sm mb-2" style="user-select: none;">${publi.FechaPubl}</div>
                 </div>
-                <a href="./detalle_oferta.html?id=${publi.Id}"><img src="../../assets/img/imagen-index.png" alt="Foto de la publicación" class="mb-4 rounded-lg"></a>
+                <a href="./detalle_oferta.html?id=${publi.Id}"><img src="${imgOffer}" alt="Foto de la publicación" class="mb-4 rounded-lg"></a>
                 <div class="font-bold text-xl mb-2 text-center" style="user-select: none;">${publi.Nombre}</div>
                 <div class="p-2 text-center text-gray-900"><b class="text-3xl" style="user-select: none;">$${publi.Precio}</b></div>
                 <hr>

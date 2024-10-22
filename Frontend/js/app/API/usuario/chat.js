@@ -97,7 +97,7 @@ const obtenerDatosPersona = async (pais, tdoc, ndoc) => {
     try{
         if(rolPersona == 1)
         {
-            const API_URL_US = `http://localhost:${port}/api/Usuario?Pais=${pais}&Tdoc=${tdoc}&Ndoc=${ndoc}`;
+            const API_URL_US = `http://localhost:${port}/api/Usuario/${pais}/${tdoc}/${ndoc}`;
             let data = await fetchApi2(API_URL_US, "GET");
             // Cliente o Usuario
             let fotoInput = document.getElementById("foto-usu");
@@ -105,7 +105,7 @@ const obtenerDatosPersona = async (pais, tdoc, ndoc) => {
         }
         if(rolPersona == 2)
         {
-            const API_URL_CL = `http://localhost:${port}/api/Usuario?Pais=${pais}&Tdoc=${tdoc}&Ndoc=${ndoc}`;
+            const API_URL_CL = `http://localhost:${port}/api/Cliente/${pais}/${tdoc}/${ndoc}`;
             let data = await fetchApi2(API_URL_CL, "GET");
             // Cliente o Usuario
             let fotoInput = document.getElementById("foto-usu");

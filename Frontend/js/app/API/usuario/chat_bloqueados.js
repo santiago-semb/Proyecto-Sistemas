@@ -30,12 +30,31 @@ const obtenerChatsBloqueados = async (paisLs, tdocLs, ndocLs) => {
             let ownerTdoc = tdocForEach;
             let ownerNdoc = ndocForEach;
             let offerOwnerPK = `${ownerPais}${ownerTdoc}${ownerNdoc}`;
+
+            let rolPersona = data.Rol
+            let fotoowner = ""
+
+            if(rolPersona == 1)
+                {
+                    const API_URL_US = `http://localhost:${port}/api/Usuario/${ownerPais}/${ownerTdoc}/${ownerNdoc}`;
+                    let data = await fetchApi2(API_URL_US, "GET");
+                    // Cliente o Usuario
+                    fotoowner = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
+                }
+            if(rolPersona == 2)
+                {
+                    const API_URL_CL = `http://localhost:${port}/api/Cliente/${ownerPais}/${ownerTdoc}/${ownerNdoc}`;
+                    let data = await fetchApi2(API_URL_CL, "GET");
+                    // Cliente o Usuario
+                    fotoowner = data.FotoBase64 ? `data:image/jpeg;base64,${data.FotoBase64}` : 'ruta/por_defecto.jpg';
+                }
+
             tbody.innerHTML += `
                 <tr class="border-b border-gray-300">
                     <td class="py-4"><b>${e.Chat_Id}</b></td>
                     <td>
                         <div class='flex items-center justify-center'>
-                            <img src="https://via.placeholder.com/25" style="width: 40px; height: 40px;" alt="Foto 1" class="rounded-full object-cover">
+                            <img src="${fotoowner}" style="width: 40px; height: 40px;" alt="Foto 1" class="rounded-full object-cover">
                             <span class='text-md font-bold ml-4 underline'><a href="./detalle_usuario.html?cl=${offerOwnerPK}">${data.Nombre}</a></span>
                         </div>
                     </td>

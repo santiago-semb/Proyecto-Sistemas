@@ -27,6 +27,7 @@ namespace API.Controllers
         }
 
         // GET: api/Usuario/5
+        [Route("api/Usuario/{Pais}/{Tdoc}/{Ndoc}")]
         public DUS01 Get(int Pais, int Tdoc, string Ndoc)
         {
             DUS01 usu = new DUS01();
