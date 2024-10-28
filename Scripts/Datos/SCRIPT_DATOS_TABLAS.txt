@@ -313,7 +313,7 @@ VALUES
 ('C.U.I.T', 'Clave única de Identificación Tributaria'),
 ('C.U.I.L', 'Código Único de Identificación Laboral');
 INSERT INTO Tipos_Entidades (Nombre) VALUES ('Fines de Lucro'), ('Sin Fines de Lucro');
-INSERT INTO Tipos_Ofertas (Nombre) VALUES ('Producto'), ('Servicio');
+INSERT INTO Tipos_Ofertas (Nombre) VALUES ('Servicio');
 INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Hogar', 1);
 INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Plomería', 1);
 INSERT INTO Categorias (Nombre, Tipo_Oferta) VALUES ('Limpieza', 1);
